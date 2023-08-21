@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adaptador.cs" />
+    <Compile Include="db.Comision.cs" />
     <Compile Include="db.Planes.cs" />
     <Compile Include="db.Especialidad.cs" />
     <Compile Include="Program.cs" />

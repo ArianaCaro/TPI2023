@@ -37,5 +37,11 @@ namespace UI.Escritorio
             formEspecialidad frmEspecialidad = new formEspecialidad();
             frmEspecialidad.ShowDialog();
         }
+
+        private void comisionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formComision frmComision = new formComision();
+            frmComision.ShowDialog();
+        }
     }
 }

@@ -85,6 +85,7 @@
             this.comisionesToolStripMenuItem.Name = "comisionesToolStripMenuItem";
             this.comisionesToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
             this.comisionesToolStripMenuItem.Text = "Comisiones";
+            this.comisionesToolStripMenuItem.Click += new System.EventHandler(this.comisionesToolStripMenuItem_Click);
             // 
             // cursosToolStripMenuItem
             // 
