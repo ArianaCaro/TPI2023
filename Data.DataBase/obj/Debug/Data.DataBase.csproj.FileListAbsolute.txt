@@ -20,3 +20,14 @@ C:\Users\bruno\Downloads\TP2023M07\Data.DataBase\obj\Debug\Data.DataBase.csproj.
 C:\Users\bruno\Downloads\TP2023M07\Data.DataBase\obj\Debug\Data.DataBase.csproj.CopyComplete
 C:\Users\bruno\Downloads\TP2023M07\Data.DataBase\obj\Debug\Data.DataBase.exe
 C:\Users\bruno\Downloads\TP2023M07\Data.DataBase\obj\Debug\Data.DataBase.pdb
+C:\Users\bruno\source\repos\TPI2023\Data.DataBase\bin\Debug\Data.DataBase.exe.config
+C:\Users\bruno\source\repos\TPI2023\Data.DataBase\bin\Debug\Data.DataBase.exe
+C:\Users\bruno\source\repos\TPI2023\Data.DataBase\bin\Debug\Data.DataBase.pdb
+C:\Users\bruno\source\repos\TPI2023\Data.DataBase\bin\Debug\Entidades.dll
+C:\Users\bruno\source\repos\TPI2023\Data.DataBase\bin\Debug\Entidades.pdb
+C:\Users\bruno\source\repos\TPI2023\Data.DataBase\obj\Debug\Data.DataBase.csproj.AssemblyReference.cache
+C:\Users\bruno\source\repos\TPI2023\Data.DataBase\obj\Debug\Data.DataBase.csproj.SuggestedBindingRedirects.cache
+C:\Users\bruno\source\repos\TPI2023\Data.DataBase\obj\Debug\Data.DataBase.csproj.CoreCompileInputs.cache
+C:\Users\bruno\source\repos\TPI2023\Data.DataBase\obj\Debug\Data.DataBase.csproj.CopyComplete
+C:\Users\bruno\source\repos\TPI2023\Data.DataBase\obj\Debug\Data.DataBase.exe
+C:\Users\bruno\source\repos\TPI2023\Data.DataBase\obj\Debug\Data.DataBase.pdb

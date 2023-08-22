@@ -68,7 +68,7 @@ namespace UI.Escritorio
 
             ActualizarDataGridView();
         }
-
+        
         private void dgvEspecialidad_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             idEspecialidad = int.Parse(dgvEspecialidad.CurrentRow.Cells[0].Value.ToString()); //se crashea si aprieto la null

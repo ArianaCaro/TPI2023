@@ -15,9 +15,9 @@ namespace UI.Escritorio
 {
     public partial class formComision : Form
     {
-        int IdPlan;
-        string DescPlan;
-        int IdEspecialidad;
+        int IdComision,AnioEspecialidad,IdPlan;
+        string DescComision;
+
         public formComision()
         {
             InitializeComponent();
@@ -25,71 +25,80 @@ namespace UI.Escritorio
 
         private void formComision_Load(object sender, EventArgs e)
         {
+            // TODO: esta línea de código carga datos en la tabla 'tPI2023M07DataSet5.Comisiones' Puede moverla o quitarla según sea necesario.
             ActualizarDataGridView();
         }
 
 
         private void ActualizarDataGridView()
         {
-         /*   PlanesDAO planesDao = new PlanesDAO();
-            DataTable dtPlanes = planesDao.ObtenerTodosLosPlanes();
+            ComisionesDAO comisionesDAO = new ComisionesDAO();
+            DataTable dtComisiones = comisionesDAO.ObtenerTodasLasComisiones();
 
-            DataColumn descripcionEspecialidadColumn = new DataColumn("Especialidad", typeof(string));
-            dtPlanes.Columns.Add(descripcionEspecialidadColumn);
+            DataColumn descripcionPlanColumn = new DataColumn("Plan", typeof(string));
+            dtComisiones.Columns.Add(descripcionPlanColumn);
 
             // Recorrer las filas y obtener las descripciones de las especialidades
-            EspecialidadesDAO espDAO = new EspecialidadesDAO();
+            PlanesDAO planDAO = new PlanesDAO();
 
-            foreach (DataRow row in dtPlanes.Rows)
+            foreach (DataRow row in dtComisiones.Rows)
             {
-                int idEspecialidad = Convert.ToInt32(row["id_Especialidad"]);
-                string descripcionEspecialidad = espDAO.ObtenerDescripcionEspecialidad(idEspecialidad);
-                row["Especialidad"] = descripcionEspecialidad;
+                int idPlan = Convert.ToInt32(row["id_plan"]);
+                string descripcionPlan = planDAO.ObtenerDescripcionPlanes(idPlan);
+                row["Plan"] = descripcionPlan;
             }
-            dataGridView1.AutoGenerateColumns = true;
-            dataGridView1.DataSource = dtPlanes;*/
+            dgvComisiones.AutoGenerateColumns = true;
+            dgvComisiones.DataSource = dtComisiones;
         }
 
         private void btnAlta_Click(object sender, EventArgs e)
         {
-            formComisionOpc frmComisionOp = new formComisionOpc(0,"x",0);
+            formComisionOpc frmComisionOp = new formComisionOpc(0,"x",0,0);
             if (DialogResult.OK == frmComisionOp.ShowDialog()) ;
             ActualizarDataGridView();
         }
 
+
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            formPlanOpc frmPlanOp = new formPlanOpc(IdPlan, DescPlan, IdEspecialidad);
-            formComisionOpc frmComisionOp = new formComisionOpc(0, "x",0);
+            formComisionOpc frmComisionOp = new formComisionOpc(IdComision, DescComision, AnioEspecialidad, IdPlan);
             if (DialogResult.OK == frmComisionOp.ShowDialog()) ;
             ActualizarDataGridView();
         }
 
         private void btnBaja_Click(object sender, EventArgs e)
         {
-            DialogResult res = MessageBox.Show($"Desea borrar {DescPlan}", "Confirmar Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult res = MessageBox.Show($"Desea borrar {DescComision}", "Confirmar Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (res == DialogResult.Yes)
             {
-                PlanesDAO planesDAO = new PlanesDAO();
-                bool eliminado = planesDAO.EliminarPlan(IdPlan, DescPlan, IdEspecialidad);      //eliminado es mi variable bandera para saber si el metodo de eliminar funciono bien
-
-                if (eliminado)
+                ComisionesDAO comisionesDAO = new ComisionesDAO();
+                bool eliminado = comisionesDAO.EliminarComision(IdComision, DescComision, AnioEspecialidad, IdPlan);   //eliminado es mi variable bandera para saber si el metodo de eliminar funciono bien
+                if (eliminado)                          //si uso el try catch del metodo dentro de db no haria falta todo esto me parece
                 {
-                    MessageBox.Show("El plan ha sido eliminado correctamente.", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("La comisión ha sido eliminada correctamente.", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Error al eliminar el plan.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error al eliminar la comisión.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
             else
             {
-                MessageBox.Show("Debe seleccionar un plan antes de realizar la baja.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe seleccionar una comisión antes de realizar la baja.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             ActualizarDataGridView();
         }
+
+        private void dgvComisiones_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            IdComision = int.Parse(dgvComisiones.CurrentRow.Cells[0].Value.ToString());
+            DescComision = dgvComisiones.CurrentRow.Cells[1].Value.ToString();
+            AnioEspecialidad = int.Parse(dgvComisiones.CurrentRow.Cells[2].Value.ToString());
+            IdPlan = int.Parse(dgvComisiones.CurrentRow.Cells[3].Value.ToString());
+        }
+
     }
 }

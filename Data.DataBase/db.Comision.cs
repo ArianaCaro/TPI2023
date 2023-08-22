@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entidades;
 
 namespace Data.DataBase
 {
@@ -13,19 +14,21 @@ namespace Data.DataBase
         // Cadena de conexión a la base de datos
         private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
 
-        // Método para insertar un nuevo plan en la base de datos
-        public bool InsertarPlan(string descripcion, int idEspecialidad)
+
+        // Método para insertar una nueva comision en la base de datos
+        public bool InsertarComision(string descripcion, int anio, int idplan)
         {
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "INSERT INTO Planes (descripcion, id_Especialidad) VALUES (@descripcion, @id_Especialidad)";
+                    string query = "INSERT INTO Comisiones (desc_comision, anio_especialidad, id_plan) VALUES (@desc_comision, @anio_especialidad, @id_plan)";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@descripcion", descripcion);
-                        command.Parameters.AddWithValue("@id_Especialidad", idEspecialidad);
+                        command.Parameters.AddWithValue("@desc_comision", descripcion);
+                        command.Parameters.AddWithValue("@anio_especialidad", anio);
+                        command.Parameters.AddWithValue(@"id_plan", idplan);
                         int rowsAffected = command.ExecuteNonQuery();
                         return rowsAffected > 0;
                     }
@@ -34,33 +37,33 @@ namespace Data.DataBase
             catch (Exception ex)
             {
                 // Manejo de excepciones (opcional)
-                Console.WriteLine("Error al insertar el plan: " + ex.Message);
+                Console.WriteLine("Error al insertar la comision: " + ex.Message);
                 return false;
             }
         }
 
 
-        public DataTable ObtenerTodosLosPlanes()
+        public DataTable ObtenerTodasLasComisiones()
         {
-            DataTable dtPlanes = new DataTable();
+            DataTable dtComisiones = new DataTable();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT id_plan, descripcion, id_Especialidad FROM Planes";
+                string query = "SELECT id_comision, desc_comision,anio_especialidad, id_plan FROM Comisiones";
 
 
                 using (SqlCommand commnad = new SqlCommand(query, connection))
                 {
                     connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter(commnad);
-                    adapter.Fill(dtPlanes);
+                    adapter.Fill(dtComisiones);
                 }
             }
-            return dtPlanes;
+            return dtComisiones;
         }
 
 
-        public bool ModificarPlan(int id, string desc, int id_espec)
+        public bool ModificarComision(int idcom, string descripcion, int anio, int idplan)
         {
             try
             {
@@ -68,13 +71,14 @@ namespace Data.DataBase
                 {
                     connection.Open();
 
-                    string query = "UPDATE Planes SET Descripcion = @NuevaDescripcion, id_especialidad = @NuevoIdEspecialidad WHERE id_plan = @IDPlan";
+                    string query = "UPDATE Comisiones SET desc_comision = @NuevaDescripcion, anio_especialidad = @NuevoAnioEspecialidad,  id_plan = @NuevoPlan WHERE id_comision = @IDComision";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@IDPlan", id);
-                        command.Parameters.AddWithValue("@NuevaDescripcion", desc);
-                        command.Parameters.AddWithValue("@NuevoIdEspecialidad", id_espec);
+                        command.Parameters.AddWithValue("@IDComision", idcom);
+                        command.Parameters.AddWithValue("@NuevaDescripcion", descripcion);
+                        command.Parameters.AddWithValue("@NuevoAnioEspecialidad", anio);
+                        command.Parameters.AddWithValue("@NuevoPlan",idplan);
 
                         int rowsAffected = command.ExecuteNonQuery();
 
@@ -85,7 +89,7 @@ namespace Data.DataBase
             catch (Exception ex)
             {
                 // Manejar el error como consideres necesario (log, mostrar mensaje, etc.)
-                Console.WriteLine("Error al modificar el plan: " + ex.Message);
+                Console.WriteLine("Error al modificar la comisión: " + ex.Message);
                 return false;
             }
         }
@@ -93,7 +97,7 @@ namespace Data.DataBase
 
 
 
-        public bool EliminarPlan(int id_plan, string descripcion, int id_especialidad)
+        public bool EliminarComision(int idcom, string descripcion, int anio, int idplan)
         {
             {
                 try
@@ -102,15 +106,16 @@ namespace Data.DataBase
                     {
                         connection.Open();
 
-                        // Definir la consulta SQL para eliminar el plan
-                        string query = "DELETE FROM Planes WHERE id_plan = @id_plan AND descripcion = @descripcion AND id_Especialidad = @id_Especialidad";
+                        // Definir la consulta SQL para eliminar la comision
+                        string query = "DELETE FROM Comisiones WHERE id_comision = @id_comision AND desc_comision = @desc_comision AND anio_especialidad = @anio_especialidad AND id_plan = @id_plan";
 
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
                             // Agregar los parámetros a la consulta
-                            command.Parameters.AddWithValue("@id_plan", id_plan);
-                            command.Parameters.AddWithValue("@descripcion", descripcion);
-                            command.Parameters.AddWithValue("@id_Especialidad", id_especialidad);
+                            command.Parameters.AddWithValue("@id_comision", idcom);
+                            command.Parameters.AddWithValue("@desc_comision", descripcion);
+                            command.Parameters.AddWithValue("@anio_especialidad", anio);
+                            command.Parameters.AddWithValue("@id_plan", idplan);
 
                             // Ejecutar la consulta
                             int rowsAffected = command.ExecuteNonQuery();

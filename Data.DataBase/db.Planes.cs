@@ -157,11 +157,11 @@ namespace DataDAO
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "INSERT INTO Planes (descripcion, id_Especialidad) VALUES (@descripcion, @id_Especialidad)";
+                    string query = "INSERT INTO Planes (desc_plan, id_especialidad) VALUES (@desc_plan, @id_especialidad)";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@descripcion", descripcion);
-                        command.Parameters.AddWithValue("@id_Especialidad", idEspecialidad);
+                        command.Parameters.AddWithValue("@desc_plan", descripcion);
+                        command.Parameters.AddWithValue("@id_especialidad", idEspecialidad);
                         int rowsAffected = command.ExecuteNonQuery();
                         return rowsAffected > 0;
                     }
@@ -182,7 +182,7 @@ namespace DataDAO
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT id_plan, descripcion, id_Especialidad FROM Planes";
+                string query = "SELECT id_plan, desc_plan, id_especialidad FROM Planes";
                                                     
 
                 using (SqlCommand commnad = new SqlCommand(query, connection))
@@ -195,6 +195,39 @@ namespace DataDAO
             return dtPlanes;
         }
 
+        public string ObtenerDescripcionPlanes(int idPlan)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT desc_plan FROM Planes WHERE id_plan = @id_plan";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id_plan", idPlan);
+                        object result = command.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            return result.ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones (opcional)
+                Console.WriteLine("Error al obtener la descripción de la especialidad: " + ex.Message);
+            }
+
+            return null; // Devolver null si no se encuentra la descripción
+        }
+
+
+
+
 
         public bool ModificarPlan(int id, string desc, int id_espec)
         {
@@ -204,7 +237,7 @@ namespace DataDAO
                 {
                     connection.Open();
 
-                    string query = "UPDATE Planes SET Descripcion = @NuevaDescripcion, id_especialidad = @NuevoIdEspecialidad WHERE id_plan = @IDPlan";
+                    string query = "UPDATE Planes SET desc_plan = @NuevaDescripcion, id_especialidad = @NuevoIdEspecialidad WHERE id_plan = @IDPlan";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -239,14 +272,14 @@ namespace DataDAO
                         connection.Open();
 
                         // Definir la consulta SQL para eliminar el plan
-                        string query = "DELETE FROM Planes WHERE id_plan = @id_plan AND descripcion = @descripcion AND id_Especialidad = @id_Especialidad";
+                        string query = "DELETE FROM Planes WHERE id_plan = @id_plan AND desc_plan = @desc_plan AND id_especialidad = @id_especialidad";
 
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
                             // Agregar los parámetros a la consulta
                             command.Parameters.AddWithValue("@id_plan", id_plan);
-                            command.Parameters.AddWithValue("@descripcion", descripcion);
-                            command.Parameters.AddWithValue("@id_Especialidad", id_especialidad);
+                            command.Parameters.AddWithValue("@desc_plan", descripcion);
+                            command.Parameters.AddWithValue("@id_especialidad", id_especialidad);
 
                             // Ejecutar la consulta
                             int rowsAffected = command.ExecuteNonQuery();

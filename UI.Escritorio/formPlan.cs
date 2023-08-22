@@ -20,6 +20,8 @@ namespace UI.Escritorio
 
         private void formPlan_Load(object sender, EventArgs e)
         {
+            // TODO: esta línea de código carga datos en la tabla 'tPI2023M07DataSet.Planes' Puede moverla o quitarla según sea necesario.
+            this.planesTableAdapter.Fill(this.tPI2023M07DataSet.Planes);
             ActualizarDataGridView();
         }
 

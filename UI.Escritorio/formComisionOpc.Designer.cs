@@ -35,6 +35,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.txtAnioEspecialidad = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -75,9 +76,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(54, 128);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(151, 13);
+            this.label3.Size = new System.Drawing.Size(94, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Año especialidad??lo ingresa?";
+            this.label3.Text = "Año especialidad: ";
             // 
             // btnAceptar
             // 
@@ -99,11 +100,19 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // txtAnioEspecialidad
+            // 
+            this.txtAnioEspecialidad.Location = new System.Drawing.Point(161, 128);
+            this.txtAnioEspecialidad.Name = "txtAnioEspecialidad";
+            this.txtAnioEspecialidad.Size = new System.Drawing.Size(208, 20);
+            this.txtAnioEspecialidad.TabIndex = 7;
+            // 
             // formComisionOpc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(429, 343);
+            this.ClientSize = new System.Drawing.Size(439, 321);
+            this.Controls.Add(this.txtAnioEspecialidad);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.label3);
@@ -111,6 +120,8 @@
             this.Controls.Add(this.cmbPlanes);
             this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "formComisionOpc";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "formComisionOpc";
@@ -128,5 +139,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.TextBox txtAnioEspecialidad;
     }
 }

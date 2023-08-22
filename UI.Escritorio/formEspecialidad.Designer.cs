@@ -75,6 +75,7 @@
             // 
             // dgvEspecialidad
             // 
+            this.dgvEspecialidad.AllowUserToAddRows = false;
             this.dgvEspecialidad.AllowUserToResizeColumns = false;
             this.dgvEspecialidad.AllowUserToResizeRows = false;
             this.dgvEspecialidad.AutoGenerateColumns = false;

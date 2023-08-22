@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using DataDAO;
 using Data.DataBase;
 using System.Data.SqlClient;
-using Entidades;
 
 namespace UI.Escritorio
 {

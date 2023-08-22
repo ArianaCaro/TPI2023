@@ -17,44 +17,47 @@ namespace UI.Escritorio
 {
     public partial class formComisionOpc : Form
     {
-        public formComisionOpc()
+        bool band = false;
+        int id_comision;
+
+        public formComisionOpc(int idComision, string descComision, int anioEspecialidad, int id_plan)
         {
             InitializeComponent();
-            cargar_especialidades();
+            cargar_planes();
 
-            if (idPlan != 0)          //recibo como parametro el idplan y una x y pregunto si el id es un numero es porque estoy modificando, todo esto para reciclar el formulario de alta y usar el mismo
+            if (idComision != 0)          //recibo como parametro el idplan y una x y pregunto si el id es un numero es porque estoy modificando, todo esto para reciclar el formulario de alta y usar el mismo
             {
-                this.txtDescPlan.Text = descPlan.ToString();
-                EspecialidadesDAO espDAO = new EspecialidadesDAO();
-                this.cmbEspecialidades.Text = espDAO.ObtenerDescripcionEspecialidad(idEspecialidad);
-                this.btnAgregar.Text = "MODIFICAR";
-                this.Text = "Formulario MODIFICAR Plan   " + descPlan;
+                this.txtDescripcion.Text = descComision.ToString();
+                this.txtAnioEspecialidad.Text = anioEspecialidad.ToString();
+                PlanesDAO planDAO = new PlanesDAO();
+                this.cmbPlanes.Text = planDAO.ObtenerDescripcionPlanes(id_plan);
+                this.btnAceptar.Text = "MODIFICAR";
+                this.Text = "Formulario MODIFICAR Comisión";
                 band = true;
-                id_plan = idPlan;
+                id_comision = idComision;
             }
             else
             {
-                this.Text = "Formulario ALTA Plan";
-                this.btnAgregar.Text = "AGREGAR";
+                this.Text = "Formulario ALTA Comisión";
+                this.btnAceptar.Text = "AGREGAR";
                 // this.cmbEspecialidades.Text = "Seleccione una especialidad";
             }
         }
 
-        SqlConnection con = new SqlConnection("Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023");
-        public void cargar_especialidades()
+        //SqlConnection con = new SqlConnection("Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023");
+        public void cargar_planes()
         {
+            PlanesDAO planesDAO = new PlanesDAO();
+            DataTable dtPlanes = planesDAO.ObtenerTodosLosPlanes();
 
-            EspecialidadesDAO especialidadesDAO = new EspecialidadesDAO();
-            DataTable dtEspecialidades = especialidadesDAO.ObtenerTodasLasEspecialidades();
-
-            cmbEspecialidades.ValueMember = "id_especialidad";
-            cmbEspecialidades.DisplayMember = "desc_especialidad";
-            cmbEspecialidades.DataSource = dtEspecialidades;
-
+            cmbPlanes.ValueMember = "id_plan";
+            cmbPlanes.DisplayMember = "desc_plan";
+            cmbPlanes.DataSource = dtPlanes;
         }
+
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (cmbEspecialidades.Text.Length == 0 || txtDescPlan.Text.Length == 0)
+            if (cmbPlanes.Text.Length == 0 || txtDescripcion.Text.Length == 0/* || txtAnioEspecialidad.Text !=*/)
             {
                 MessageBox.Show("Cargar datos correctamente");
             }
@@ -63,18 +66,20 @@ namespace UI.Escritorio
                 bool resultado;
                 if (band == true)       //el band es para saber si es un formulario de modificar o de alta, si es true es de modificar
                 {
-                    string desc = txtDescPlan.Text;
-                    int espec = (int)cmbEspecialidades.SelectedValue;
+                    string desc = txtDescripcion.Text;
+                    int anio = int.Parse(txtAnioEspecialidad.Text);
+                    int plan = (int)cmbPlanes.SelectedValue;
 
-                    PlanesDAO planesDAO = new PlanesDAO();
-                    resultado = planesDAO.ModificarPlan(id_plan, desc, espec);
+                    ComisionesDAO comisionDAO = new ComisionesDAO();
+                    resultado = comisionDAO.ModificarComision(id_comision,desc, anio, plan);
                 }
                 else
                 {
-                    string descripcion = txtDescPlan.Text;
-                    int id_especialidad = (int)cmbEspecialidades.SelectedValue;
-                    PlanesDAO planesDAO = new PlanesDAO();
-                    resultado = planesDAO.InsertarPlan(descripcion, id_especialidad);
+                    string desc = txtDescripcion.Text;
+                    int anio = int.Parse(txtAnioEspecialidad.Text);
+                    int plan = (int)cmbPlanes.SelectedValue;
+                    ComisionesDAO comisionDAO = new ComisionesDAO();
+                    resultado = comisionDAO.InsertarComision(desc, anio, plan);
                 }
 
                 if (resultado)      //los metodos modificarplan e insertarplan devuelven booleanos, si funciona todo ok muestro cartel

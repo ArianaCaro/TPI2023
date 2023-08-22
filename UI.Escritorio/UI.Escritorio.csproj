@@ -110,20 +110,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TPI2023M07DataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="TPI2023M07DataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TPI2023M07DataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="TPI2023M07DataSet2.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TPI2023M07DataSet2.xsd</DependentUpon>
-    </Compile>
     <Compile Include="TPI2023M07DataSet3.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TPI2023M07DataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TPI2023M07DataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TPI2023M07DataSet5.xsd</DependentUpon>
     </Compile>
     <EmbeddedResource Include="formComision.resx">
       <DependentUpon>formComision.cs</DependentUpon>
@@ -179,28 +174,6 @@
     <None Include="TPI2023M07DataSet.xss">
       <DependentUpon>TPI2023M07DataSet.xsd</DependentUpon>
     </None>
-    <None Include="TPI2023M07DataSet1.xsc">
-      <DependentUpon>TPI2023M07DataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="TPI2023M07DataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TPI2023M07DataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="TPI2023M07DataSet1.xss">
-      <DependentUpon>TPI2023M07DataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="TPI2023M07DataSet2.xsc">
-      <DependentUpon>TPI2023M07DataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="TPI2023M07DataSet2.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TPI2023M07DataSet2.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="TPI2023M07DataSet2.xss">
-      <DependentUpon>TPI2023M07DataSet2.xsd</DependentUpon>
-    </None>
     <None Include="TPI2023M07DataSet3.xsc">
       <DependentUpon>TPI2023M07DataSet3.xsd</DependentUpon>
     </None>
@@ -211,6 +184,17 @@
     </None>
     <None Include="TPI2023M07DataSet3.xss">
       <DependentUpon>TPI2023M07DataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet5.xsc">
+      <DependentUpon>TPI2023M07DataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TPI2023M07DataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TPI2023M07DataSet5.xss">
+      <DependentUpon>TPI2023M07DataSet5.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

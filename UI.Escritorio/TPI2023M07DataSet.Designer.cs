@@ -279,9 +279,11 @@ namespace UI.Escritorio {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class PlanesDataTable : global::System.Data.TypedTableBase<PlanesRow> {
             
-            private global::System.Data.DataColumn columnIDEspecialidad;
+            private global::System.Data.DataColumn columnid_plan;
             
-            private global::System.Data.DataColumn columnDescripcion;
+            private global::System.Data.DataColumn columndesc_plan;
+            
+            private global::System.Data.DataColumn columnid_especialidad;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -318,17 +320,25 @@ namespace UI.Escritorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn IDEspecialidadColumn {
+            public global::System.Data.DataColumn id_planColumn {
                 get {
-                    return this.columnIDEspecialidad;
+                    return this.columnid_plan;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn DescripcionColumn {
+            public global::System.Data.DataColumn desc_planColumn {
                 get {
-                    return this.columnDescripcion;
+                    return this.columndesc_plan;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn id_especialidadColumn {
+                get {
+                    return this.columnid_especialidad;
                 }
             }
             
@@ -369,14 +379,22 @@ namespace UI.Escritorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public PlanesRow AddPlanesRow(string IDEspecialidad, string Descripcion) {
+            public PlanesRow AddPlanesRow(string desc_plan, int id_especialidad) {
                 PlanesRow rowPlanesRow = ((PlanesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        IDEspecialidad,
-                        Descripcion};
+                        null,
+                        desc_plan,
+                        id_especialidad};
                 rowPlanesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPlanesRow);
                 return rowPlanesRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public PlanesRow FindByid_plan(int id_plan) {
+                return ((PlanesRow)(this.Rows.Find(new object[] {
+                            id_plan})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -396,19 +414,29 @@ namespace UI.Escritorio {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnIDEspecialidad = base.Columns["IDEspecialidad"];
-                this.columnDescripcion = base.Columns["Descripcion"];
+                this.columnid_plan = base.Columns["id_plan"];
+                this.columndesc_plan = base.Columns["desc_plan"];
+                this.columnid_especialidad = base.Columns["id_especialidad"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnIDEspecialidad = new global::System.Data.DataColumn("IDEspecialidad", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIDEspecialidad);
-                this.columnDescripcion = new global::System.Data.DataColumn("Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDescripcion);
-                this.columnIDEspecialidad.MaxLength = 5;
-                this.columnDescripcion.MaxLength = 50;
+                this.columnid_plan = new global::System.Data.DataColumn("id_plan", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnid_plan);
+                this.columndesc_plan = new global::System.Data.DataColumn("desc_plan", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndesc_plan);
+                this.columnid_especialidad = new global::System.Data.DataColumn("id_especialidad", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnid_especialidad);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnid_plan}, true));
+                this.columnid_plan.AutoIncrement = true;
+                this.columnid_plan.AutoIncrementSeed = -1;
+                this.columnid_plan.AutoIncrementStep = -1;
+                this.columnid_plan.AllowDBNull = false;
+                this.columnid_plan.ReadOnly = true;
+                this.columnid_plan.Unique = true;
+                this.columndesc_plan.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -551,58 +579,69 @@ namespace UI.Escritorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string IDEspecialidad {
+            public int id_plan {
+                get {
+                    return ((int)(this[this.tablePlanes.id_planColumn]));
+                }
+                set {
+                    this[this.tablePlanes.id_planColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string desc_plan {
                 get {
                     try {
-                        return ((string)(this[this.tablePlanes.IDEspecialidadColumn]));
+                        return ((string)(this[this.tablePlanes.desc_planColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'IDEspecialidad\' de la tabla \'Planes\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'desc_plan\' de la tabla \'Planes\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePlanes.IDEspecialidadColumn] = value;
+                    this[this.tablePlanes.desc_planColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Descripcion {
+            public int id_especialidad {
                 get {
                     try {
-                        return ((string)(this[this.tablePlanes.DescripcionColumn]));
+                        return ((int)(this[this.tablePlanes.id_especialidadColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Descripcion\' de la tabla \'Planes\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'id_especialidad\' de la tabla \'Planes\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePlanes.DescripcionColumn] = value;
+                    this[this.tablePlanes.id_especialidadColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsIDEspecialidadNull() {
-                return this.IsNull(this.tablePlanes.IDEspecialidadColumn);
+            public bool Isdesc_planNull() {
+                return this.IsNull(this.tablePlanes.desc_planColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetIDEspecialidadNull() {
-                this[this.tablePlanes.IDEspecialidadColumn] = global::System.Convert.DBNull;
+            public void Setdesc_planNull() {
+                this[this.tablePlanes.desc_planColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsDescripcionNull() {
-                return this.IsNull(this.tablePlanes.DescripcionColumn);
+            public bool Isid_especialidadNull() {
+                return this.IsNull(this.tablePlanes.id_especialidadColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetDescripcionNull() {
-                this[this.tablePlanes.DescripcionColumn] = global::System.Convert.DBNull;
+            public void Setid_especialidadNull() {
+                this[this.tablePlanes.id_especialidadColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -765,16 +804,40 @@ namespace UI.Escritorio.TPI2023M07DataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Planes";
-            tableMapping.ColumnMappings.Add("IDEspecialidad", "IDEspecialidad");
-            tableMapping.ColumnMappings.Add("Descripcion", "Descripcion");
+            tableMapping.ColumnMappings.Add("id_plan", "id_plan");
+            tableMapping.ColumnMappings.Add("desc_plan", "desc_plan");
+            tableMapping.ColumnMappings.Add("id_especialidad", "id_especialidad");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Planes] WHERE (([id_plan] = @Original_id_plan) AND ((@IsNull_desc_plan = 1 AND [desc_plan] IS NULL) OR ([desc_plan] = @Original_desc_plan)) AND ((@IsNull_id_especialidad = 1 AND [id_especialidad] IS NULL) OR ([id_especialidad] = @Original_id_especialidad)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id_plan", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_plan", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_desc_plan", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "desc_plan", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_desc_plan", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "desc_plan", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_id_especialidad", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_especialidad", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id_especialidad", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_especialidad", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Planes] ([IDEspecialidad], [Descripcion]) VALUES (@IDEspeciali" +
-                "dad, @Descripcion)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Planes] ([desc_plan], [id_especialidad]) VALUES (@desc_plan, @" +
+                "id_especialidad);\r\nSELECT id_plan, desc_plan, id_especialidad FROM Planes WHERE " +
+                "(id_plan = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDEspecialidad", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDEspecialidad", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@desc_plan", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "desc_plan", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_especialidad", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_especialidad", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Planes] SET [desc_plan] = @desc_plan, [id_especialidad] = @id_especialidad WHERE (([id_plan] = @Original_id_plan) AND ((@IsNull_desc_plan = 1 AND [desc_plan] IS NULL) OR ([desc_plan] = @Original_desc_plan)) AND ((@IsNull_id_especialidad = 1 AND [id_especialidad] IS NULL) OR ([id_especialidad] = @Original_id_especialidad)));
+SELECT id_plan, desc_plan, id_especialidad FROM Planes WHERE (id_plan = @id_plan)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@desc_plan", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "desc_plan", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_especialidad", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_especialidad", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id_plan", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_plan", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_desc_plan", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "desc_plan", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_desc_plan", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "desc_plan", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_id_especialidad", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_especialidad", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id_especialidad", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_especialidad", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_plan", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id_plan", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -790,7 +853,7 @@ namespace UI.Escritorio.TPI2023M07DataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT IDEspecialidad, Descripcion FROM dbo.Planes";
+            this._commandCollection[0].CommandText = "SELECT id_plan, desc_plan, id_especialidad FROM dbo.Planes";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -850,19 +913,57 @@ namespace UI.Escritorio.TPI2023M07DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_id_plan, string Original_desc_plan, global::System.Nullable<int> Original_id_especialidad) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id_plan));
+            if ((Original_desc_plan == null)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_desc_plan));
+            }
+            if ((Original_id_especialidad.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_id_especialidad.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string IDEspecialidad, string Descripcion) {
-            if ((IDEspecialidad == null)) {
+        public virtual int Insert(string desc_plan, global::System.Nullable<int> id_especialidad) {
+            if ((desc_plan == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(IDEspecialidad));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(desc_plan));
             }
-            if ((Descripcion == null)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            if ((id_especialidad.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(id_especialidad.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Descripcion));
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -878,6 +979,65 @@ namespace UI.Escritorio.TPI2023M07DataSetTableAdapters {
                     this.Adapter.InsertCommand.Connection.Close();
                 }
             }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string desc_plan, global::System.Nullable<int> id_especialidad, int Original_id_plan, string Original_desc_plan, global::System.Nullable<int> Original_id_especialidad, int id_plan) {
+            if ((desc_plan == null)) {
+                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(desc_plan));
+            }
+            if ((id_especialidad.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(id_especialidad.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_id_plan));
+            if ((Original_desc_plan == null)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_desc_plan));
+            }
+            if ((Original_id_especialidad.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_id_especialidad.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(id_plan));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string desc_plan, global::System.Nullable<int> id_especialidad, int Original_id_plan, string Original_desc_plan, global::System.Nullable<int> Original_id_especialidad) {
+            return this.Update(desc_plan, id_especialidad, Original_id_plan, Original_desc_plan, Original_id_especialidad, Original_id_plan);
         }
     }
     

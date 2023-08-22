@@ -14,7 +14,7 @@ namespace DataDAO
         static void Main(string[] args)
         {
             #region PLANES
-            DataTable dtPlanes = new DataTable("Planes");   //creo que haca me esta creando la null, creo
+            DataTable dtPlanes = new DataTable("Planes");   
 
             dtPlanes.Columns.Add("id_plan", typeof(int)); // Cambio de columna
             dtPlanes.Columns.Add("descripcion", typeof(string)); // Cambio de columna
@@ -45,8 +45,10 @@ namespace DataDAO
             Console.ReadLine();
             #endregion
 
+
+
             #region ESPECIALIDADES
-            DataTable dtEspecialidades = new DataTable("Especialidades");
+           /* DataTable dtEspecialidades = new DataTable("Especialidades");
 
             dtEspecialidades.Columns.Add("id_especialidad", typeof(int)); // Cambio de columna
             dtEspecialidades.Columns.Add("descripcion", typeof(string)); // Cambio de columna
@@ -73,7 +75,7 @@ namespace DataDAO
 
                 Console.WriteLine($"ID Especialidad: {idEspecialidad}, Descripción: {descripcion}");
             }
-            Console.ReadLine();
+            Console.ReadLine();*/
             #endregion
 
         }
