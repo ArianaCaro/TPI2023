@@ -9,22 +9,13 @@ namespace UI.Escritorio
 {
     public partial class formPlan : Form
     {
-        int IdPlan;
-        string DescPlan;
-        int IdEspecialidad;
+        private Plan planSeleccionado;
 
         public formPlan()
         {
             InitializeComponent();
-        }
-
-        private void formPlan_Load(object sender, EventArgs e)
-        {
-            // TODO: esta línea de código carga datos en la tabla 'tPI2023M07DataSet.Planes' Puede moverla o quitarla según sea necesario.
-            this.planesTableAdapter.Fill(this.tPI2023M07DataSet.Planes);
             ActualizarDataGridView();
         }
-
 
         private void ActualizarDataGridView()
         {          
@@ -34,43 +25,41 @@ namespace UI.Escritorio
             DataColumn descripcionEspecialidadColumn = new DataColumn("Especialidad", typeof(string));
             dtPlanes.Columns.Add(descripcionEspecialidadColumn);
 
-            // Recorrer las filas y obtener las descripciones de las especialidades
             EspecialidadesDAO espDAO = new EspecialidadesDAO();
-
             foreach (DataRow row in dtPlanes.Rows)
             {
                 int idEspecialidad = Convert.ToInt32(row["id_Especialidad"]);
                 string descripcionEspecialidad = espDAO.ObtenerDescripcionEspecialidad(idEspecialidad); 
                 row["Especialidad"] = descripcionEspecialidad;
             }
-            dataGridView1.AutoGenerateColumns = true;
-            dataGridView1.DataSource = dtPlanes;
+            dgvPlanes.AutoGenerateColumns = true;
+            dgvPlanes.DataSource = dtPlanes;
         }
 
-        private void aLTAToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnAlta_Click(object sender, EventArgs e)
         {
-            formPlanOpc frmPlanOp = new formPlanOpc(0,"x",0);
-            if (DialogResult.OK == frmPlanOp.ShowDialog());
+            Plan nuevoPlan = null;                                            
+            formPlanOpc frmPlanOp = new formPlanOpc(nuevoPlan);
+            if (DialogResult.OK == frmPlanOp.ShowDialog())
+            ActualizarDataGridView();
+        }
+     
+        private void btnModifica_Click(object sender, EventArgs e)
+        {
+            formPlanOpc frmPlanOp = new formPlanOpc(planSeleccionado);
+            if (DialogResult.OK == frmPlanOp.ShowDialog())
             ActualizarDataGridView();
         }
 
 
-        private void mODIFICAToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnBaja_Click(object sender, EventArgs e)
         {
-            formPlanOpc frmPlanOp = new formPlanOpc(IdPlan, DescPlan,IdEspecialidad);
-            if (DialogResult.OK == frmPlanOp.ShowDialog());
-            ActualizarDataGridView();
-        }
-
-
-        private void bAJAToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DialogResult res = MessageBox.Show($"Desea borrar {DescPlan}", "Confirmar Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult res = MessageBox.Show($"Desea borrar {planSeleccionado.DescPlan}", "Confirmar Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (res == DialogResult.Yes)
             {
                 PlanesDAO planesDAO = new PlanesDAO();
-                bool eliminado = planesDAO.EliminarPlan(IdPlan,DescPlan,IdEspecialidad);      //eliminado es mi variable bandera para saber si el metodo de eliminar funciono bien
+                bool eliminado = planesDAO.EliminarPlan(planSeleccionado);      //eliminado es mi variable bandera para saber si el metodo de eliminar funciono bien
 
                 if (eliminado)
                 {
@@ -91,63 +80,14 @@ namespace UI.Escritorio
         }
 
 
-
-
-        //estos 2 metodos es el mismo, el de abajo soluciona el problema de clikear la fila nula que se corta el programa cuando la clikeas
-
-        /*
-        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dgvPlanes_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-          IdPlan = int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString());
-          DescPlan = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-          IdEspecialidad = int.Parse(dataGridView1.CurrentRow.Cells[2].Value.ToString());
-        }
-        */
-
-        
-        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-             if (dataGridView1.CurrentRow.Cells[0].Value != null)
-             {
-                int parsedIdPlan;
-                if (int.TryParse(dataGridView1.CurrentRow.Cells[0].Value.ToString(), out parsedIdPlan))
-                    {
-                        IdPlan = parsedIdPlan;
-                    }
-                else
-                {
-                    // Manejar el caso en el que la conversión no fue exitosa (por ejemplo, mostrar un mensaje de error)
-                    MessageBox.Show("El valor de IdPlan no es un número válido.");
-                    return;
-                }
-             }
-             else
-             {
-                // Manejar el caso en el que la celda está vacía (por ejemplo, mostrar un mensaje de error)
-                MessageBox.Show("La celda de IdPlan está vacía.");
-                return;
-             }
-
-             DescPlan = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-
-             if (dataGridView1.CurrentRow.Cells[2].Value != null)
-             {
-                int parsedIdEspecialidad;
-                if (int.TryParse(dataGridView1.CurrentRow.Cells[2].Value.ToString(), out parsedIdEspecialidad))
-                {
-                    IdEspecialidad = parsedIdEspecialidad;
-                }
-                else
-                {
-                    // Manejar el caso en el que la conversión no fue exitosa (por ejemplo, mostrar un mensaje de error)
-                    MessageBox.Show("El valor de IdEspecialidad no es un número válido.");
-                }
-             }
-             else
-             {
-                // Manejar el caso en el que la celda está vacía (por ejemplo, mostrar un mensaje de error)
-                MessageBox.Show("La celda de IdEspecialidad está vacía.");
-             }
+            planSeleccionado = new Plan
+            {
+                IdPlan = int.Parse(dgvPlanes.CurrentRow.Cells[0].Value.ToString()),
+                DescPlan = dgvPlanes.CurrentRow.Cells[1].Value.ToString(),
+                IdEspecialidad = int.Parse(dgvPlanes.CurrentRow.Cells[2].Value.ToString())
+            };
         }
     }
 }

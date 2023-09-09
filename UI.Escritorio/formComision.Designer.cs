@@ -49,31 +49,31 @@
             // 
             // btnAlta
             // 
-            this.btnAlta.Location = new System.Drawing.Point(24, 303);
+            this.btnAlta.Location = new System.Drawing.Point(315, 267);
             this.btnAlta.Name = "btnAlta";
             this.btnAlta.Size = new System.Drawing.Size(75, 23);
             this.btnAlta.TabIndex = 0;
-            this.btnAlta.Text = "Alta";
+            this.btnAlta.Text = "ALTA";
             this.btnAlta.UseVisualStyleBackColor = true;
             this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(188, 303);
+            this.btnModificar.Location = new System.Drawing.Point(202, 267);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(75, 23);
             this.btnModificar.TabIndex = 1;
-            this.btnModificar.Text = "Modificar";
+            this.btnModificar.Text = "MODIFICAR";
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnBaja
             // 
-            this.btnBaja.Location = new System.Drawing.Point(358, 303);
+            this.btnBaja.Location = new System.Drawing.Point(81, 267);
             this.btnBaja.Name = "btnBaja";
             this.btnBaja.Size = new System.Drawing.Size(75, 23);
             this.btnBaja.TabIndex = 2;
-            this.btnBaja.Text = "Eliminar";
+            this.btnBaja.Text = "ELIMINAR";
             this.btnBaja.UseVisualStyleBackColor = true;
             this.btnBaja.Click += new System.EventHandler(this.btnBaja_Click);
             // 
@@ -88,9 +88,9 @@
             this.anioespecialidadDataGridViewTextBoxColumn,
             this.id_plan});
             this.dgvComisiones.DataSource = this.comisionesBindingSource1;
-            this.dgvComisiones.Location = new System.Drawing.Point(24, 32);
+            this.dgvComisiones.Location = new System.Drawing.Point(25, 12);
             this.dgvComisiones.Name = "dgvComisiones";
-            this.dgvComisiones.Size = new System.Drawing.Size(446, 249);
+            this.dgvComisiones.Size = new System.Drawing.Size(461, 249);
             this.dgvComisiones.TabIndex = 3;
             this.dgvComisiones.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvComisiones_CellMouseClick);
             // 
@@ -142,7 +142,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 366);
+            this.ClientSize = new System.Drawing.Size(503, 310);
             this.Controls.Add(this.dgvComisiones);
             this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.btnModificar);
@@ -152,7 +152,6 @@
             this.Name = "formComision";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Comisiones";
-            this.Load += new System.EventHandler(this.formComision_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvComisiones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comisionesBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tPI2023M07DataSet5)).EndInit();

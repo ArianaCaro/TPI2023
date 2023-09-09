@@ -14,7 +14,7 @@ namespace DataDAO
         static void Main(string[] args)
         {
             #region PLANES
-            DataTable dtPlanes = new DataTable("Planes");   
+            DataTable dtPlanes = new DataTable("Planes");
 
             dtPlanes.Columns.Add("id_plan", typeof(int)); // Cambio de columna
             dtPlanes.Columns.Add("descripcion", typeof(string)); // Cambio de columna
@@ -48,34 +48,34 @@ namespace DataDAO
 
 
             #region ESPECIALIDADES
-           /* DataTable dtEspecialidades = new DataTable("Especialidades");
+            /* DataTable dtEspecialidades = new DataTable("Especialidades");
 
-            dtEspecialidades.Columns.Add("id_especialidad", typeof(int)); // Cambio de columna
-            dtEspecialidades.Columns.Add("descripcion", typeof(string)); // Cambio de columna
- 
+             dtEspecialidades.Columns.Add("id_especialidad", typeof(int)); // Cambio de columna
+             dtEspecialidades.Columns.Add("descripcion", typeof(string)); // Cambio de columna
 
-            SqlConnection myconn2 = new SqlConnection();
-            myconn2.ConnectionString = "Data Source=DESKTOP-QJEDU21; Initial Catalog=TPI2023M07;User ID=sa;Pwd=sql2023";
 
-            SqlCommand mycomando2 = new SqlCommand();
-            mycomando2.CommandText = "SELECT id_especialidades, descripcion FROM Especialidades"; // Cambio de nombres de columna
-            mycomando2.Connection = myconn2;
+             SqlConnection myconn2 = new SqlConnection();
+             myconn2.ConnectionString = "Data Source=DESKTOP-QJEDU21; Initial Catalog=TPI2023M07;User ID=sa;Pwd=sql2023";
 
-            SqlDataAdapter myadap2 = new SqlDataAdapter("SELECT id_especialidades, descripcion FROM Especialidades", myconn2); // Cambio de nombres de columna
+             SqlCommand mycomando2 = new SqlCommand();
+             mycomando2.CommandText = "SELECT id_especialidades, descripcion FROM Especialidades"; // Cambio de nombres de columna
+             mycomando2.Connection = myconn2;
 
-            myconn2.Open();
-            SqlDataReader mydr2 = mycomando2.ExecuteReader();
-            dtEspecialidades.Load(mydr2);
-            myconn2.Close();
+             SqlDataAdapter myadap2 = new SqlDataAdapter("SELECT id_especialidades, descripcion FROM Especialidades", myconn2); // Cambio de nombres de columna
 
-            foreach (DataRow rowEspecialidades in dtEspecialidades.Rows)
-            {
-                int idEspecialidad = (int)rowEspecialidades["id_especialidad"];
-                string descripcion = rowEspecialidades["descripcion"].ToString();
+             myconn2.Open();
+             SqlDataReader mydr2 = mycomando2.ExecuteReader();
+             dtEspecialidades.Load(mydr2);
+             myconn2.Close();
 
-                Console.WriteLine($"ID Especialidad: {idEspecialidad}, Descripción: {descripcion}");
-            }
-            Console.ReadLine();*/
+             foreach (DataRow rowEspecialidades in dtEspecialidades.Rows)
+             {
+                 int idEspecialidad = (int)rowEspecialidades["id_especialidad"];
+                 string descripcion = rowEspecialidades["descripcion"].ToString();
+
+                 Console.WriteLine($"ID Especialidad: {idEspecialidad}, Descripción: {descripcion}");
+             }
+             Console.ReadLine();*/
             #endregion
 
         }

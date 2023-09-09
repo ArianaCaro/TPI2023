@@ -34,12 +34,13 @@
             this.txtDescPlan = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbEspecialidades = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 78);
+            this.label2.Location = new System.Drawing.Point(12, 55);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 1;
@@ -47,7 +48,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(15, 211);
+            this.btnAgregar.Location = new System.Drawing.Point(239, 150);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 2;
@@ -57,7 +58,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(239, 211);
+            this.btnCancelar.Location = new System.Drawing.Point(101, 150);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 3;
@@ -67,7 +68,7 @@
             // 
             // txtDescPlan
             // 
-            this.txtDescPlan.Location = new System.Drawing.Point(101, 75);
+            this.txtDescPlan.Location = new System.Drawing.Point(101, 52);
             this.txtDescPlan.Name = "txtDescPlan";
             this.txtDescPlan.Size = new System.Drawing.Size(213, 20);
             this.txtDescPlan.TabIndex = 5;
@@ -75,7 +76,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 143);
+            this.label3.Location = new System.Drawing.Point(12, 101);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 13);
             this.label3.TabIndex = 6;
@@ -85,16 +86,26 @@
             // 
             this.cmbEspecialidades.BackColor = System.Drawing.SystemColors.Window;
             this.cmbEspecialidades.FormattingEnabled = true;
-            this.cmbEspecialidades.Location = new System.Drawing.Point(101, 140);
+            this.cmbEspecialidades.Location = new System.Drawing.Point(101, 98);
             this.cmbEspecialidades.Name = "cmbEspecialidades";
             this.cmbEspecialidades.Size = new System.Drawing.Size(213, 21);
             this.cmbEspecialidades.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(137, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "PLAN";
             // 
             // formPlanOpc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(326, 277);
+            this.ClientSize = new System.Drawing.Size(339, 197);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbEspecialidades);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtDescPlan);
@@ -117,5 +128,6 @@
         private System.Windows.Forms.TextBox txtDescPlan;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbEspecialidades;
+        private System.Windows.Forms.Label label1;
     }
 }

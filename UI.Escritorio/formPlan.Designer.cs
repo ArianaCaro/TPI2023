@@ -29,11 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.mnsPlan = new System.Windows.Forms.MenuStrip();
-            this.aLTAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mODIFICAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bAJAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvPlanes = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descplanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,8 +39,10 @@
             this.planesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.planesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.planesTableAdapter = new UI.Escritorio.TPI2023M07DataSetTableAdapters.PlanesTableAdapter();
-            this.mnsPlan.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.btnAlta = new System.Windows.Forms.Button();
+            this.btnModifica = new System.Windows.Forms.Button();
+            this.btnBaja = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPlanes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.planesBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tPI2023M07DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.planesBindingSource2)).BeginInit();
@@ -52,59 +50,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.planesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // mnsPlan
+            // dgvPlanes
             // 
-            this.mnsPlan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.mnsPlan.Dock = System.Windows.Forms.DockStyle.None;
-            this.mnsPlan.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aLTAToolStripMenuItem,
-            this.mODIFICAToolStripMenuItem,
-            this.bAJAToolStripMenuItem});
-            this.mnsPlan.Location = new System.Drawing.Point(104, 18);
-            this.mnsPlan.Name = "mnsPlan";
-            this.mnsPlan.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.mnsPlan.Size = new System.Drawing.Size(174, 24);
-            this.mnsPlan.TabIndex = 0;
-            this.mnsPlan.Text = "menuStrip1";
-            // 
-            // aLTAToolStripMenuItem
-            // 
-            this.aLTAToolStripMenuItem.Name = "aLTAToolStripMenuItem";
-            this.aLTAToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
-            this.aLTAToolStripMenuItem.Text = "ALTA";
-            this.aLTAToolStripMenuItem.Click += new System.EventHandler(this.aLTAToolStripMenuItem_Click);
-            // 
-            // mODIFICAToolStripMenuItem
-            // 
-            this.mODIFICAToolStripMenuItem.Name = "mODIFICAToolStripMenuItem";
-            this.mODIFICAToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
-            this.mODIFICAToolStripMenuItem.Text = "MODIFICA";
-            this.mODIFICAToolStripMenuItem.Click += new System.EventHandler(this.mODIFICAToolStripMenuItem_Click);
-            // 
-            // bAJAToolStripMenuItem
-            // 
-            this.bAJAToolStripMenuItem.Name = "bAJAToolStripMenuItem";
-            this.bAJAToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.bAJAToolStripMenuItem.Text = "BAJA";
-            this.bAJAToolStripMenuItem.Click += new System.EventHandler(this.bAJAToolStripMenuItem_Click);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvPlanes.AllowUserToAddRows = false;
+            this.dgvPlanes.AllowUserToResizeColumns = false;
+            this.dgvPlanes.AllowUserToResizeRows = false;
+            this.dgvPlanes.AutoGenerateColumns = false;
+            this.dgvPlanes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPlanes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.descplanDataGridViewTextBoxColumn,
             this.dataGridViewTextBoxColumn2});
-            this.dataGridView1.DataSource = this.planesBindingSource3;
-            this.dataGridView1.Location = new System.Drawing.Point(22, 57);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(346, 289);
-            this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
+            this.dgvPlanes.DataSource = this.planesBindingSource3;
+            this.dgvPlanes.Location = new System.Drawing.Point(22, 12);
+            this.dgvPlanes.Name = "dgvPlanes";
+            this.dgvPlanes.Size = new System.Drawing.Size(346, 289);
+            this.dgvPlanes.TabIndex = 1;
+            this.dgvPlanes.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPlanes_CellMouseClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -152,51 +114,67 @@
             // 
             this.planesTableAdapter.ClearBeforeFill = true;
             // 
+            // btnAlta
+            // 
+            this.btnAlta.Location = new System.Drawing.Point(255, 307);
+            this.btnAlta.Name = "btnAlta";
+            this.btnAlta.Size = new System.Drawing.Size(75, 23);
+            this.btnAlta.TabIndex = 2;
+            this.btnAlta.Text = "ALTA";
+            this.btnAlta.UseVisualStyleBackColor = true;
+            this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
+            // 
+            // btnModifica
+            // 
+            this.btnModifica.Location = new System.Drawing.Point(157, 308);
+            this.btnModifica.Name = "btnModifica";
+            this.btnModifica.Size = new System.Drawing.Size(75, 23);
+            this.btnModifica.TabIndex = 3;
+            this.btnModifica.Text = "MODIFICAR";
+            this.btnModifica.UseVisualStyleBackColor = true;
+            this.btnModifica.Click += new System.EventHandler(this.btnModifica_Click);
+            // 
+            // btnBaja
+            // 
+            this.btnBaja.Location = new System.Drawing.Point(59, 308);
+            this.btnBaja.Name = "btnBaja";
+            this.btnBaja.Size = new System.Drawing.Size(75, 23);
+            this.btnBaja.TabIndex = 4;
+            this.btnBaja.Text = "ELIMINAR";
+            this.btnBaja.UseVisualStyleBackColor = true;
+            this.btnBaja.Click += new System.EventHandler(this.btnBaja_Click);
+            // 
             // formPlan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.ClientSize = new System.Drawing.Size(393, 373);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.mnsPlan);
+            this.ClientSize = new System.Drawing.Size(393, 343);
+            this.Controls.Add(this.btnBaja);
+            this.Controls.Add(this.btnModifica);
+            this.Controls.Add(this.btnAlta);
+            this.Controls.Add(this.dgvPlanes);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MainMenuStrip = this.mnsPlan;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "formPlan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Planes";
-            this.Load += new System.EventHandler(this.formPlan_Load);
-            this.mnsPlan.ResumeLayout(false);
-            this.mnsPlan.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPlanes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.planesBindingSource3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tPI2023M07DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.planesBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.planesBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.planesBindingSource)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.MenuStrip mnsPlan;
-        private System.Windows.Forms.ToolStripMenuItem aLTAToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mODIFICAToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem bAJAToolStripMenuItem;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        //private TPI2023M07DataSet tPI2023M07DataSet;
+        private System.Windows.Forms.DataGridView dgvPlanes;
         private System.Windows.Forms.BindingSource planesBindingSource;
-        //private TPI2023M07DataSetTableAdapters.PlanesTableAdapter planesTableAdapter;
-        //private TPI2023M07DataSet1 tPI2023M07DataSet1;
         private System.Windows.Forms.BindingSource planesBindingSource1;
-       // private TPI2023M07DataSet1TableAdapters.PlanesTableAdapter planesTableAdapter1;
-        //private TPI2023M07DataSet2 tPI2023M07DataSet2;
         private System.Windows.Forms.BindingSource planesBindingSource2;
-        //private TPI2023M07DataSet2TableAdapters.PlanesTableAdapter planesTableAdapter2;
         private System.Windows.Forms.DataGridViewTextBoxColumn idplanDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idEspecialidadDataGridViewTextBoxColumn;
@@ -206,5 +184,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn descplanDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.Button btnAlta;
+        private System.Windows.Forms.Button btnModifica;
+        private System.Windows.Forms.Button btnBaja;
     }
 }

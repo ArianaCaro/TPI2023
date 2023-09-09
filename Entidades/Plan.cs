@@ -1,30 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 namespace Entidades
 {
     public class Plan
     {
-        private int idPlan;
-        private int idEspecialidad;
-        private string descripcion;
+        private int id_plan;
+        private string desc_plan;
+        private int id_especialidad;
 
         public int IdPlan
         {
-            get { return idPlan; }
-            set { idPlan = value; }
+            get { return id_plan; }
+            set { id_plan = value; }
+        }
+
+        public string DescPlan
+        {
+            get { return desc_plan; }
+            set { desc_plan = value; }
         }
 
         public int IdEspecialidad
         {
-            get { return idEspecialidad; }
-            set { idEspecialidad = value; }
-        }
-
-        public string Descripcion
-        {
-            get { return descripcion; }
-            set { descripcion = value; }
+            get { return id_especialidad; }
+            set { id_especialidad = value; }
         }
     }
 }

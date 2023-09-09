@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
+using Entidades;
 
 namespace Data.DataBase
 {
@@ -9,9 +10,11 @@ namespace Data.DataBase
     {
         // Cadena de conexión a la base de datos
         private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
+        //private string connectionString = "Data Source=(localdb)\\NBX;Integrated Security=True";
+        //private string connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
 
-        // Método para insertar un nuevo plan en la base de datos
-        public bool InsertarEspecialidad(string descripcion)
+              
+        public bool InsertarEspecialidad(Especialidad especialidad)       // Método para insertar una nueva especialidad en la base de datos  
         {
             try
             {
@@ -19,18 +22,17 @@ namespace Data.DataBase
                 {
                     connection.Open();
                     string query = "INSERT INTO Especialidades (desc_especialidad) VALUES (@desc_especialidad)";
+
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@desc_especialidad", descripcion);
+                        command.Parameters.AddWithValue("@desc_especialidad", especialidad.DescEspecialidad);
                         int rowsAffected = command.ExecuteNonQuery();
                         return rowsAffected > 0;
                     }
                 }
             }
-            catch (Exception ex)  //no se ejecuta nunca creo
-            {
-                // Manejo de excepciones (opcional)
-                Console.WriteLine("Error al insertar el especialidad anda?: " + ex.Message);
+            catch
+            { 
                 return false;
             }
         }
@@ -75,10 +77,9 @@ namespace Data.DataBase
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                // Manejo de excepciones (opcional)
-                Console.WriteLine("Error al obtener la descripción de la especialidad: " + ex.Message);
+                Console.WriteLine("Error al cargar especialidades");
             }
 
             return null; // Devolver null si no se encuentra la descripción
@@ -86,21 +87,48 @@ namespace Data.DataBase
 
 
 
-
-    public bool ModificarEspecialidad(int id, string desc)
+        public bool ModificarEspecialidad(Especialidad especialidad)
         {
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-
                     string query = "UPDATE Especialidades SET desc_especialidad = @NuevaDescripcion WHERE id_especialidad = @id_especialidad";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@id_especialidad", id);
-                        command.Parameters.AddWithValue("@NuevaDescripcion", desc);
+                        command.Parameters.AddWithValue("@id_especialidad", especialidad.IdEspecialidad);
+                        command.Parameters.AddWithValue("@NuevaDescripcion", especialidad.DescEspecialidad);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                         return rowsAffected > 0;
+                    }
+                }
+            }
+            catch               //si sale algo mal devuelve falso
+            {
+                return false;
+            }
+        }
+
+    
+
+
+        public bool EliminarEspecialidad(Especialidad especialidad)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "DELETE FROM Especialidades WHERE id_especialidad = @id_especialidad AND desc_especialidad = @desc_especialidad";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id_especialidad", especialidad.IdEspecialidad);
+                        command.Parameters.AddWithValue("@desc_especialidad", especialidad.DescEspecialidad);
 
                         int rowsAffected = command.ExecuteNonQuery();
 
@@ -108,49 +136,10 @@ namespace Data.DataBase
                     }
                 }
             }
-            catch (Exception ex)  //entra?
+            catch
             {
-                // Manejar el error
-                Console.WriteLine("Error al modificar el plan : " + ex.Message);/*entra???*/
                 return false;
-            }
-        }
-
-
-
-
-        public bool EliminarEspecialidad(int id_especialidad, string descripcion)
-        {
-            {
-                try
-                {
-                    using (SqlConnection connection = new SqlConnection(connectionString))
-                    {
-                        connection.Open();
-
-                        // Definir la consulta SQL para eliminar el plan
-                        string query = "DELETE FROM Especialidades WHERE id_especialidad = @id_especialidad AND desc_especialidad = @desc_especialidad";
-
-                        using (SqlCommand command = new SqlCommand(query, connection))
-                        {
-                            // Agregar los parámetros a la consulta
-                            command.Parameters.AddWithValue("@id_especialidad", id_especialidad);
-                            command.Parameters.AddWithValue("@desc_especialidad", descripcion);
-
-                            // Ejecutar la consulta
-                            int rowsAffected = command.ExecuteNonQuery();
-
-                            // Si se eliminó al menos una fila, significa que el plan se elimino
-                            return rowsAffected > 0;
-                        }
-                    }
-                }
-                catch/* (SqlException ex)*/
-                {
-                    // Aquí puedes manejar el error
-                    return false;
-                }
-            }
+            }        
         }
     }
 }

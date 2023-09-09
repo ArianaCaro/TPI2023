@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient; 
+using System.Data.SqlClient;
+using Entidades;
 
 namespace DataDAO
 {
@@ -148,9 +149,10 @@ namespace DataDAO
     {
         // Cadena de conexión a la base de datos
         private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
+        //private string connectionString = "Data Source=(localdb)\\NBX;Integrated Security=True";
+        //private string connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
 
-        // Método para insertar un nuevo plan en la base de datos
-        public bool InsertarPlan(string descripcion, int idEspecialidad)
+        public bool InsertarPlan(Plan plan)        // Método para insertar un nuevo plan en la base de datos
         {
             try
             {
@@ -160,17 +162,15 @@ namespace DataDAO
                     string query = "INSERT INTO Planes (desc_plan, id_especialidad) VALUES (@desc_plan, @id_especialidad)";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@desc_plan", descripcion);
-                        command.Parameters.AddWithValue("@id_especialidad", idEspecialidad);
+                        command.Parameters.AddWithValue("@desc_plan", plan.DescPlan);
+                        command.Parameters.AddWithValue("@id_especialidad", plan.IdEspecialidad);
                         int rowsAffected = command.ExecuteNonQuery();
                         return rowsAffected > 0;
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                // Manejo de excepciones (opcional)
-                Console.WriteLine("Error al insertar el plan: " + ex.Message);
                 return false;
             }
         }
@@ -229,7 +229,7 @@ namespace DataDAO
 
 
 
-        public bool ModificarPlan(int id, string desc, int id_espec)
+        public bool ModificarPlan(Plan plan)
         {
             try
             {
@@ -241,9 +241,9 @@ namespace DataDAO
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@IDPlan", id);
-                        command.Parameters.AddWithValue("@NuevaDescripcion", desc);
-                        command.Parameters.AddWithValue("@NuevoIdEspecialidad", id_espec);
+                        command.Parameters.AddWithValue("@IDPlan", plan.IdPlan);
+                        command.Parameters.AddWithValue("@NuevaDescripcion", plan.DescPlan);
+                        command.Parameters.AddWithValue("@NuevoIdEspecialidad", plan.IdEspecialidad);
 
                         int rowsAffected = command.ExecuteNonQuery();
 
@@ -251,10 +251,8 @@ namespace DataDAO
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                // Manejar el error como consideres necesario (log, mostrar mensaje, etc.)
-                Console.WriteLine("Error al modificar el plan: " + ex.Message);
                 return false;
             }
         }
@@ -262,7 +260,7 @@ namespace DataDAO
 
 
 
-        public bool EliminarPlan(int id_plan, string descripcion, int id_especialidad)
+        public bool EliminarPlan(Plan plan)
         {
             {
                 try
@@ -270,34 +268,25 @@ namespace DataDAO
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         connection.Open();
-
-                        // Definir la consulta SQL para eliminar el plan
                         string query = "DELETE FROM Planes WHERE id_plan = @id_plan AND desc_plan = @desc_plan AND id_especialidad = @id_especialidad";
 
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
-                            // Agregar los parámetros a la consulta
-                            command.Parameters.AddWithValue("@id_plan", id_plan);
-                            command.Parameters.AddWithValue("@desc_plan", descripcion);
-                            command.Parameters.AddWithValue("@id_especialidad", id_especialidad);
+                            command.Parameters.AddWithValue("@id_plan", plan.IdPlan);
+                            command.Parameters.AddWithValue("@desc_plan", plan.DescPlan);
+                            command.Parameters.AddWithValue("@id_especialidad", plan.IdEspecialidad);
 
-                            // Ejecutar la consulta
                             int rowsAffected = command.ExecuteNonQuery();
 
-                            // Si se eliminó al menos una fila, significa que el plan se eliminó correctamente
                             return rowsAffected > 0;
                         }
                     }
                 }
-                catch/* (SqlException ex)*/
+                catch
                 {
-                    //mostrar un mensaje de error o escribir el error en un archivo de registro
-                    // y devolver false para indicar que no se pudo eliminar el plan.
                     return false;
                 }
             }
         }
     }
 }
-
-

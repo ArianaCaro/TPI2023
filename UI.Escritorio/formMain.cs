@@ -19,29 +19,66 @@ namespace UI.Escritorio
 
         private void formMain_Shown(object sender, EventArgs e)
         {
-           /* formLogin appLogin = new formLogin();         //esto es para ejecutar el login pero esta desactivado para ejecutar y probar las otras opciones
-            if (appLogin.ShowDialog() != DialogResult.OK)
-            {
-                this.Dispose();
-            }*/
+            /* formLogin appLogin = new formLogin();         //esto es para ejecutar el login pero esta desactivado para ejecutar y probar las otras opciones
+             if (appLogin.ShowDialog() != DialogResult.OK)
+             {
+                 this.Dispose();
+             }*/
         }
-        private void mnuPlan_Click(object sender, EventArgs e)
+
+        private void usuariosMnu_Click(object sender, EventArgs e)
         {
-            formPlan frmPlan = new formPlan();
-            frmPlan.ShowDialog();
-
+            formPersona frmUsuario = new formPersona();
+            frmUsuario.ShowDialog();
         }
-
-        private void especialidadesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void alumnosMnu_Click(object sender, EventArgs e)
         {
-            formEspecialidad frmEspecialidad = new formEspecialidad();
-            frmEspecialidad.ShowDialog();
+            formPersona frmAlumno = new formPersona();
+            frmAlumno.ShowDialog();
+        }
+        private void docentesMnu_Click(object sender, EventArgs e)
+        {
+            formPersona frmDocente = new formPersona();
+            frmDocente.ShowDialog();
         }
 
-        private void comisionesToolStripMenuItem_Click(object sender, EventArgs e)
+        #region COMISIONES
+        private void comisionesMnu_Click(object sender, EventArgs e)
         {
             formComision frmComision = new formComision();
             frmComision.ShowDialog();
         }
+        #endregion
+
+        private void cursosMnu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        #region MATERIAS
+        private void materiasMnu_Click(object sender, EventArgs e)
+        {
+            formMateria frmMateria = new formMateria();
+            frmMateria.ShowDialog();
+        }
+        #endregion 
+
+        #region ESPECIALIDADES
+        private void especialidadesMnu_Click(object sender, EventArgs e)
+        {
+            formEspecialidad frmEspecialidad = new formEspecialidad();
+            frmEspecialidad.ShowDialog();
+        }
+        #endregion
+
+        #region PLANES
+        private void planesMnu_Click(object sender, EventArgs e)
+        {
+            formPlan frmPlan = new formPlan();
+            frmPlan.ShowDialog();
+        }
+        #endregion
+
     }
 }

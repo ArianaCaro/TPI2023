@@ -1,26 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Entidades
 {
     public class Especialidad/*:Entidad*/
     {
-        private int idEspecialidad;
-        private string descripcion;
+        private int id_especialidad;
+        private string desc_especialidad;
 
         public int IdEspecialidad
         {
-            get { return idEspecialidad; }
-            set { idEspecialidad = value; }
+            get { return id_especialidad; }
+            set { id_especialidad = value; }
         }
 
-        public string Descripcion
+        public string DescEspecialidad
         {
-            get { return descripcion; }
-            set { descripcion = value; }
+            get { return desc_especialidad; }
+            set { desc_especialidad = value; }
         }
     }
 }

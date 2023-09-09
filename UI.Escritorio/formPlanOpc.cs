@@ -1,61 +1,48 @@
-﻿using Entidades;
-using System;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
 using System.Windows.Forms;
+using Entidades;
 using DataDAO;
 using Data.DataBase;
 using System.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace UI.Escritorio
 {
     public partial class formPlanOpc : Form
     {
         bool band = false;
-        int id_plan;
+        Plan planM;
 
-        public formPlanOpc(int idPlan, string descPlan, int idEspecialidad)
+        public formPlanOpc(Plan plan)
         {
             InitializeComponent();
             cargar_especialidades();
 
-            if (idPlan != 0)          //recibo como parametro el idplan y una x y pregunto si el id es un numero es porque estoy modificando, todo esto para reciclar el formulario de alta y usar el mismo
-            {
-                this.txtDescPlan.Text = descPlan.ToString();
-                EspecialidadesDAO espDAO = new EspecialidadesDAO();
-                this.cmbEspecialidades.Text = espDAO.ObtenerDescripcionEspecialidad(idEspecialidad);
-                this.btnAgregar.Text = "MODIFICAR";
-                this.Text = "Formulario MODIFICAR Plan   " + descPlan;
-                band = true;
-                id_plan = idPlan;
-            }
-            else
+            if (plan == null)
             {
                 this.Text = "Formulario ALTA Plan";
                 this.btnAgregar.Text = "AGREGAR";
-               // this.cmbEspecialidades.Text = "Seleccione una especialidad";
             }
+            else
+            {
+                this.txtDescPlan.Text = plan.DescPlan;
+                EspecialidadesDAO espDAO = new EspecialidadesDAO();
+                this.cmbEspecialidades.Text = espDAO.ObtenerDescripcionEspecialidad(plan.IdEspecialidad);
+                this.btnAgregar.Text = "MODIFICAR";
+                this.Text = "Formulario MODIFICAR Plan   " + plan.DescPlan;
+                band = true;
+                planM = plan;
+            }               
         }
-
-
-        /*          //donde se usa esto?
-        public Plan ObtenerPlan
-        {
-            get { return auxPlan; }
-            set { auxPlan = value; }
-        }*/
-
-
-        SqlConnection con = new SqlConnection("Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023");
-        public void cargar_especialidades() {        
-
+        public void cargar_especialidades() 
+        {        
             EspecialidadesDAO especialidadesDAO = new EspecialidadesDAO();
             DataTable dtEspecialidades = especialidadesDAO.ObtenerTodasLasEspecialidades();
 
             cmbEspecialidades.ValueMember = "id_especialidad";
             cmbEspecialidades.DisplayMember = "desc_especialidad";
-            cmbEspecialidades.DataSource = dtEspecialidades;
-            
+            cmbEspecialidades.DataSource = dtEspecialidades;           
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -66,40 +53,39 @@ namespace UI.Escritorio
             }
             else
             {
-                bool resultado;
+                PlanesDAO planesDAO = new PlanesDAO();
+                Plan plan = new Plan();
                 if (band == true)       //el band es para saber si es un formulario de modificar o de alta, si es true es de modificar
                 {
-                    string desc = txtDescPlan.Text;
-                    int espec = (int)cmbEspecialidades.SelectedValue;
-
-                    PlanesDAO planesDAO = new PlanesDAO();
-                    resultado = planesDAO.ModificarPlan(id_plan,desc,espec);
+                    planM.DescPlan = txtDescPlan.Text;
+                    planM.IdEspecialidad = (int)cmbEspecialidades.SelectedValue;
+                    band = planesDAO.ModificarPlan(planM);
                 }
                 else
                 {
-                    string descripcion = txtDescPlan.Text;
-                    int id_especialidad = (int)cmbEspecialidades.SelectedValue;
-                    PlanesDAO planesDAO = new PlanesDAO();
-                    resultado = planesDAO.InsertarPlan(descripcion,id_especialidad);
+                    plan = new Plan
+                    {
+                        DescPlan = txtDescPlan.Text,
+                        IdEspecialidad = (int)cmbEspecialidades.SelectedValue
+                    };
+                    band = planesDAO.InsertarPlan(plan);
                 }
 
-                if (resultado)      //los metodos modificarplan e insertarplan devuelven booleanos, si funciona todo ok muestro cartel
+                if (band)
                 {
                     MessageBox.Show("El plan se agrego correctamente");
                 }
                 else
                 {
-                    MessageBox.Show("Error al cargar Especialidad");
+                    MessageBox.Show("Error al cargar Plan");
                 }
-
-                this.DialogResult = DialogResult.OK;
             }
+            this.DialogResult = DialogResult.OK;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
         }
-
     }
-}
+}    

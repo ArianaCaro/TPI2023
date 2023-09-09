@@ -45,9 +45,9 @@
             // 
             // btnAlta
             // 
-            this.btnAlta.Location = new System.Drawing.Point(12, 12);
+            this.btnAlta.Location = new System.Drawing.Point(228, 271);
             this.btnAlta.Name = "btnAlta";
-            this.btnAlta.Size = new System.Drawing.Size(122, 45);
+            this.btnAlta.Size = new System.Drawing.Size(79, 30);
             this.btnAlta.TabIndex = 0;
             this.btnAlta.Text = "ALTA";
             this.btnAlta.UseVisualStyleBackColor = true;
@@ -55,9 +55,9 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(140, 12);
+            this.btnModificar.Location = new System.Drawing.Point(143, 271);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(122, 45);
+            this.btnModificar.Size = new System.Drawing.Size(79, 30);
             this.btnModificar.TabIndex = 1;
             this.btnModificar.Text = "MODIFICAR";
             this.btnModificar.UseVisualStyleBackColor = true;
@@ -65,9 +65,9 @@
             // 
             // btnBaja
             // 
-            this.btnBaja.Location = new System.Drawing.Point(268, 12);
+            this.btnBaja.Location = new System.Drawing.Point(58, 271);
             this.btnBaja.Name = "btnBaja";
-            this.btnBaja.Size = new System.Drawing.Size(122, 45);
+            this.btnBaja.Size = new System.Drawing.Size(79, 30);
             this.btnBaja.TabIndex = 2;
             this.btnBaja.Text = "BAJA";
             this.btnBaja.UseVisualStyleBackColor = true;
@@ -84,9 +84,9 @@
             this.idespecialidadDataGridViewTextBoxColumn,
             this.descespecialidadDataGridViewTextBoxColumn});
             this.dgvEspecialidad.DataSource = this.especialidadesBindingSource;
-            this.dgvEspecialidad.Location = new System.Drawing.Point(75, 83);
+            this.dgvEspecialidad.Location = new System.Drawing.Point(60, 12);
             this.dgvEspecialidad.Name = "dgvEspecialidad";
-            this.dgvEspecialidad.Size = new System.Drawing.Size(245, 221);
+            this.dgvEspecialidad.Size = new System.Drawing.Size(247, 240);
             this.dgvEspecialidad.TabIndex = 3;
             this.dgvEspecialidad.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEspecialidad_CellMouseClick);
             // 
@@ -121,7 +121,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(402, 340);
+            this.ClientSize = new System.Drawing.Size(376, 328);
             this.Controls.Add(this.dgvEspecialidad);
             this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.btnModificar);
@@ -132,7 +132,6 @@
             this.Name = "formEspecialidad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Especialidad";
-            this.Load += new System.EventHandler(this.formEspecialidad_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspecialidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.especialidadesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tPI2023M07DataSet3)).EndInit();
