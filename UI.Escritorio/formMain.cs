@@ -28,17 +28,17 @@ namespace UI.Escritorio
 
         private void usuariosMnu_Click(object sender, EventArgs e)
         {
-            formPersona frmUsuario = new formPersona();
+            formPersona frmUsuario = new formPersona(0);
             frmUsuario.ShowDialog();
         }
         private void alumnosMnu_Click(object sender, EventArgs e)
         {
-            formPersona frmAlumno = new formPersona();
+            formPersona frmAlumno = new formPersona(1);
             frmAlumno.ShowDialog();
         }
         private void docentesMnu_Click(object sender, EventArgs e)
         {
-            formPersona frmDocente = new formPersona();
+            formPersona frmDocente = new formPersona(2);
             frmDocente.ShowDialog();
         }
 

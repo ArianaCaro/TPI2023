@@ -9,17 +9,19 @@ namespace UI.Escritorio
 {
     public partial class formPersona : Form
     {
+        int tipo_per;
         private Persona personaSeleccionada;
-        public formPersona()
+        public formPersona(int tipo)
         {
             InitializeComponent();
-            ActualizarDataGridView();
+            ActualizarDataGridView(tipo);
+            tipo_per = tipo;
         }
 
-        private void ActualizarDataGridView()
+        private void ActualizarDataGridView(int tipo)
         {
             PersonasDAO personaDAO = new PersonasDAO();
-            DataTable dtPersonas = personaDAO.ObtenerTodasLasPersonas();
+            DataTable dtPersonas = personaDAO.ObtenerTodasLasPersonas(tipo);
 
             DataColumn descripcioPlanColumn = new DataColumn("Plan", typeof(string));
             dtPersonas.Columns.Add(descripcioPlanColumn);
@@ -39,17 +41,17 @@ namespace UI.Escritorio
         private void btnAlta_Click(object sender, EventArgs e)
         {
             Persona nuevaPersona = null;
-            formPersonaOpc frmPersonaOp = new formPersonaOpc(nuevaPersona);
+            formPersonaOpc frmPersonaOp = new formPersonaOpc(nuevaPersona,tipo_per);
             if(DialogResult.OK == frmPersonaOp.ShowDialog())
-            ActualizarDataGridView();
+            ActualizarDataGridView(tipo_per);
         }
 
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            formPersonaOpc frmPersonaOp = new formPersonaOpc(personaSeleccionada);
+            formPersonaOpc frmPersonaOp = new formPersonaOpc(personaSeleccionada,tipo_per);
             if (DialogResult.OK == frmPersonaOp.ShowDialog())
-            ActualizarDataGridView();
+            ActualizarDataGridView(tipo_per);
         }
 
         private void btnBaja_Click(object sender, EventArgs e)
@@ -77,7 +79,7 @@ namespace UI.Escritorio
                     MessageBox.Show("Debe seleccionar una persona antes de realizar la baja.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
-                ActualizarDataGridView();
+                ActualizarDataGridView(tipo_per);
             }
         }
 
@@ -93,7 +95,8 @@ namespace UI.Escritorio
                 Telefono = dgvPersonas.CurrentRow.Cells[5].Value.ToString(),
                 FechaNac = (DateTime)dgvPersonas.CurrentRow.Cells[6].Value,
                 Legajo = int.Parse(dgvPersonas.CurrentRow.Cells[7].Value.ToString()),
-                IdPlan = int.Parse(dgvPersonas.CurrentRow.Cells[8].Value.ToString()),
+                TipoPersona = tipo_per,
+                IdPlan = int.Parse(dgvPersonas.CurrentRow.Cells[9].Value.ToString()),
             };
         }
     }

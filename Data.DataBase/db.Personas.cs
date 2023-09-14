@@ -47,24 +47,27 @@ namespace DataDAO
         }
 
 
-        public DataTable ObtenerTodasLasPersonas()
+        public DataTable ObtenerTodasLasPersonas(int tipo)
         {
             DataTable dtPersonas = new DataTable();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT id_persona,nombre, apellido, direccion, email, telefono, fecha_nac, legajo, tipo_persona, id_plan FROM Personas";
+                string query = "SELECT id_persona,nombre, apellido, direccion, email, telefono, fecha_nac, legajo, tipo_persona, id_plan FROM Personas WHERE tipo_persona = @tipo";
 
-                using (SqlCommand commnad = new SqlCommand(query, connection))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    command.Parameters.AddWithValue("@tipo", tipo); // Usamos un parámetro para el valor de tipo.
+
                     connection.Open();
-                    SqlDataAdapter adapter = new SqlDataAdapter(commnad);
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
                     adapter.Fill(dtPersonas);
                 }
             }
             return dtPersonas;
         }
-
+                   
+    
         public bool ModificarPersona(Persona persona)
         {
             try
@@ -73,19 +76,20 @@ namespace DataDAO
                 {
                     connection.Open();
 
-                    string query = "UPDATE Persona SET nombre=@nuevoNombre, apellido=@nuevoApellido, direccion=@nuevaDireccion, email=@nuevoEmail, telefono=@nuevoTelefono, fecha_nac=@nuevaFechaNac, legajo=@nuevoLegajo, tipo_persona=@nuevoTipoPersona, id_plan=@nuevoIdPlan WHERE id_persona = @IDPersona";
+                    string query = "UPDATE Personas SET nombre = @nuevoNombre, apellido = @NuevoApellido, direccion = @NuevaDireccion, email = @NuevoEmail, telefono = @NuevoTelefono, fecha_nac = @NuevaFechaNac, legajo = @NuevoLegajo, tipo_persona = @NuevoTipoPersona, id_plan = @NuevoIdPlan WHERE id_persona = @IDPersona";
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
+
+                    using (SqlCommand command = new SqlCommand(query, connection))                                                                                                                                 
                     {
                         command.Parameters.AddWithValue("@IDPersona", persona.IdPersona);
-                        command.Parameters.AddWithValue("@nuevoApellido", persona.Apellido);
-                        command.Parameters.AddWithValue("@nuevaDireccion", persona.Direccion);
-                        command.Parameters.AddWithValue("@nuevoEmail", persona.Email);
-                        command.Parameters.AddWithValue("@nuevoTelefono", persona.Telefono);
-                        command.Parameters.AddWithValue("@nuevaFechaNac", persona.FechaNac);
-                        command.Parameters.AddWithValue("@nuevoLegajo", persona.Legajo);
-                        command.Parameters.AddWithValue("@nuevoTipoPersona", persona.TipoPersona);
-                        command.Parameters.AddWithValue("@nuevoIdPlan", persona.IdPlan);
+                        command.Parameters.AddWithValue("@NuevoApellido", persona.Apellido);
+                        command.Parameters.AddWithValue("@NuevaDireccion", persona.Direccion);
+                        command.Parameters.AddWithValue("@NuevoEmail", persona.Email);
+                        command.Parameters.AddWithValue("@NuevoTelefono", persona.Telefono);
+                        command.Parameters.AddWithValue("@NuevaFechaNac", persona.FechaNac);
+                        command.Parameters.AddWithValue("@NuevoLegajo", persona.Legajo);
+                        command.Parameters.AddWithValue("@NuevoTipoPersona", persona.TipoPersona);
+                        command.Parameters.AddWithValue("@NuevoIdPlan", persona.IdPlan);
 
                         int rowsAffected = command.ExecuteNonQuery();
 

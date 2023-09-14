@@ -13,11 +13,13 @@ namespace UI.Escritorio
     {
         bool band = false;
         Persona personaM;
+        int tipo;
 
-        public formPersonaOpc(Persona persona)
+        public formPersonaOpc(Persona persona, int tipo_per)
         {
             InitializeComponent();
             cargar_planes();
+            tipo = tipo_per;
 
             if(persona == null)
             {
@@ -36,6 +38,7 @@ namespace UI.Escritorio
                 PlanesDAO planDAO = new PlanesDAO();
                 this.cmbPlanes.Text = planDAO.ObtenerDescripcionPlanes(persona.IdPlan);
 
+                this.btnAceptar.Text = "MODIFICAR";
                 this.Text = "Formulario Modificar";
                 band = true;
                 personaM = persona;
@@ -72,6 +75,7 @@ namespace UI.Escritorio
                     personaM.FechaNac = dtpFechaNac.Value;
                     personaM.Legajo = int.Parse(txtLegajo.Text);
                     personaM.IdPlan = (int)cmbPlanes.SelectedValue;
+                    personaM.TipoPersona = tipo;
                     band = personaDAO.ModificarPersona(personaM);
                 }
                 else
@@ -86,6 +90,7 @@ namespace UI.Escritorio
                         FechaNac = dtpFechaNac.Value,
                         Legajo = int.Parse(txtLegajo.Text),  
                         IdPlan = (int)cmbPlanes.SelectedValue,
+                        TipoPersona = tipo,
                     };
                     band = personaDAO.InsertarPersona(persona);
                 }
