@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    internal class Materiaa
+    internal class Materia
     {
         int Id_materia, Hs_semanales, Hs_totales, Id_plan;
         string Desc_materia;

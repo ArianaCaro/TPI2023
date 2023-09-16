@@ -127,6 +127,18 @@
     <Compile Include="formPersona.Designer.cs">
       <DependentUpon>formPersona.cs</DependentUpon>
     </Compile>
+    <Compile Include="formUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formUsuario.Designer.cs">
+      <DependentUpon>formUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formUsuarioOpc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formUsuarioOpc.Designer.cs">
+      <DependentUpon>formUsuarioOpc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TPI2023M07DataSet.Designer.cs">
@@ -153,6 +165,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TPI2023M07DataSet5.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TPI2023M07DataSet6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TPI2023M07DataSet6.xsd</DependentUpon>
     </Compile>
     <EmbeddedResource Include="formComision.resx">
       <DependentUpon>formComision.cs</DependentUpon>
@@ -189,6 +206,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formPersona.resx">
       <DependentUpon>formPersona.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formUsuario.resx">
+      <DependentUpon>formUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formUsuarioOpc.resx">
+      <DependentUpon>formUsuarioOpc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -263,6 +286,17 @@
     </None>
     <None Include="TPI2023M07DataSet5.xss">
       <DependentUpon>TPI2023M07DataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet6.xsc">
+      <DependentUpon>TPI2023M07DataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet6.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TPI2023M07DataSet6.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TPI2023M07DataSet6.xss">
+      <DependentUpon>TPI2023M07DataSet6.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

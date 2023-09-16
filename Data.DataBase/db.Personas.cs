@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataDAO
+namespace Data.DataBase
 { 
     public class PersonasDAO
     {
@@ -66,8 +66,38 @@ namespace DataDAO
             }
             return dtPersonas;
         }
-                   
-    
+
+        public string ObtenerApellidoEmail(int idPersona)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT apellido, email FROM Personas WHERE id_persona = @id_persona";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id_persona", idPersona);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.Read()) {
+                            string apellido = reader["apellido"].ToString();
+                            string email = reader["email"].ToString();
+                            return $"Apellido: {apellido}, Email: {email}";
+                        }                       
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones (opcional)
+                Console.WriteLine("Error al obtener el apellido y correo electrónico: " + ex.Message);
+            }
+            return null; // Devolver null si no se encuentra la descripción
+        }
+
+
         public bool ModificarPersona(Persona persona)
         {
             try
@@ -76,12 +106,13 @@ namespace DataDAO
                 {
                     connection.Open();
 
-                    string query = "UPDATE Personas SET nombre = @nuevoNombre, apellido = @NuevoApellido, direccion = @NuevaDireccion, email = @NuevoEmail, telefono = @NuevoTelefono, fecha_nac = @NuevaFechaNac, legajo = @NuevoLegajo, tipo_persona = @NuevoTipoPersona, id_plan = @NuevoIdPlan WHERE id_persona = @IDPersona";
+                    string query = "UPDATE Personas SET nombre = @NuevoNombre, apellido = @NuevoApellido, direccion = @NuevaDireccion, email = @NuevoEmail, telefono = @NuevoTelefono, fecha_nac = @NuevaFechaNac, legajo = @NuevoLegajo, tipo_persona = @NuevoTipoPersona, id_plan = @NuevoIdPlan WHERE id_persona = @IDPersona";
 
 
                     using (SqlCommand command = new SqlCommand(query, connection))                                                                                                                                 
                     {
                         command.Parameters.AddWithValue("@IDPersona", persona.IdPersona);
+                        command.Parameters.AddWithValue("@NuevoNombre", persona.Nombre);
                         command.Parameters.AddWithValue("@NuevoApellido", persona.Apellido);
                         command.Parameters.AddWithValue("@NuevaDireccion", persona.Direccion);
                         command.Parameters.AddWithValue("@NuevoEmail", persona.Email);

@@ -28,19 +28,25 @@ namespace UI.Escritorio
 
         private void usuariosMnu_Click(object sender, EventArgs e)
         {
-            formPersona frmUsuario = new formPersona(0);
+            formUsuario frmUsuario = new formUsuario();
             frmUsuario.ShowDialog();
         }
+
+        #region ALUMNOS
         private void alumnosMnu_Click(object sender, EventArgs e)
         {
             formPersona frmAlumno = new formPersona(1);
             frmAlumno.ShowDialog();
         }
+        #endregion
+
+        #region DOCENTES
         private void docentesMnu_Click(object sender, EventArgs e)
         {
             formPersona frmDocente = new formPersona(2);
             frmDocente.ShowDialog();
         }
+        #endregion
 
         #region COMISIONES
         private void comisionesMnu_Click(object sender, EventArgs e)
@@ -54,7 +60,6 @@ namespace UI.Escritorio
         {
 
         }
-
 
         #region MATERIAS
         private void materiasMnu_Click(object sender, EventArgs e)

@@ -13,13 +13,13 @@ namespace UI.Escritorio
     {
         bool band = false;
         Persona personaM;
-        int tipo;
+        int tipo_per;
 
-        public formPersonaOpc(Persona persona, int tipo_per)
+        public formPersonaOpc(Persona persona, int tipo)
         {
             InitializeComponent();
             cargar_planes();
-            tipo = tipo_per;
+            tipo_per = tipo;
 
             if(persona == null)
             {
@@ -63,7 +63,6 @@ namespace UI.Escritorio
             else
             {
                 PersonasDAO personaDAO = new PersonasDAO();
-                Persona persona = new Persona();
 
                 if (band == true)     //el band es para saber si es un formulario de modificar o de alta, si es true es de modificar
                 {
@@ -75,12 +74,12 @@ namespace UI.Escritorio
                     personaM.FechaNac = dtpFechaNac.Value;
                     personaM.Legajo = int.Parse(txtLegajo.Text);
                     personaM.IdPlan = (int)cmbPlanes.SelectedValue;
-                    personaM.TipoPersona = tipo;
+                    personaM.TipoPersona = tipo_per;
                     band = personaDAO.ModificarPersona(personaM);
                 }
                 else
                 {
-                    persona = new Persona
+                    Persona persona = new Persona
                     {
                         Nombre = txtNombre.Text,
                         Apellido = txtApellido.Text,
@@ -90,7 +89,7 @@ namespace UI.Escritorio
                         FechaNac = dtpFechaNac.Value,
                         Legajo = int.Parse(txtLegajo.Text),  
                         IdPlan = (int)cmbPlanes.SelectedValue,
-                        TipoPersona = tipo,
+                        TipoPersona = tipo_per,
                     };
                     band = personaDAO.InsertarPersona(persona);
                 }

@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using Entidades;
 
-namespace DataDAO
+namespace Data.DataBase
 {
     /*
     public class dbPlanes : Adaptador
