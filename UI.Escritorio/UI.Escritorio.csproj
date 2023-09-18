@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="formInscripcion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formInscripcion.Designer.cs">
+      <DependentUpon>formInscripcion.cs</DependentUpon>
+    </Compile>
     <Compile Include="formMateria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formEspecialidadOpc.resx">
       <DependentUpon>formEspecialidadOpc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formInscripcion.resx">
+      <DependentUpon>formInscripcion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formLogin.resx">
       <DependentUpon>formLogin.cs</DependentUpon>

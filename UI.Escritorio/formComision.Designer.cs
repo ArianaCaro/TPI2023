@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnAlta = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnBaja = new System.Windows.Forms.Button();
@@ -100,8 +100,8 @@
             // idcomisionDataGridViewTextBoxColumn
             // 
             this.idcomisionDataGridViewTextBoxColumn.DataPropertyName = "id_comision";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.idcomisionDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.idcomisionDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.idcomisionDataGridViewTextBoxColumn.HeaderText = "ID Comision";
             this.idcomisionDataGridViewTextBoxColumn.Name = "idcomisionDataGridViewTextBoxColumn";
             this.idcomisionDataGridViewTextBoxColumn.ReadOnly = true;
@@ -109,16 +109,16 @@
             // desccomisionDataGridViewTextBoxColumn
             // 
             this.desccomisionDataGridViewTextBoxColumn.DataPropertyName = "desc_comision";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.desccomisionDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.desccomisionDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.desccomisionDataGridViewTextBoxColumn.HeaderText = "Descripción";
             this.desccomisionDataGridViewTextBoxColumn.Name = "desccomisionDataGridViewTextBoxColumn";
             // 
             // anioespecialidadDataGridViewTextBoxColumn
             // 
             this.anioespecialidadDataGridViewTextBoxColumn.DataPropertyName = "anio_especialidad";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.anioespecialidadDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.anioespecialidadDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.anioespecialidadDataGridViewTextBoxColumn.HeaderText = "Año";
             this.anioespecialidadDataGridViewTextBoxColumn.Name = "anioespecialidadDataGridViewTextBoxColumn";
             // 
@@ -151,7 +151,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(495, 308);
+            this.ClientSize = new System.Drawing.Size(492, 299);
             this.Controls.Add(this.dgvComisiones);
             this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.btnModificar);

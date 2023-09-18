@@ -27,10 +27,8 @@ namespace UI.Escritorio
             UsuariosDAO usuarioDAO = new UsuariosDAO();
             DataTable dtUsuarios = usuarioDAO.ObtenerTodosLosUsuarios();
 
-           // DataColumn apellidoColumn = new DataColumn("Apellido", typeof(string));
             dtUsuarios.Columns.Add("Apellido", typeof(string));
             dtUsuarios.Columns.Add("Email", typeof(string)); 
-           // dtUsuarios.Columns.Add(apellidoColumn);
 
             PersonasDAO personaDAO = new PersonasDAO();
             foreach (DataRow row in dtUsuarios.Rows)
@@ -102,11 +100,38 @@ namespace UI.Escritorio
             };
         }
 
-        private void formUsuario_Load(object sender, EventArgs e)
+        private void btnReset_Click(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'tPI2023M07DataSet6.Usuarios' Puede moverla o quitarla según sea necesario.
-            this.usuariosTableAdapter.Fill(this.tPI2023M07DataSet6.Usuarios);
+            dgvUsuarios.DataSource = null;
+            ActualizarDataGridView();
+            dgvUsuarios.Columns["id_usuario"].HeaderText = "ID Usuario";
+            dgvUsuarios.Columns["nombre_usuario"].HeaderText = "Usuario";
+            dgvUsuarios.Columns["clave"].HeaderText = "Clave";
+            dgvUsuarios.Columns["tipo"].HeaderText = "TipoUsuario";
+            dgvUsuarios.Columns["id_persona"].HeaderText = "ID Persona";
+        }
 
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string apellidoBusqueda = txtApellidoBusca.Text;
+            UsuariosDAO usuarioDAO = new UsuariosDAO();
+            DataTable dtBusqueda = usuarioDAO.BusquedaFiltrada(apellidoBusqueda);
+            
+            dtBusqueda.Columns.Add("Apellido", typeof(string));
+            dtBusqueda.Columns.Add("Email", typeof(string));
+
+            PersonasDAO personaDAO = new PersonasDAO();
+            foreach (DataRow row in dtBusqueda.Rows)
+            {
+
+                int idPersona = Convert.ToInt32(row["id_persona"]);
+                string[] apellidoEmail = personaDAO.ObtenerApellidoEmail(idPersona).Split(',');
+
+                row["Apellido"] = apellidoEmail[0];
+                row["Email"] = apellidoEmail[1];
+            }
+            dgvUsuarios.AutoGenerateColumns = true;
+            dgvUsuarios.DataSource = dtBusqueda;
         }
     }
 }

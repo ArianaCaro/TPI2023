@@ -23,8 +23,8 @@ namespace UI.Escritorio
             PersonasDAO personaDAO = new PersonasDAO();
             DataTable dtPersonas = personaDAO.ObtenerTodasLasPersonas(tipo);
 
-            DataColumn descripcioPlanColumn = new DataColumn("Plan", typeof(string));
-            dtPersonas.Columns.Add(descripcioPlanColumn);
+            DataColumn descripcionPlanColumn = new DataColumn("Plan", typeof(string));
+            dtPersonas.Columns.Add(descripcionPlanColumn);
 
             PlanesDAO planDAO = new PlanesDAO();
             foreach (DataRow row in dtPersonas.Rows)
@@ -98,6 +98,42 @@ namespace UI.Escritorio
                 TipoPersona = tipo_per,
                 IdPlan = int.Parse(dgvPersonas.CurrentRow.Cells[9].Value.ToString()),
             };
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            dgvPersonas.DataSource = null;
+            ActualizarDataGridView(tipo_per);
+            dgvPersonas.Columns["tipo_persona"].Visible = false;
+            dgvPersonas.Columns["id_plan"].Visible = false;    
+            dgvPersonas.Columns["id_persona"].HeaderText = "ID Persona";
+            dgvPersonas.Columns["nombre"].HeaderText = "Nombre";
+            dgvPersonas.Columns["apellido"].HeaderText = "Apellido";
+            dgvPersonas.Columns["direccion"].HeaderText = "Direccion";
+            dgvPersonas.Columns["email"].HeaderText = "Email";
+            dgvPersonas.Columns["telefono"].HeaderText = "Telefono";
+            dgvPersonas.Columns["fecha_nac"].HeaderText = "FechaNacimiento";
+            dgvPersonas.Columns["legajo"].HeaderText = "Legajo";           
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string apellidoBusqueda = txtApellidoBusca.Text;
+            PersonasDAO personaDAO = new PersonasDAO();
+            DataTable dtBusqueda = personaDAO.BusquedaFiltrada(tipo_per,apellidoBusqueda);
+
+            DataColumn descripcioPlanColumn = new DataColumn("Plan", typeof(string));
+            dtBusqueda.Columns.Add(descripcioPlanColumn);
+
+            PlanesDAO planDAO = new PlanesDAO();
+            foreach (DataRow row in dtBusqueda.Rows)
+            {
+                int idPlan = Convert.ToInt32(row["id_plan"]);
+                string descripcionPlan = planDAO.ObtenerDescripcionPlanes(idPlan);
+                row["Plan"] = descripcionPlan;
+            }
+            dgvPersonas.AutoGenerateColumns = true;
+            dgvPersonas.DataSource = dtBusqueda;
         }
     }
 }

@@ -1,17 +1,17 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Data.SqlClient;
 using System.Data;
-using Entidades;
 
 namespace Data.DataBase
 {
-    public class ComisionesDAO
+    public class InscripcionesDAO
     {
         // Cadena de conexión a la base de datos
         private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
-       // private string connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
+        // private string connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
 
-        public bool InsertarComision(Comision comision)     // Método para insertar una nueva comision en la base de datos
+        public bool InsertarInscripcion(Comision comision)     // Método para insertar una nueva comision en la base de datos
         {
             try
             {
@@ -35,8 +35,7 @@ namespace Data.DataBase
             }
         }
 
-
-        public DataTable ObtenerTodasLasComisiones()
+        public DataTable ObtenerTodasLasInscripciones()
         {
             DataTable dtComisiones = new DataTable();
 
@@ -56,7 +55,7 @@ namespace Data.DataBase
         }
 
 
-        public bool ModificarComision(Comision comision)
+        public bool ModificarInscripcion(Comision comision)
         {
             try
             {
@@ -71,7 +70,7 @@ namespace Data.DataBase
                         command.Parameters.AddWithValue("@IDComision", comision.IdComision);
                         command.Parameters.AddWithValue("@NuevaDescripcion", comision.DescComision);
                         command.Parameters.AddWithValue("@NuevoAnioEspecialidad", comision.AnioEspecialidad);
-                        command.Parameters.AddWithValue("@NuevoPlan",comision.IdPlan);
+                        command.Parameters.AddWithValue("@NuevoPlan", comision.IdPlan);
 
                         int rowsAffected = command.ExecuteNonQuery();
 
@@ -86,7 +85,7 @@ namespace Data.DataBase
         }
 
 
-        public bool EliminarComision(Comision comision)
+        public bool EliminarInscripcion(Comision comision)
         {
             {
                 try
@@ -114,5 +113,6 @@ namespace Data.DataBase
                 }
             }
         }
+
     }
 }

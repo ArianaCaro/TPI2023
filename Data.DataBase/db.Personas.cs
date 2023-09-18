@@ -123,8 +123,37 @@ namespace Data.DataBase
             return null; // Devolver null si no se encuentra la descripción
         }
 
+        public DataTable BusquedaFiltrada(int tipo, string apellido)
+        {
+            DataTable dtPersonasFiltradas = new DataTable();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT id_persona,nombre, apellido, direccion, email, telefono, fecha_nac, legajo, tipo_persona, id_plan FROM Personas WHERE tipo_persona = @tipo AND apellido = @apellido";
 
-       // public bool ModificarPersona(Persona persona)
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@tipo", tipo);
+                        command.Parameters.AddWithValue("@apellido", apellido);
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(dtPersonasFiltradas);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones: muestra un mensaje al usuario o registra la excepción
+                Console.WriteLine("Error al realizar la búsqueda: " + ex.Message);
+            }
+            return dtPersonasFiltradas;
+        }
+
+
+        // public bool ModificarPersona(Persona persona)
         public int ModificarPersona(Persona persona)
         {
             try

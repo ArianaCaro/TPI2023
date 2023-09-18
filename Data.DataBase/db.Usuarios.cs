@@ -61,6 +61,35 @@ namespace Data.DataBase
         }
 
 
+        public DataTable BusquedaFiltrada(string apellido)
+        {
+            DataTable dtUsuariosFiltrados = new DataTable();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                   // string query = "SELECT id_persona,nombre, apellido, direccion, email, telefono, fecha_nac, legajo, tipo_persona, id_plan FROM Personas WHERE tipo_persona = @tipo AND apellido = @apellido";//personas
+                    string query = "SELECT U.id_usuario,U.nombre_usuario, U.clave, U.tipo, U.id_persona FROM Usuarios U INNER JOIN Personas P ON P.id_persona = U.id_persona WHERE  P.apellido = @apellido";
+                   // string query = "SELECT U.id_usuario,U.usuario, U.clave, U.tipo_usuario, U.id_persona FROM Usuarios U INNER JOIN Personas P ON P.id_persona = U.id_persona WHERE  P.apellido = @apellido";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@apellido", apellido);
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(dtUsuariosFiltrados);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al realizar la búsqueda: " + ex.Message);
+            }
+            return dtUsuariosFiltrados;
+        }
+
         public bool ModificarUsuario(Usuario usuario)
         {
             try
