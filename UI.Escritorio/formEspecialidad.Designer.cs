@@ -29,15 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnAlta = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnBaja = new System.Windows.Forms.Button();
             this.dgvEspecialidad = new System.Windows.Forms.DataGridView();
-            this.idespecialidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descespecialidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.especialidadesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tPI2023M07DataSet3 = new UI.Escritorio.TPI2023M07DataSet3();
             this.especialidadesTableAdapter = new UI.Escritorio.TPI2023M07DataSet3TableAdapters.EspecialidadesTableAdapter();
+            this.idespecialidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descespecialidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspecialidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.especialidadesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tPI2023M07DataSet3)).BeginInit();
@@ -45,9 +47,9 @@
             // 
             // btnAlta
             // 
-            this.btnAlta.Location = new System.Drawing.Point(228, 271);
+            this.btnAlta.Location = new System.Drawing.Point(201, 268);
             this.btnAlta.Name = "btnAlta";
-            this.btnAlta.Size = new System.Drawing.Size(79, 30);
+            this.btnAlta.Size = new System.Drawing.Size(75, 23);
             this.btnAlta.TabIndex = 0;
             this.btnAlta.Text = "ALTA";
             this.btnAlta.UseVisualStyleBackColor = true;
@@ -55,9 +57,9 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(143, 271);
+            this.btnModificar.Location = new System.Drawing.Point(120, 268);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(79, 30);
+            this.btnModificar.Size = new System.Drawing.Size(75, 23);
             this.btnModificar.TabIndex = 1;
             this.btnModificar.Text = "MODIFICAR";
             this.btnModificar.UseVisualStyleBackColor = true;
@@ -65,9 +67,9 @@
             // 
             // btnBaja
             // 
-            this.btnBaja.Location = new System.Drawing.Point(58, 271);
+            this.btnBaja.Location = new System.Drawing.Point(29, 268);
             this.btnBaja.Name = "btnBaja";
-            this.btnBaja.Size = new System.Drawing.Size(79, 30);
+            this.btnBaja.Size = new System.Drawing.Size(75, 23);
             this.btnBaja.TabIndex = 2;
             this.btnBaja.Text = "BAJA";
             this.btnBaja.UseVisualStyleBackColor = true;
@@ -84,24 +86,11 @@
             this.idespecialidadDataGridViewTextBoxColumn,
             this.descespecialidadDataGridViewTextBoxColumn});
             this.dgvEspecialidad.DataSource = this.especialidadesBindingSource;
-            this.dgvEspecialidad.Location = new System.Drawing.Point(60, 12);
+            this.dgvEspecialidad.Location = new System.Drawing.Point(29, 12);
             this.dgvEspecialidad.Name = "dgvEspecialidad";
-            this.dgvEspecialidad.Size = new System.Drawing.Size(247, 240);
+            this.dgvEspecialidad.Size = new System.Drawing.Size(247, 250);
             this.dgvEspecialidad.TabIndex = 3;
             this.dgvEspecialidad.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEspecialidad_CellMouseClick);
-            // 
-            // idespecialidadDataGridViewTextBoxColumn
-            // 
-            this.idespecialidadDataGridViewTextBoxColumn.DataPropertyName = "id_especialidad";
-            this.idespecialidadDataGridViewTextBoxColumn.HeaderText = "ID.Especialidad";
-            this.idespecialidadDataGridViewTextBoxColumn.Name = "idespecialidadDataGridViewTextBoxColumn";
-            this.idespecialidadDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // descespecialidadDataGridViewTextBoxColumn
-            // 
-            this.descespecialidadDataGridViewTextBoxColumn.DataPropertyName = "desc_especialidad";
-            this.descespecialidadDataGridViewTextBoxColumn.HeaderText = "Descripcion";
-            this.descespecialidadDataGridViewTextBoxColumn.Name = "descespecialidadDataGridViewTextBoxColumn";
             // 
             // especialidadesBindingSource
             // 
@@ -117,11 +106,28 @@
             // 
             this.especialidadesTableAdapter.ClearBeforeFill = true;
             // 
+            // idespecialidadDataGridViewTextBoxColumn
+            // 
+            this.idespecialidadDataGridViewTextBoxColumn.DataPropertyName = "id_especialidad";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.idespecialidadDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.idespecialidadDataGridViewTextBoxColumn.HeaderText = "IDEspecialidad";
+            this.idespecialidadDataGridViewTextBoxColumn.Name = "idespecialidadDataGridViewTextBoxColumn";
+            this.idespecialidadDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // descespecialidadDataGridViewTextBoxColumn
+            // 
+            this.descespecialidadDataGridViewTextBoxColumn.DataPropertyName = "desc_especialidad";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.descespecialidadDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.descespecialidadDataGridViewTextBoxColumn.HeaderText = "Descripcion";
+            this.descespecialidadDataGridViewTextBoxColumn.Name = "descespecialidadDataGridViewTextBoxColumn";
+            // 
             // formEspecialidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 328);
+            this.ClientSize = new System.Drawing.Size(300, 305);
             this.Controls.Add(this.dgvEspecialidad);
             this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.btnModificar);
@@ -131,7 +137,7 @@
             this.MinimizeBox = false;
             this.Name = "formEspecialidad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Especialidad";
+            this.Text = "Especialidades";
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspecialidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.especialidadesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tPI2023M07DataSet3)).EndInit();

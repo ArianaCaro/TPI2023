@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
+using UI.Escritorio;
 
 namespace UI.Escritorio
 {
@@ -16,6 +18,7 @@ namespace UI.Escritorio
     {
         Usuario usuarioM;
         bool band = false;
+       // int id;
         public formUsuarioOpc(Usuario usuario)
         {
             InitializeComponent();
@@ -29,6 +32,7 @@ namespace UI.Escritorio
             {
                 this.txtNombre.Text = usuario.NombreUsuario;
                 this.txtClave.Text = usuario.Clave;
+                this.cmbTipoUsuario.Text = usuario.Tipo;
                // this.cmbTipoUsuario.Text = usuario;
                 //combobox= sdiejfei
                 this.btnAceptar.Text = "MODIFICAR";
@@ -52,21 +56,8 @@ namespace UI.Escritorio
           }*/
 
         private void btnAceptar_Click_1(object sender, EventArgs e)
-        {                   
-                int tipoUsuario = 0; // Valor predeterminado para Administrador 
-
-                if (cmbTipoUsuario.SelectedIndex == 0) // "Alumno" seleccionado
-                {
-                    tipoUsuario = 1;
-                }
-                else if (cmbTipoUsuario.SelectedIndex == 1) // "Docente" seleccionado
-                {
-                    tipoUsuario = 2;
-                }
-
-   
-               // usuario.TipoUsuario = tipoUsuario;         
-
+        {
+            int id;     
             if (cmbTipoUsuario.Text.Length == 0 || txtNombre.Text.Length == 0)
             {
                 MessageBox.Show("Cargar datos correctamente");
@@ -79,28 +70,49 @@ namespace UI.Escritorio
                 {
                     usuarioM.NombreUsuario = txtNombre.Text;
                     usuarioM.Clave = txtClave.Text;
-                    usuarioM.IdPersona = (int)cmbTipoUsuario.SelectedValue;
+                    usuarioM.Tipo = cmbTipoUsuario.Text;
+                 //   usuarioM.IdPersona = nuevaPersona.IdPersona;
+                  //  usuarioM.IdPersona = (int)cmbTipoUsuario.SelectedValue;
                     band = usuarioDAO.ModificarUsuario(usuarioM);
                 }
                 else
                 {
+                    Persona nuevaPersona = null;
+                    int tipoUsuario = 0; // Valor predeterminado para administrador
+
+                    if (cmbTipoUsuario.SelectedIndex == 0) // "Alumno" seleccionado
+                    {
+                        tipoUsuario = 1;
+                    }
+                    else if (cmbTipoUsuario.SelectedIndex == 1) // "Docente" seleccionado
+                    {
+                        tipoUsuario = 2;
+                    }
+
+                    formPersonaOpc frmPersonaAlta = new formPersonaOpc(nuevaPersona, tipoUsuario);
+                    if (DialogResult.OK == frmPersonaAlta.ShowDialog())
+                    {
+                       // id = frmPersonaAlta.IdUsuario;
+                    };
+                    id = frmPersonaAlta.IdUsuario;
                     Usuario usuario = new Usuario
                     {
                         NombreUsuario = txtNombre.Text,
                         Clave = txtClave.Text,
-                        IdPersona = (int)cmbTipoUsuario.SelectedValue,
+                        Tipo = cmbTipoUsuario.Text,
+                        IdPersona = id,
                     };
-                    band = usuarioDAO.InsertarUsuario(usuario);
+                    band = usuarioDAO.InsertarUsuario(usuario); 
                 }
 
-                if (band)
-                {
-                    MessageBox.Show("Agregado correctamente!");
-                }
-                else
+                if (band == false)
                 {
                     MessageBox.Show("Error al cargar");
                 }
+               /* else
+                {
+                    MessageBox.Show("Error al cargar");             
+                }*/
             }
             this.DialogResult = DialogResult.OK;
         }
@@ -110,4 +122,4 @@ namespace UI.Escritorio
             this.DialogResult = DialogResult.Cancel;
         }
     }
-}    
+}

@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvPlanes = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descplanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,13 +67,15 @@
             this.dgvPlanes.DataSource = this.planesBindingSource3;
             this.dgvPlanes.Location = new System.Drawing.Point(22, 12);
             this.dgvPlanes.Name = "dgvPlanes";
-            this.dgvPlanes.Size = new System.Drawing.Size(346, 289);
+            this.dgvPlanes.Size = new System.Drawing.Size(343, 290);
             this.dgvPlanes.TabIndex = 1;
             this.dgvPlanes.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPlanes_CellMouseClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "id_plan";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewTextBoxColumn1.HeaderText = "ID Plan";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
@@ -78,12 +83,16 @@
             // descplanDataGridViewTextBoxColumn
             // 
             this.descplanDataGridViewTextBoxColumn.DataPropertyName = "desc_plan";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.descplanDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.descplanDataGridViewTextBoxColumn.HeaderText = "Descripcion";
             this.descplanDataGridViewTextBoxColumn.Name = "descplanDataGridViewTextBoxColumn";
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "id_especialidad";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxColumn2.HeaderText = "id_especialidad";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.Visible = false;
@@ -116,7 +125,7 @@
             // 
             // btnAlta
             // 
-            this.btnAlta.Location = new System.Drawing.Point(255, 307);
+            this.btnAlta.Location = new System.Drawing.Point(252, 308);
             this.btnAlta.Name = "btnAlta";
             this.btnAlta.Size = new System.Drawing.Size(75, 23);
             this.btnAlta.TabIndex = 2;
@@ -126,7 +135,7 @@
             // 
             // btnModifica
             // 
-            this.btnModifica.Location = new System.Drawing.Point(157, 308);
+            this.btnModifica.Location = new System.Drawing.Point(159, 308);
             this.btnModifica.Name = "btnModifica";
             this.btnModifica.Size = new System.Drawing.Size(75, 23);
             this.btnModifica.TabIndex = 3;
@@ -136,7 +145,7 @@
             // 
             // btnBaja
             // 
-            this.btnBaja.Location = new System.Drawing.Point(59, 308);
+            this.btnBaja.Location = new System.Drawing.Point(62, 308);
             this.btnBaja.Name = "btnBaja";
             this.btnBaja.Size = new System.Drawing.Size(75, 23);
             this.btnBaja.TabIndex = 4;
@@ -181,11 +190,11 @@
         private TPI2023M07DataSet tPI2023M07DataSet;
         private System.Windows.Forms.BindingSource planesBindingSource3;
         private TPI2023M07DataSetTableAdapters.PlanesTableAdapter planesTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descplanDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.Button btnAlta;
         private System.Windows.Forms.Button btnModifica;
         private System.Windows.Forms.Button btnBaja;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descplanDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }

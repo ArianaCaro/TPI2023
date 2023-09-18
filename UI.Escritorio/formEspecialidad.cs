@@ -27,15 +27,14 @@ namespace UI.Escritorio
         {
             Especialidad nuevaEspecialidad = null;
             formEspecialidadOpc frmEspecialidadOp = new formEspecialidadOpc(nuevaEspecialidad);
-
-            if (DialogResult.OK == frmEspecialidadOp.ShowDialog()) 
+            frmEspecialidadOp.ShowDialog();
             ActualizarDataGridView();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
             formEspecialidadOpc frmEspecialidadOp = new formEspecialidadOpc(especialidadSeleccionada);
-            if (DialogResult.OK == frmEspecialidadOp.ShowDialog()) 
+            frmEspecialidadOp.ShowDialog();
             ActualizarDataGridView();
         }
 
@@ -60,7 +59,7 @@ namespace UI.Escritorio
 
             else
             {
-                MessageBox.Show("Debe seleccionar una especialidad antes de realizar la baja.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Operacion cancelada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             ActualizarDataGridView();

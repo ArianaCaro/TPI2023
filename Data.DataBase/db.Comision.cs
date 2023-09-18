@@ -15,8 +15,7 @@ namespace Data.DataBase
         private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
        // private string connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
 
-        // Método para insertar una nueva comision en la base de datos
-        public bool InsertarComision(Comision comision)
+        public bool InsertarComision(Comision comision)     // Método para insertar una nueva comision en la base de datos
         {
             try
             {

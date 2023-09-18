@@ -7,6 +7,7 @@ namespace Entidades
         private int id_usuario;
         private string nombre_usuario;
         private string clave;
+        private string tipo;
         private int id_persona;
 
         public int IdUsuario
@@ -25,6 +26,12 @@ namespace Entidades
         {
             get { return clave; }
             set { clave = value; }
+        }
+
+        public string Tipo
+        {
+            get { return tipo; }
+            set { tipo = value; }
         }
 
         public int IdPersona

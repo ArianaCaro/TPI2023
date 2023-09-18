@@ -23,11 +23,12 @@ namespace Data.DataBase
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "INSERT INTO Usuarios (nombre_usuario, clave, id_persona) VALUES (@nombre_usuario, @clave, @id_persona)";
+                    string query = "INSERT INTO Usuarios (nombre_usuario, clave, tipo, id_persona) VALUES (@nombre_usuario, @clave, @tipo, @id_persona)";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@nombre_usuario", usuario.NombreUsuario);
                         command.Parameters.AddWithValue("@clave", usuario.Clave);
+                        command.Parameters.AddWithValue("@tipo", usuario.Tipo);
                         command.Parameters.AddWithValue("@id_persona", usuario.IdPersona);
                         int rowsAffected = command.ExecuteNonQuery();
                         return rowsAffected > 0;
@@ -47,7 +48,7 @@ namespace Data.DataBase
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT id_usuario,nombre_usuario, clave, id_persona FROM Usuarios";
+                string query = "SELECT id_usuario,nombre_usuario, clave, tipo, id_persona FROM Usuarios";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -68,7 +69,7 @@ namespace Data.DataBase
                 {
                     connection.Open();
 
-                    string query = "UPDATE Usuarios SET nombre_usuario = @NuevoNombre, clave = @NuevaClave, id_persona = @NuevoTipoPersona WHERE id_usuario = @IDUsuario";
+                    string query = "UPDATE Usuarios SET nombre_usuario = @NuevoNombre, clave = @NuevaClave,tipo = @NuevoTipo, id_persona = @NuevoTipoPersona WHERE id_usuario = @IDUsuario";
 
 
                     using (SqlCommand command = new SqlCommand(query, connection))
@@ -76,6 +77,7 @@ namespace Data.DataBase
                         command.Parameters.AddWithValue("@IDUsuario", usuario.IdUsuario);
                         command.Parameters.AddWithValue("@NuevoNombre", usuario.NombreUsuario);
                         command.Parameters.AddWithValue("@NuevaClave", usuario.Clave);
+                        command.Parameters.AddWithValue("@NuevoTipo", usuario.Tipo);
                         command.Parameters.AddWithValue("@NuevoTipoPersona", usuario.IdPersona);
 
                         int rowsAffected = command.ExecuteNonQuery();
@@ -99,13 +101,14 @@ namespace Data.DataBase
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         connection.Open();
-                        string query = "DELETE FROM Usuarios WHERE id_usuario = @id_usuario AND nombre_usuario = @nombre_usuario AND clave = @clave AND id_persona=@id_persona";
+                        string query = "DELETE FROM Usuarios WHERE id_usuario = @id_usuario AND nombre_usuario = @nombre_usuario AND clave = @clave AND tipo=@tipo AND id_persona=@id_persona";
 
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
                             command.Parameters.AddWithValue("@id_usuario", usuario.IdUsuario);
                             command.Parameters.AddWithValue("@nombre_usuario", usuario.NombreUsuario);
                             command.Parameters.AddWithValue("@clave", usuario.Clave);
+                            command.Parameters.AddWithValue("@tipo", usuario.Tipo);
                             command.Parameters.AddWithValue("@id_persona", usuario.IdPersona);
 
                             int rowsAffected = command.ExecuteNonQuery();

@@ -1,7 +1,6 @@
 ﻿using Data.DataBase;
 using System;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 using Entidades;
 
 namespace UI.Escritorio
@@ -24,51 +23,49 @@ namespace UI.Escritorio
             {
                 this.txtDescripcion.Text = especialidad.DescEspecialidad;
                 this.btnAceptar.Text = "MODIFICAR";
-                this.Text = "Formulario MODIFICAR Especialidad   " + especialidad.DescEspecialidad;
+                this.Text = "Formulario MODIFICAR Especialidad";
                 band = true;
                 especialidadM = especialidad;
-
             }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (/*txtIdEspecialidad.Text.Length == 0 ||*/ txtDescripcion.Text.Length == 0)
+            if (txtDescripcion.Text.Length == 0)
             {
-                MessageBox.Show("Cargar datos correctamente"); //cambiar msj
+                MessageBox.Show("Complete el campo antes de continuar.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
                 EspecialidadesDAO especialidadesDAO = new EspecialidadesDAO();
-                Especialidad especialidad = new Especialidad();
-                
+
                 if (band == true)       //el band es para saber si es un formulario de modificar o de alta, si es true es de modificar
                 {
-                   especialidadM.DescEspecialidad = txtDescripcion.Text;
-                   band = especialidadesDAO.ModificarEspecialidad(especialidadM);
+                    especialidadM.DescEspecialidad = txtDescripcion.Text;
+                    band = especialidadesDAO.ModificarEspecialidad(especialidadM);
                 }
                 else
                 {
-                    especialidad = new Especialidad
+                    Especialidad especialidad = new Especialidad
                     {
                         DescEspecialidad = txtDescripcion.Text
                     };
                     band = especialidadesDAO.InsertarEspecialidad(especialidad);
                 }
-            }
 
-            if (band)      //los metodos modificarplan e insertarplan devuelven booleanos, si funciona todo ok muestro cartel
-            {
-                MessageBox.Show("La especialidad se agrego correctamente");
+                if (band)
+                {
+                    MessageBox.Show("La especialidad se agrego correctamente");      //los metodos modificarplan e insertarplan devuelven booleanos, si funciona todo ok muestro cartel
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();           // Cierra el formulario después de agregar/modificar exitosamente.
+                }
+                else
+                {
+                    MessageBox.Show("Error al cargar la especialidad");
+                }
             }
-            else
-            {
-                MessageBox.Show("Error al cargar Especialidad");
-            }
-
-            this.DialogResult = DialogResult.OK;   
         }
-
+                
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;

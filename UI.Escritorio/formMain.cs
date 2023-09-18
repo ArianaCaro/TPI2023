@@ -26,11 +26,13 @@ namespace UI.Escritorio
              }*/
         }
 
+        #region USUARIOS
         private void usuariosMnu_Click(object sender, EventArgs e)
         {
             formUsuario frmUsuario = new formUsuario();
             frmUsuario.ShowDialog();
         }
+        #endregion
 
         #region ALUMNOS
         private void alumnosMnu_Click(object sender, EventArgs e)

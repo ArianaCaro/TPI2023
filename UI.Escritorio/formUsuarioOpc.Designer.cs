@@ -125,6 +125,7 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Name = "formUsuarioOpc";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "formUsuarioOpc";
             this.ResumeLayout(false);
             this.PerformLayout();

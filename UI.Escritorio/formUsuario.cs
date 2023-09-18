@@ -101,5 +101,12 @@ namespace UI.Escritorio
                 IdPersona = int.Parse(dgvUsuarios.CurrentRow.Cells[3].Value.ToString()),          
             };
         }
+
+        private void formUsuario_Load(object sender, EventArgs e)
+        {
+            // TODO: esta línea de código carga datos en la tabla 'tPI2023M07DataSet6.Usuarios' Puede moverla o quitarla según sea necesario.
+            this.usuariosTableAdapter.Fill(this.tPI2023M07DataSet6.Usuarios);
+
+        }
     }
 }

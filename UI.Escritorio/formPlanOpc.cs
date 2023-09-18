@@ -2,10 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using Entidades;
-using DataDAO;
 using Data.DataBase;
-using System.Data.SqlClient;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace UI.Escritorio
 {
@@ -30,7 +27,7 @@ namespace UI.Escritorio
                 EspecialidadesDAO espDAO = new EspecialidadesDAO();
                 this.cmbEspecialidades.Text = espDAO.ObtenerDescripcionEspecialidad(plan.IdEspecialidad);
                 this.btnAgregar.Text = "MODIFICAR";
-                this.Text = "Formulario MODIFICAR Plan   " + plan.DescPlan;
+                this.Text = "Formulario MODIFICAR Plan";
                 band = true;
                 planM = plan;
             }               
@@ -45,16 +42,17 @@ namespace UI.Escritorio
             cmbEspecialidades.DataSource = dtEspecialidades;           
         }
 
+
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (cmbEspecialidades.Text.Length == 0 || txtDescPlan.Text.Length == 0)
+            if (cmbEspecialidades.SelectedIndex < 0 || txtDescPlan.Text.Length == 0)
             {
-                MessageBox.Show("Cargar datos correctamente");
+                MessageBox.Show("Complete todos los campos antes de continuar.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
                 PlanesDAO planesDAO = new PlanesDAO();
-                Plan plan = new Plan();
+
                 if (band == true)       //el band es para saber si es un formulario de modificar o de alta, si es true es de modificar
                 {
                     planM.DescPlan = txtDescPlan.Text;
@@ -63,7 +61,7 @@ namespace UI.Escritorio
                 }
                 else
                 {
-                    plan = new Plan
+                    Plan plan = new Plan
                     {
                         DescPlan = txtDescPlan.Text,
                         IdEspecialidad = (int)cmbEspecialidades.SelectedValue
@@ -73,14 +71,15 @@ namespace UI.Escritorio
 
                 if (band)
                 {
-                    MessageBox.Show("El plan se agrego correctamente");
+                    MessageBox.Show("El plan se agregó correctamente");
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();           // Cierra el formulario después de agregar/modificar exitosamente.
                 }
                 else
                 {
-                    MessageBox.Show("Error al cargar Plan");
+                    MessageBox.Show("Error al cargar el plan");
                 }
             }
-            this.DialogResult = DialogResult.OK;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

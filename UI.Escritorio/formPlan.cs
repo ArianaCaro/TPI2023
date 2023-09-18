@@ -2,7 +2,6 @@
 using System.Data;
 using System.Windows.Forms;
 using Data.DataBase;
-using DataDAO;
 using Entidades;
 
 namespace UI.Escritorio
@@ -31,23 +30,25 @@ namespace UI.Escritorio
                 int idEspecialidad = Convert.ToInt32(row["id_Especialidad"]);
                 string descripcionEspecialidad = espDAO.ObtenerDescripcionEspecialidad(idEspecialidad); 
                 row["Especialidad"] = descripcionEspecialidad;
-            }
-            dgvPlanes.AutoGenerateColumns = true;
+                
+            }       
+            dgvPlanes.AutoGenerateColumns = true;          
             dgvPlanes.DataSource = dtPlanes;
+            dgvPlanes.Columns["Especialidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         private void btnAlta_Click(object sender, EventArgs e)
         {
             Plan nuevoPlan = null;                                            
             formPlanOpc frmPlanOp = new formPlanOpc(nuevoPlan);
-            if (DialogResult.OK == frmPlanOp.ShowDialog())
+            frmPlanOp.ShowDialog();
             ActualizarDataGridView();
         }
      
         private void btnModifica_Click(object sender, EventArgs e)
         {
             formPlanOpc frmPlanOp = new formPlanOpc(planSeleccionado);
-            if (DialogResult.OK == frmPlanOp.ShowDialog())
+            frmPlanOp.ShowDialog();
             ActualizarDataGridView();
         }
 
@@ -73,7 +74,7 @@ namespace UI.Escritorio
 
             else
             {
-                MessageBox.Show("Debe seleccionar un plan antes de realizar la baja.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Operación cancelada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             ActualizarDataGridView();

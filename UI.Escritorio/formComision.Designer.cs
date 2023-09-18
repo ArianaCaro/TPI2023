@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnAlta = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnBaja = new System.Windows.Forms.Button();
@@ -90,13 +93,15 @@
             this.dgvComisiones.DataSource = this.comisionesBindingSource1;
             this.dgvComisiones.Location = new System.Drawing.Point(25, 12);
             this.dgvComisiones.Name = "dgvComisiones";
-            this.dgvComisiones.Size = new System.Drawing.Size(461, 249);
+            this.dgvComisiones.Size = new System.Drawing.Size(444, 249);
             this.dgvComisiones.TabIndex = 3;
             this.dgvComisiones.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvComisiones_CellMouseClick);
             // 
             // idcomisionDataGridViewTextBoxColumn
             // 
             this.idcomisionDataGridViewTextBoxColumn.DataPropertyName = "id_comision";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.idcomisionDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.idcomisionDataGridViewTextBoxColumn.HeaderText = "ID Comision";
             this.idcomisionDataGridViewTextBoxColumn.Name = "idcomisionDataGridViewTextBoxColumn";
             this.idcomisionDataGridViewTextBoxColumn.ReadOnly = true;
@@ -104,12 +109,16 @@
             // desccomisionDataGridViewTextBoxColumn
             // 
             this.desccomisionDataGridViewTextBoxColumn.DataPropertyName = "desc_comision";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.desccomisionDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.desccomisionDataGridViewTextBoxColumn.HeaderText = "Descripción";
             this.desccomisionDataGridViewTextBoxColumn.Name = "desccomisionDataGridViewTextBoxColumn";
             // 
             // anioespecialidadDataGridViewTextBoxColumn
             // 
             this.anioespecialidadDataGridViewTextBoxColumn.DataPropertyName = "anio_especialidad";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.anioespecialidadDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.anioespecialidadDataGridViewTextBoxColumn.HeaderText = "Año";
             this.anioespecialidadDataGridViewTextBoxColumn.Name = "anioespecialidadDataGridViewTextBoxColumn";
             // 
@@ -142,11 +151,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(503, 310);
+            this.ClientSize = new System.Drawing.Size(495, 308);
             this.Controls.Add(this.dgvComisiones);
             this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAlta);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "formComision";

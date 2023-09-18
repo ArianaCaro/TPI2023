@@ -1,5 +1,4 @@
 ﻿using Data.DataBase;
-using DataDAO;
 using Entidades;
 using System;
 using System.Data;
@@ -34,20 +33,21 @@ namespace UI.Escritorio
             }
             dgvComisiones.AutoGenerateColumns = true;
             dgvComisiones.DataSource = dtComisiones;
+            dgvComisiones.Columns["Plan"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         private void btnAlta_Click(object sender, EventArgs e)
         {
             Comision nuevaComision = null;
             formComisionOpc frmComisionOp = new formComisionOpc(nuevaComision);
-            if (DialogResult.OK == frmComisionOp.ShowDialog())
-                ActualizarDataGridView();
+            frmComisionOp.ShowDialog();
+            ActualizarDataGridView();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
             formComisionOpc frmComisionOp = new formComisionOpc(comisionSeleccionada);
-            if (DialogResult.OK == frmComisionOp.ShowDialog())
+            frmComisionOp.ShowDialog();
             ActualizarDataGridView();
         }
 
@@ -71,7 +71,7 @@ namespace UI.Escritorio
 
             else
             {
-                MessageBox.Show("Debe seleccionar una comisión antes de realizar la baja.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Operacion cancelada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             ActualizarDataGridView();

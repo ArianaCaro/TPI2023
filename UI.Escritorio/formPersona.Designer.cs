@@ -57,6 +57,7 @@
             this.personasTableAdapter = new UI.Escritorio.TPI2023M07DataSet4TableAdapters.PersonasTableAdapter();
             this.txtApellidoBusca = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnReset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersonas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tPI2023M07DataSet4)).BeginInit();
@@ -234,11 +235,21 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Ingrese Apellido:";
             // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(881, 36);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.TabIndex = 7;
+            this.btnReset.Text = "RESET";
+            this.btnReset.UseVisualStyleBackColor = true;
+            // 
             // formPersona
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(981, 472);
+            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtApellidoBusca);
             this.Controls.Add(this.dgvPersonas);
@@ -279,5 +290,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idplanDataGridViewTextBoxColumn;
         private System.Windows.Forms.TextBox txtApellidoBusca;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnReset;
     }
 }

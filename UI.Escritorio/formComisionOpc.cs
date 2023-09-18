@@ -1,10 +1,8 @@
 ﻿using Data.DataBase;
-using DataDAO;
 using Entidades;
 using System;
 using System.Data;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace UI.Escritorio
 {
@@ -48,14 +46,14 @@ namespace UI.Escritorio
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (cmbPlanes.Text.Length == 0 || txtDescripcion.Text.Length == 0/* || txtAnioEspecialidad.Text !=*/)
+            if (cmbPlanes.SelectedIndex < 0 || txtDescripcion.Text.Length == 0 || txtAnioEspecialidad.Text.Length == 0)
             {
-                MessageBox.Show("Cargar datos correctamente");
+                MessageBox.Show("Complete todos los campos antes de continuar.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                ComisionesDAO comisionDAO = new ComisionesDAO();
-                Comision comision = new Comision();
+                ComisionesDAO comisionDAO = new ComisionesDAO();   
+                
                 if (band == true)       //el band es para saber si es un formulario de modificar o de alta, si es true es de modificar
                 {
                     comisionM.DescComision = txtDescripcion.Text;
@@ -65,7 +63,7 @@ namespace UI.Escritorio
                 }
                 else
                 {
-                    comision = new Comision
+                    Comision comision = new Comision
                     {
                         DescComision = txtDescripcion.Text,
                         AnioEspecialidad = int.Parse(txtAnioEspecialidad.Text),
@@ -77,13 +75,14 @@ namespace UI.Escritorio
                 if (band)      //los metodos modificarplan e insertarplan devuelven booleanos, si funciona todo ok muestro cartel
                 {
                     MessageBox.Show("La comisión se agrego correctamente");
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();          
                 }
                 else
                 {
                     MessageBox.Show("Error al cargar comisión");
                 }         
             }
-            this.DialogResult = DialogResult.OK;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

@@ -1,7 +1,6 @@
-﻿
-namespace Entidades
+﻿namespace Entidades
 {
-    public class Especialidad/*:Entidad*/
+    public class Especialidad
     {
         private int id_especialidad;
         private string desc_especialidad;

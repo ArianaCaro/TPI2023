@@ -16,7 +16,8 @@ namespace Data.DataBase
         //private string connectionString = "Data Source=(localdb)\\NBX;Integrated Security=True";
         //private string connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
 
-        public bool InsertarPersona(Persona persona)        // Método para insertar una nueva persona en la base de datos
+     //   public bool InsertarPersona(Persona persona)        // Método para insertar una nueva persona en la base de datos
+        public int InsertarPersona(Persona persona)
         {
             try
             {
@@ -35,16 +36,41 @@ namespace Data.DataBase
                         command.Parameters.AddWithValue("@legajo", persona.Legajo);
                         command.Parameters.AddWithValue("@tipo_persona", persona.TipoPersona);
                         command.Parameters.AddWithValue("@id_plan", persona.IdPlan);
+
                         int rowsAffected = command.ExecuteNonQuery();
-                        return rowsAffected > 0;
+
+                        query = "SELECT MAX(id_persona) FROM Personas";
+                        using (SqlCommand idCommand = new SqlCommand(query, connection))
+                        {
+                            object result = idCommand.ExecuteScalar();
+                            return Convert.ToInt32(result);
+                        }                 
+                                                                                    
+                        //return 
+                        /* if (rowsAffected > 0)
+                         {
+                             query = "SELECT SCOPE_IDENTITY()";
+                             using (SqlCommand idCommand = new SqlCommand(query, connection))
+                             {
+                                 object result = idCommand.ExecuteScalar();
+                                 if (result != null)
+                                 {
+                                     return Convert.ToInt32(result);         // Retorna el IdPersona generado
+                                 }
+                             }
+                         }*/
                     }
                 }
             }
             catch
             {
-                return false;
+                return 0;
             }
+          //  return 0;
         }
+    
+
+
 
 
         public DataTable ObtenerTodasLasPersonas(int tipo)
@@ -84,7 +110,7 @@ namespace Data.DataBase
                         if (reader.Read()) {
                             string apellido = reader["apellido"].ToString();
                             string email = reader["email"].ToString();
-                            return $"Apellido: {apellido}, Email: {email}";
+                            return $"{apellido},{email}";
                         }                       
                     }
                 }
@@ -98,7 +124,8 @@ namespace Data.DataBase
         }
 
 
-        public bool ModificarPersona(Persona persona)
+       // public bool ModificarPersona(Persona persona)
+        public int ModificarPersona(Persona persona)
         {
             try
             {
@@ -124,13 +151,13 @@ namespace Data.DataBase
 
                         int rowsAffected = command.ExecuteNonQuery();
 
-                        return rowsAffected > 0;
+                        return rowsAffected;
                     }
                 }
             }
             catch
             {
-                return false;
+                return 0;
             }
         }
 

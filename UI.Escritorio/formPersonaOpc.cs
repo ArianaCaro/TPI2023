@@ -11,7 +11,7 @@ namespace UI.Escritorio
 {
     public partial class formPersonaOpc : Form
     {
-        bool band = false;
+        int band = 0;
         Persona personaM;
         int tipo_per;
 
@@ -40,7 +40,7 @@ namespace UI.Escritorio
 
                 this.btnAceptar.Text = "MODIFICAR";
                 this.Text = "Formulario Modificar";
-                band = true;
+                band = 1;
                 personaM = persona;
             }
         }
@@ -53,6 +53,9 @@ namespace UI.Escritorio
             cmbPlanes.DisplayMember = "desc_plan";
             cmbPlanes.DataSource = dtPlanes;
         }
+       // public int IdUsuario { get { } set { personaM = value; }} //necesario al crear usuarios
+        public int IdUsuario { get; private set; }
+
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -64,7 +67,7 @@ namespace UI.Escritorio
             {
                 PersonasDAO personaDAO = new PersonasDAO();
 
-                if (band == true)     //el band es para saber si es un formulario de modificar o de alta, si es true es de modificar
+                if (band == 1)     //el band es para saber si es un formulario de modificar o de alta, si es 1 es de modificar
                 {
                     personaM.Nombre = txtNombre.Text;
                     personaM.Apellido = txtApellido.Text;
@@ -92,9 +95,10 @@ namespace UI.Escritorio
                         TipoPersona = tipo_per,
                     };
                     band = personaDAO.InsertarPersona(persona);
+                    IdUsuario = band;               //copio el id generado ultimo para poder guardarlo en usuario
                 }
 
-                if (band)
+                if (band != 0)
                 {
                     MessageBox.Show("Agregado correctamente!");
                 }
