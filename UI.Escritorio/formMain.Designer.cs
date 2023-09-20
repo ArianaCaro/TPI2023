@@ -38,6 +38,7 @@
             this.materiasMnu = new System.Windows.Forms.ToolStripMenuItem();
             this.especialidadesMnu = new System.Windows.Forms.ToolStripMenuItem();
             this.planesMnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.inscripcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msnPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,7 +62,8 @@
             this.cursosMnu,
             this.materiasMnu,
             this.especialidadesMnu,
-            this.planesMnu});
+            this.planesMnu,
+            this.inscripcionesToolStripMenuItem});
             this.opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
             this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.opcionesToolStripMenuItem.Text = "Opciones";
@@ -122,6 +124,13 @@
             this.planesMnu.Text = "Planes";
             this.planesMnu.Click += new System.EventHandler(this.planesMnu_Click);
             // 
+            // inscripcionesToolStripMenuItem
+            // 
+            this.inscripcionesToolStripMenuItem.Name = "inscripcionesToolStripMenuItem";
+            this.inscripcionesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.inscripcionesToolStripMenuItem.Text = "Inscripciones";
+            this.inscripcionesToolStripMenuItem.Click += new System.EventHandler(this.inscripcionesToolStripMenuItem_Click);
+            // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -153,5 +162,6 @@
         private System.Windows.Forms.ToolStripMenuItem materiasMnu;
         private System.Windows.Forms.ToolStripMenuItem especialidadesMnu;
         private System.Windows.Forms.ToolStripMenuItem planesMnu;
+        private System.Windows.Forms.ToolStripMenuItem inscripcionesToolStripMenuItem;
     }
 }

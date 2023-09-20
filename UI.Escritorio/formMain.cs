@@ -87,5 +87,10 @@ namespace UI.Escritorio
         }
         #endregion
 
+        private void inscripcionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formInscripcion frmInscripcion  = new formInscripcion();
+            frmInscripcion.ShowDialog();
+        }
     }
 }

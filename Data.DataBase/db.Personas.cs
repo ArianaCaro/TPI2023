@@ -123,6 +123,36 @@ namespace Data.DataBase
             return null; // Devolver null si no se encuentra la descripción
         }
 
+        public string ObtenerNombreApellido(int idPersona)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT nombre, apellido FROM Personas WHERE id_persona = @id_persona";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id_persona", idPersona);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            string nombre = reader["nombre"].ToString();
+                            string apellido = reader["apellido"].ToString();
+                            return $"{nombre},{apellido}";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener el nombre y apellido: " + ex.Message);
+            }
+            return null; // Devolver null si no se encuentran
+        }
+
         public DataTable BusquedaFiltrada(int tipo, string apellido)
         {
             DataTable dtPersonasFiltradas = new DataTable();

@@ -11,19 +11,20 @@ namespace Data.DataBase
         private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
         // private string connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
 
-        public bool InsertarInscripcion(Comision comision)     // Método para insertar una nueva comision en la base de datos
+        public bool InsertarInscripcion(Inscripcion inscripcion)     // Método para insertar una nueva inscripcion en la base de datos
         {
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "INSERT INTO Comisiones (desc_comision, anio_especialidad, id_plan) VALUES (@desc_comision, @anio_especialidad, @id_plan)";
+                    string query = "INSERT INTO Alumnos_Inscripciones (id_alumno,id_curso,condicion,nota) VALUES (@id_alumno,@id_curso,@condicion,@nota)";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@desc_comision", comision.DescComision);
-                        command.Parameters.AddWithValue("@anio_especialidad", comision.AnioEspecialidad);
-                        command.Parameters.AddWithValue(@"id_plan", comision.IdPlan);
+                        command.Parameters.AddWithValue("@id_alumno", inscripcion.IdAlumno);
+                        command.Parameters.AddWithValue("@id_curso", inscripcion.IdCurso);
+                        command.Parameters.AddWithValue("@condicion", inscripcion.Condicion);
+                        command.Parameters.AddWithValue("@nota", inscripcion.Nota);
                         int rowsAffected = command.ExecuteNonQuery();
                         return rowsAffected > 0;
                     }
@@ -37,25 +38,24 @@ namespace Data.DataBase
 
         public DataTable ObtenerTodasLasInscripciones()
         {
-            DataTable dtComisiones = new DataTable();
+            DataTable dtInscripciones = new DataTable();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT id_comision, desc_comision,anio_especialidad, id_plan FROM Comisiones";
+                string query = "SELECT id_inscripcion, id_alumno, id_curso, condicion,nota FROM Alumnos_Inscripciones";
 
 
                 using (SqlCommand commnad = new SqlCommand(query, connection))
                 {
                     connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter(commnad);
-                    adapter.Fill(dtComisiones);
+                    adapter.Fill(dtInscripciones);
                 }
             }
-            return dtComisiones;
+            return dtInscripciones;
         }
 
-
-        public bool ModificarInscripcion(Comision comision)
+        public bool ModificarInscripcion(Inscripcion inscripcion)
         {
             try
             {
@@ -63,14 +63,14 @@ namespace Data.DataBase
                 {
                     connection.Open();
 
-                    string query = "UPDATE Comisiones SET desc_comision = @NuevaDescripcion, anio_especialidad = @NuevoAnioEspecialidad,  id_plan = @NuevoPlan WHERE id_comision = @IDComision";
+                    string query = "UPDATE Alumnos_Inscripciones SET id_curso = @NuevoIdCurso, condicion = @NuevaCondicion,  nota = @NuevaNota WHERE id_inscripcion = @id_inscripcion";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@IDComision", comision.IdComision);
-                        command.Parameters.AddWithValue("@NuevaDescripcion", comision.DescComision);
-                        command.Parameters.AddWithValue("@NuevoAnioEspecialidad", comision.AnioEspecialidad);
-                        command.Parameters.AddWithValue("@NuevoPlan", comision.IdPlan);
+                    { 
+                     //   command.Parameters.AddWithValue("@NuevoIdAlumno", inscripcion.IdAlumno);
+                        command.Parameters.AddWithValue("@NuevoIdCurso", inscripcion.IdCurso);
+                        command.Parameters.AddWithValue("@NuevaCondicion", inscripcion.Condicion);
+                        command.Parameters.AddWithValue("@NuevaNota", inscripcion.Nota);
 
                         int rowsAffected = command.ExecuteNonQuery();
 
@@ -85,7 +85,7 @@ namespace Data.DataBase
         }
 
 
-        public bool EliminarInscripcion(Comision comision)
+        public bool EliminarInscripcion(Inscripcion inscripcion)
         {
             {
                 try
@@ -93,14 +93,15 @@ namespace Data.DataBase
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         connection.Open();
-                        string query = "DELETE FROM Comisiones WHERE id_comision = @id_comision AND desc_comision = @desc_comision AND anio_especialidad = @anio_especialidad AND id_plan = @id_plan";
+                        string query = "DELETE FROM Alumnos_Inscripciones WHERE id_inscripcion = @id_inscripcion AND id_alumno = @id_alumno AND id_curso = @id_curso AND condicion = @condicion AND nota = @nota";
 
                         using (SqlCommand command = new SqlCommand(query, connection))
-                        {
-                            command.Parameters.AddWithValue("@id_comision", comision.IdComision);
-                            command.Parameters.AddWithValue("@desc_comision", comision.DescComision);
-                            command.Parameters.AddWithValue("@anio_especialidad", comision.AnioEspecialidad);
-                            command.Parameters.AddWithValue("@id_plan", comision.IdPlan);
+                        {   
+                            command.Parameters.AddWithValue("@id_inscripcion", inscripcion.IdInscripcion);
+                            command.Parameters.AddWithValue("@id_alumno", inscripcion.IdAlumno);
+                            command.Parameters.AddWithValue("@id_curso", inscripcion.IdCurso);
+                            command.Parameters.AddWithValue("@condicion", inscripcion.Condicion);
+                            command.Parameters.AddWithValue("@nota", inscripcion.Nota);
 
                             int rowsAffected = command.ExecuteNonQuery();
                             return rowsAffected > 0;

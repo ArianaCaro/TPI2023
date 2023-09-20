@@ -71,8 +71,6 @@ namespace UI.Escritorio
                     usuarioM.NombreUsuario = txtNombre.Text;
                     usuarioM.Clave = txtClave.Text;
                     usuarioM.Tipo = cmbTipoUsuario.Text;
-                 //   usuarioM.IdPersona = nuevaPersona.IdPersona;
-                  //  usuarioM.IdPersona = (int)cmbTipoUsuario.SelectedValue;
                     band = usuarioDAO.ModificarUsuario(usuarioM);
                 }
                 else
@@ -90,10 +88,8 @@ namespace UI.Escritorio
                     }
 
                     formPersonaOpc frmPersonaAlta = new formPersonaOpc(nuevaPersona, tipoUsuario);
-                    if (DialogResult.OK == frmPersonaAlta.ShowDialog())
-                    {
-                       // id = frmPersonaAlta.IdUsuario;
-                    };
+                    if (DialogResult.OK == frmPersonaAlta.ShowDialog()) {}
+
                     id = frmPersonaAlta.IdUsuario;
                     Usuario usuario = new Usuario
                     {
@@ -109,10 +105,6 @@ namespace UI.Escritorio
                 {
                     MessageBox.Show("Error al cargar");
                 }
-               /* else
-                {
-                    MessageBox.Show("Error al cargar");             
-                }*/
             }
             this.DialogResult = DialogResult.OK;
         }

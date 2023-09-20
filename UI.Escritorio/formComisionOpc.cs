@@ -23,7 +23,7 @@ namespace UI.Escritorio
             }
             else
             { 
-                this.txtDescripcion.Text = comision.DescComision.ToString();
+                this.txtDescripcion.Text = comision.DescComision;
                 this.txtAnioEspecialidad.Text = comision.AnioEspecialidad.ToString();
                 PlanesDAO planDAO = new PlanesDAO();
                 this.cmbPlanes.Text = planDAO.ObtenerDescripcionPlanes(comision.IdPlan);

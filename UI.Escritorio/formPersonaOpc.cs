@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace UI.Escritorio
 {
@@ -59,9 +60,9 @@ namespace UI.Escritorio
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (cmbPlanes.Text.Length == 0 || txtApellido.Text.Length == 0)
+            if (txtNombre.Text.Length == 0 || txtApellido.Text.Length == 0 || txtDireccion.Text.Length == 0 || cmbPlanes.SelectedIndex < 0 || txtLegajo.Text.Length == 0)  //dtpFechaNac.TextChanged == false
             {
-                MessageBox.Show("Cargar datos correctamente");
+                MessageBox.Show("Complete todos los campos antes de continuar.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -101,13 +102,14 @@ namespace UI.Escritorio
                 if (band != 0)
                 {
                     MessageBox.Show("Agregado correctamente!");
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 else
                 {
                     MessageBox.Show("Error al cargar");
                 }
             }
-            this.DialogResult = DialogResult.OK;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

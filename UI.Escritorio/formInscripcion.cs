@@ -4,10 +4,12 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 
+
 namespace UI.Escritorio
 {
     public partial class formInscripcion : Form
     {
+        private Inscripcion inscripcionSeleccionada;
         public formInscripcion()
         {
             InitializeComponent();
@@ -22,7 +24,6 @@ namespace UI.Escritorio
             dtInscripciones.Columns.Add("Nombre", typeof(string));
             dtInscripciones.Columns.Add("Apellido", typeof(string));
 
-
             PersonasDAO personaDAO = new PersonasDAO();
             foreach (DataRow row in dtInscripciones.Rows)
             {
@@ -35,8 +36,7 @@ namespace UI.Escritorio
             dgvInscripciones.AutoGenerateColumns = true;
             dgvInscripciones.DataSource = dtInscripciones;
             dgvInscripciones.Columns["Nombre"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvInscripciones.Columns["Apellido"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;        
-            }
+            dgvInscripciones.Columns["Apellido"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;             
         }
 
 
@@ -57,19 +57,19 @@ namespace UI.Escritorio
 
         private void btnBaja_Click(object sender, EventArgs e)
         {
-            DialogResult res = MessageBox.Show($"Desea borrar {comisionSeleccionada.DescComision}", "Confirmar Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult res = MessageBox.Show($"Desea borrar {inscripcionSeleccionada.IdInscripcion}", "Confirmar Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (res == DialogResult.Yes)
             {
-                ComisionesDAO comisionesDAO = new ComisionesDAO();
-                bool eliminado = comisionesDAO.EliminarComision(comisionSeleccionada);   //eliminado es mi variable bandera para saber si el metodo de eliminar funciono bien
+                InscripcionesDAO inscripcionDAO = new InscripcionesDAO();
+                bool eliminado = inscripcionDAO.EliminarInscripcion(inscripcionSeleccionada);   //eliminado es mi variable bandera para saber si el metodo de eliminar funciono bien
                 if (eliminado)
                 {
-                    MessageBox.Show("La comisión ha sido eliminada correctamente.", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("La inscripcion ha sido eliminada correctamente.", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Error al eliminar la comisión.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error al eliminar la inscripcion.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -83,28 +83,30 @@ namespace UI.Escritorio
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-        dgvUsuarios.DataSource = null;
-        ActualizarDataGridView();
-        dgvUsuarios.Columns["id_usuario"].HeaderText = "ID Usuario";
-        dgvUsuarios.Columns["nombre_usuario"].HeaderText = "Usuario";
-        dgvUsuarios.Columns["clave"].HeaderText = "Clave";
-        dgvUsuarios.Columns["tipo"].HeaderText = "TipoUsuario";
-        dgvUsuarios.Columns["id_persona"].HeaderText = "ID Persona";
-    }
+            dgvInscripciones.DataSource = null;
+            ActualizarDataGridView();
+            dgvInscripciones.Columns["id_usuario"].HeaderText = "ID Inscripcion";
+            dgvInscripciones.Columns["nombre_usuario"].HeaderText = "Nombre";
+            dgvInscripciones.Columns["clave"].HeaderText = "Apellido";
+            dgvInscripciones.Columns["tipo"].HeaderText = "ID Curso";
+            dgvInscripciones.Columns["id_persona"].HeaderText = "Condicion";
+            dgvInscripciones.Columns["id_persona"].HeaderText = "Nota";
+        }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void dgvComisiones_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dgvInscripciones_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            comisionSeleccionada = new Comision
+            inscripcionSeleccionada = new Inscripcion
             {
-                IdComision = int.Parse(dgvComisiones.CurrentRow.Cells[0].Value.ToString()),
-                DescComision = dgvComisiones.CurrentRow.Cells[1].Value.ToString(),
-                AnioEspecialidad = int.Parse(dgvComisiones.CurrentRow.Cells[2].Value.ToString()),
-                IdPlan = int.Parse(dgvComisiones.CurrentRow.Cells[3].Value.ToString())
+                IdInscripcion = int.Parse(dgvInscripciones.CurrentRow.Cells[0].Value.ToString()),
+                IdAlumno = int.Parse(dgvInscripciones.CurrentRow.Cells[0].Value.ToString()),
+                IdCurso = int.Parse(dgvInscripciones.CurrentRow.Cells[0].Value.ToString()),
+                Condicion = dgvInscripciones.CurrentRow.Cells[1].Value.ToString(), 
+                Nota = int.Parse(dgvInscripciones.CurrentRow.Cells[0].Value.ToString()),
             };
         }
     }

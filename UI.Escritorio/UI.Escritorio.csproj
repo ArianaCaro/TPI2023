@@ -61,6 +61,12 @@
     <Compile Include="formInscripcion.Designer.cs">
       <DependentUpon>formInscripcion.cs</DependentUpon>
     </Compile>
+    <Compile Include="formInscripcionOpc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formInscripcionOpc.Designer.cs">
+      <DependentUpon>formInscripcionOpc.cs</DependentUpon>
+    </Compile>
     <Compile Include="formMateria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +183,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TPI2023M07DataSet6.xsd</DependentUpon>
     </Compile>
+    <Compile Include="TPI2023M07DataSet7.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TPI2023M07DataSet7.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="formComision.resx">
       <DependentUpon>formComision.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formInscripcion.resx">
       <DependentUpon>formInscripcion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formInscripcionOpc.resx">
+      <DependentUpon>formInscripcionOpc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formLogin.resx">
       <DependentUpon>formLogin.cs</DependentUpon>
@@ -306,6 +320,17 @@
     </None>
     <None Include="TPI2023M07DataSet6.xss">
       <DependentUpon>TPI2023M07DataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet7.xsc">
+      <DependentUpon>TPI2023M07DataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet7.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TPI2023M07DataSet7.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TPI2023M07DataSet7.xss">
+      <DependentUpon>TPI2023M07DataSet7.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

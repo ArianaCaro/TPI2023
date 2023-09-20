@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dgvInscripciones = new System.Windows.Forms.DataGridView();
             this.btnAlta = new System.Windows.Forms.Button();
             this.btnModifica = new System.Windows.Forms.Button();
@@ -35,16 +36,35 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.txtApellidoBusca = new System.Windows.Forms.TextBox();
+            this.tPI2023M07DataSet7 = new UI.Escritorio.TPI2023M07DataSet7();
+            this.alumnosInscripcionesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.alumnos_InscripcionesTableAdapter = new UI.Escritorio.TPI2023M07DataSet7TableAdapters.Alumnos_InscripcionesTableAdapter();
+            this.idinscripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idalumnoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idcursoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.condicionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.notaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInscripciones)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tPI2023M07DataSet7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.alumnosInscripcionesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvInscripciones
             // 
+            this.dgvInscripciones.AutoGenerateColumns = false;
             this.dgvInscripciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvInscripciones.Location = new System.Drawing.Point(60, 88);
+            this.dgvInscripciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idinscripcionDataGridViewTextBoxColumn,
+            this.idalumnoDataGridViewTextBoxColumn,
+            this.idcursoDataGridViewTextBoxColumn,
+            this.condicionDataGridViewTextBoxColumn,
+            this.notaDataGridViewTextBoxColumn});
+            this.dgvInscripciones.DataSource = this.alumnosInscripcionesBindingSource;
+            this.dgvInscripciones.Location = new System.Drawing.Point(23, 100);
             this.dgvInscripciones.Name = "dgvInscripciones";
-            this.dgvInscripciones.Size = new System.Drawing.Size(558, 239);
+            this.dgvInscripciones.Size = new System.Drawing.Size(742, 253);
             this.dgvInscripciones.TabIndex = 0;
+            this.dgvInscripciones.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvInscripciones_CellMouseClick);
             // 
             // btnAlta
             // 
@@ -103,6 +123,51 @@
             this.txtApellidoBusca.Size = new System.Drawing.Size(100, 20);
             this.txtApellidoBusca.TabIndex = 6;
             // 
+            // tPI2023M07DataSet7
+            // 
+            this.tPI2023M07DataSet7.DataSetName = "TPI2023M07DataSet7";
+            this.tPI2023M07DataSet7.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // alumnosInscripcionesBindingSource
+            // 
+            this.alumnosInscripcionesBindingSource.DataMember = "Alumnos_Inscripciones";
+            this.alumnosInscripcionesBindingSource.DataSource = this.tPI2023M07DataSet7;
+            // 
+            // alumnos_InscripcionesTableAdapter
+            // 
+            this.alumnos_InscripcionesTableAdapter.ClearBeforeFill = true;
+            // 
+            // idinscripcionDataGridViewTextBoxColumn
+            // 
+            this.idinscripcionDataGridViewTextBoxColumn.DataPropertyName = "id_inscripcion";
+            this.idinscripcionDataGridViewTextBoxColumn.HeaderText = "id_inscripcion";
+            this.idinscripcionDataGridViewTextBoxColumn.Name = "idinscripcionDataGridViewTextBoxColumn";
+            this.idinscripcionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // idalumnoDataGridViewTextBoxColumn
+            // 
+            this.idalumnoDataGridViewTextBoxColumn.DataPropertyName = "id_alumno";
+            this.idalumnoDataGridViewTextBoxColumn.HeaderText = "id_alumno";
+            this.idalumnoDataGridViewTextBoxColumn.Name = "idalumnoDataGridViewTextBoxColumn";
+            // 
+            // idcursoDataGridViewTextBoxColumn
+            // 
+            this.idcursoDataGridViewTextBoxColumn.DataPropertyName = "id_curso";
+            this.idcursoDataGridViewTextBoxColumn.HeaderText = "id_curso";
+            this.idcursoDataGridViewTextBoxColumn.Name = "idcursoDataGridViewTextBoxColumn";
+            // 
+            // condicionDataGridViewTextBoxColumn
+            // 
+            this.condicionDataGridViewTextBoxColumn.DataPropertyName = "condicion";
+            this.condicionDataGridViewTextBoxColumn.HeaderText = "condicion";
+            this.condicionDataGridViewTextBoxColumn.Name = "condicionDataGridViewTextBoxColumn";
+            // 
+            // notaDataGridViewTextBoxColumn
+            // 
+            this.notaDataGridViewTextBoxColumn.DataPropertyName = "nota";
+            this.notaDataGridViewTextBoxColumn.HeaderText = "nota";
+            this.notaDataGridViewTextBoxColumn.Name = "notaDataGridViewTextBoxColumn";
+            // 
             // formInscripcion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -118,6 +183,8 @@
             this.Name = "formInscripcion";
             this.Text = "Inscripciones";
             ((System.ComponentModel.ISupportInitialize)(this.dgvInscripciones)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tPI2023M07DataSet7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.alumnosInscripcionesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,5 +199,13 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.TextBox txtApellidoBusca;
+        private TPI2023M07DataSet7 tPI2023M07DataSet7;
+        private System.Windows.Forms.BindingSource alumnosInscripcionesBindingSource;
+        private TPI2023M07DataSet7TableAdapters.Alumnos_InscripcionesTableAdapter alumnos_InscripcionesTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idinscripcionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idalumnoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idcursoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn condicionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn notaDataGridViewTextBoxColumn;
     }
 }
