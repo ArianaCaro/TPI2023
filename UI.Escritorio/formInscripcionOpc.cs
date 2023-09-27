@@ -35,12 +35,12 @@ namespace UI.Escritorio
 
         public void cargar_cursos()
         {
-            CursosDAO cursosDAO = new CursosDAO();
-            DataTable dtCursos = cursosDAO.ObtenerTodosLosCursos();
+           // CursosDAO cursosDAO = new CursosDAO();
+         //   DataTable dtCursos = cursosDAO.ObtenerTodosLosCursos();
 
             cmbCurso.ValueMember = "";
             cmbCurso.DisplayMember = "";
-            cmbCurso.DataSource = dtCursos;
+          //  cmbCurso.DataSource = dtCursos;
         }
         private void btnAceptar_Click(object sender, EventArgs e)
         {

@@ -1,40 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using Entidades;
+using System;
+using System.Data.SqlClient;
 using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
+using Data.DataBase;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 
 namespace UI.Escritorio
 {
     public partial class formLogin : Form
     {
+        public Usuario usr;
         public formLogin()
         {
             InitializeComponent();
         }
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            //la propiedad Text de los TextBox contiene el texto escrito en ellos
-            if (this.txtUsuario.Text == "Admin" && this.txtPass.Text == "admin")
+            UsuariosDAO usuarioDAO = new UsuariosDAO();
+            usr = usuarioDAO.existeUsuario(this.txtUsuario.Text, this.txtPass.Text);
+            if (usr != null)
             {
                 this.DialogResult = DialogResult.OK;
             }
             else
             {
-                MessageBox.Show("Usuario y/o contraseña incorrectos", "Login"
-                , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Usuario y/o contraseña incorrectos", "Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.limpiar();
             }
         }
 
         private void lnkOlvidaPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("Es Ud. un usuario muy descuidado, haga memoria", "Olvidé mi contraseña",
-            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            MessageBox.Show("Estamos en mantenimiento, intente más tarde ", "Olvidé mi contraseña",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
+        private void limpiar()
+        {
+            this.txtUsuario.Text = "";
+            this.txtPass.Text = "";
+            this.txtUsuario.Focus();
+        }
     }
 }
-

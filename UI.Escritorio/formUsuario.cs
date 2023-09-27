@@ -96,7 +96,8 @@ namespace UI.Escritorio
                 IdUsuario= int.Parse(dgvUsuarios.CurrentRow.Cells[0].Value.ToString()),
                 NombreUsuario = dgvUsuarios.CurrentRow.Cells[1].Value.ToString(),
                 Clave = dgvUsuarios.CurrentRow.Cells[2].Value.ToString(),
-                IdPersona = int.Parse(dgvUsuarios.CurrentRow.Cells[3].Value.ToString()),          
+                Tipo = dgvUsuarios.CurrentRow.Cells[3].Value.ToString(),
+                IdPersona = int.Parse(dgvUsuarios.CurrentRow.Cells[4].Value.ToString()),          
             };
         }
 

@@ -32,35 +32,24 @@ namespace UI.Escritorio
             {
                 this.txtNombre.Text = usuario.NombreUsuario;
                 this.txtClave.Text = usuario.Clave;
+                this.txtConfirma.Text = usuario.Clave;
                 this.cmbTipoUsuario.Text = usuario.Tipo;
                // this.cmbTipoUsuario.Text = usuario;
                 //combobox= sdiejfei
                 this.btnAceptar.Text = "MODIFICAR";
                 this.Text = "Formulario Modificar";
                 band = true;
-                usuarioM = usuario;
-
-               // PlanesDAO planDAO = new PlanesDAO();
-                //this.cmbPlanes.Text = planDAO.ObtenerDescripcionPlanes(persona.IdPlan);     
+                usuarioM = usuario;    
             }            
         }
 
-        /*  public void cargar_planes()
-          {
-              PlanesDAO planesDAO = new PlanesDAO();
-              DataTable dtPlanes = planesDAO.ObtenerTodosLosPlanes();
-
-              cmbPlanes.ValueMember = "id_plan";
-              cmbPlanes.DisplayMember = "desc_plan";
-              cmbPlanes.DataSource = dtPlanes;
-          }*/
 
         private void btnAceptar_Click_1(object sender, EventArgs e)
         {
             int id;     
-            if (cmbTipoUsuario.Text.Length == 0 || txtNombre.Text.Length == 0)
+            if (txtNombre.Text.Length == 0 || cmbTipoUsuario.SelectedIndex < 0 || txtClave.Text != txtConfirma.Text)
             {
-                MessageBox.Show("Cargar datos correctamente");
+                MessageBox.Show("Complete correctamente todos los campos antes de continuar.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -88,7 +77,7 @@ namespace UI.Escritorio
                     }
 
                     formPersonaOpc frmPersonaAlta = new formPersonaOpc(nuevaPersona, tipoUsuario);
-                    if (DialogResult.OK == frmPersonaAlta.ShowDialog()) {}
+                    if (DialogResult.OK == frmPersonaAlta.ShowDialog()) { }
 
                     id = frmPersonaAlta.IdUsuario;
                     Usuario usuario = new Usuario
@@ -101,12 +90,17 @@ namespace UI.Escritorio
                     band = usuarioDAO.InsertarUsuario(usuario); 
                 }
 
-                if (band == false)
+                if (band == true)
+                {
+                   // MessageBox.Show("Agregado correctamente!");
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
                 {
                     MessageBox.Show("Error al cargar");
                 }
             }
-            this.DialogResult = DialogResult.OK;
         }
 
         private void btnCancelar_Click_1(object sender, EventArgs e)

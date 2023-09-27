@@ -19,11 +19,11 @@ namespace UI.Escritorio
 
         private void formMain_Shown(object sender, EventArgs e)
         {
-            /* formLogin appLogin = new formLogin();         //esto es para ejecutar el login pero esta desactivado para ejecutar y probar las otras opciones
+             formLogin appLogin = new formLogin();         //esto es para ejecutar el login pero esta desactivado para ejecutar y probar las otras opciones
              if (appLogin.ShowDialog() != DialogResult.OK)
              {
                  this.Dispose();
-             }*/
+             }
         }
 
         #region USUARIOS

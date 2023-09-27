@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace Data.DataBase
 {
@@ -89,6 +90,46 @@ namespace Data.DataBase
             }
             return dtUsuariosFiltrados;
         }
+
+
+        public Usuario existeUsuario(string nombreUsuario, string clave)
+        {
+            Usuario usuario = new Usuario();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT id_usuario,nombre_usuario, clave, tipo, id_persona FROM Usuarios WHERE nombre_usuario = @nombreUsuario AND clave = @clave";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@nombre_usuario", nombreUsuario);
+                        command.Parameters.AddWithValue("@clave", clave);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                usuario = new Usuario
+                                {
+                                    IdUsuario = Convert.ToInt32(reader["id_usuario"]),
+                                    NombreUsuario = reader["nombre_usuario"].ToString(),
+                                    Clave = reader["clave"].ToString(),
+                                    Tipo = reader["tipo"].ToString(),
+                                    IdPersona = Convert.ToInt32(reader["id_persona"])
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al realizar la búsqueda: " + ex.Message);
+            }
+            return usuario;
+        }
+                
 
         public bool ModificarUsuario(Usuario usuario)
         {
