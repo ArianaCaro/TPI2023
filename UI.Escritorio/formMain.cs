@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,13 +18,45 @@ namespace UI.Escritorio
             InitializeComponent();
         }
 
-        private void formMain_Shown(object sender, EventArgs e)
+        private void formMain_Shown(object sender, EventArgs e) 
         {
-             formLogin appLogin = new formLogin();         //esto es para ejecutar el login pero esta desactivado para ejecutar y probar las otras opciones
-             if (appLogin.ShowDialog() != DialogResult.OK)
-             {
-                 this.Dispose();
-             }
+            formLogin appLogin = new formLogin();         //esto es para ejecutar el login pero esta desactivado para ejecutar y probar las otras opciones
+            if (appLogin.ShowDialog() != DialogResult.OK)
+            {
+                this.Dispose();
+            }
+            // Según el rol del usuario autenticado, habilitar o deshabilitar opciones de menú
+            switch (appLogin.TipoUsuario)
+            {
+                case "Alumno":
+                    usuariosMnu.Enabled = false;
+                    alumnosMnu.Enabled = false;
+                    docentesMnu.Enabled = false;
+                    comisionesMnu.Enabled = true;
+                    cursosMnu.Enabled = true;
+                    materiasMnu.Enabled = true;
+                    especialidadesMnu.Enabled = true;   
+                    planesMnu.Enabled= true;
+                    inscripcionesMnu.Enabled = true;    
+                    break;
+                case "Docente":
+                    usuariosMnu.Enabled = false;
+                    alumnosMnu.Enabled = true;
+                    docentesMnu.Enabled = true;
+                    comisionesMnu.Enabled = true;
+                    cursosMnu.Enabled = true;
+                    materiasMnu.Enabled = true;
+                    especialidadesMnu.Enabled = true;
+                    planesMnu.Enabled = true;
+                    inscripcionesMnu.Enabled = true;
+                    break;
+                case "Administrador":
+                    // Habilita todas las opciones de menú para los administradores
+                    break;
+                /*default:
+                    // Si el rol no coincide con ninguno de los casos anteriores, puedes manejarlo aquí
+                    break;*/
+            }
         }
 
         #region USUARIOS

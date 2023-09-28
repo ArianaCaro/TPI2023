@@ -11,7 +11,8 @@ namespace UI.Escritorio
 {
     public partial class formLogin : Form
     {
-        public Usuario usr;
+        public string TipoUsuario { get; set; }
+
         public formLogin()
         {
             InitializeComponent();
@@ -19,9 +20,10 @@ namespace UI.Escritorio
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             UsuariosDAO usuarioDAO = new UsuariosDAO();
-            usr = usuarioDAO.existeUsuario(this.txtUsuario.Text, this.txtPass.Text);
-            if (usr != null)
+            string b = usuarioDAO.existeUsuario(this.txtUsuario.Text, this.txtPass.Text);
+            if (b != null)
             {
+                TipoUsuario = b;
                 this.DialogResult = DialogResult.OK;
             }
             else

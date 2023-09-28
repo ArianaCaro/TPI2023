@@ -91,34 +91,26 @@ namespace Data.DataBase
             return dtUsuariosFiltrados;
         }
 
-
-        public Usuario existeUsuario(string nombreUsuario, string clave)
+       
+        public string existeUsuario(string nombreUsuario, string clave)
         {
-            Usuario usuario = new Usuario();
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT id_usuario,nombre_usuario, clave, tipo, id_persona FROM Usuarios WHERE nombre_usuario = @nombreUsuario AND clave = @clave";
+                    string query = "SELECT tipo FROM Usuarios WHERE nombre_usuario = @nombreUsuario AND clave = @clave";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@nombre_usuario", nombreUsuario);
+                        command.Parameters.AddWithValue("@nombreUsuario", nombreUsuario);
                         command.Parameters.AddWithValue("@clave", clave);
 
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        object result = command.ExecuteScalar();
+
+                        // Si result es diferente de null, significa que se encontró una coincidencia, devuelvo el tipo de usuario como string
+                        if (result != null)
                         {
-                            if (reader.Read())
-                            {
-                                usuario = new Usuario
-                                {
-                                    IdUsuario = Convert.ToInt32(reader["id_usuario"]),
-                                    NombreUsuario = reader["nombre_usuario"].ToString(),
-                                    Clave = reader["clave"].ToString(),
-                                    Tipo = reader["tipo"].ToString(),
-                                    IdPersona = Convert.ToInt32(reader["id_persona"])
-                                };
-                            }
+                            return result.ToString();
                         }
                     }
                 }
@@ -127,9 +119,12 @@ namespace Data.DataBase
             {
                 Console.WriteLine("Error al realizar la búsqueda: " + ex.Message);
             }
-            return usuario;
+
+            // Si no se encontró ninguna coincidencia o si ocurrió una excepción, retornamos null
+            return null;
         }
-                
+
+
 
         public bool ModificarUsuario(Usuario usuario)
         {
