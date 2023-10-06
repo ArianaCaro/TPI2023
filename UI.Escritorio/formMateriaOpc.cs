@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,28 +19,31 @@ namespace UI.Escritorio
     public partial class formMateriaOpc : Form
     {
         bool band = false;
-        int id_materia;
-        public formMateriaOpc(int idMateria, string descMateria, int hsSemanales, int hsTotales, int id_plan)
+        Materia materiaN;
+        public formMateriaOpc(Materia materia)
         {
             InitializeComponent();
             cargar_planes();
 
-            if (idMateria != 0)          //recibo como parametro el idplan y una x y pregunto si el id es un numero es porque estoy modificando, todo esto para reciclar el formulario de alta y usar el mismo
+            if (materia == null)          //recibo como parametro el idplan y una x y pregunto si el id es un numero es porque estoy modificando, todo esto para reciclar el formulario de alta y usar el mismo
             {
-                this.textBoxDescripMateria.Text = descMateria.ToString();
-                this.textBoxHsSem.Text = hsSemanales.ToString();
-                PlanesDAO planDAO = new PlanesDAO();
-                this.comboBoxDescPlan.Text = planDAO.ObtenerDescripcionPlanes(id_plan);
-                this.btnAceptar.Text = "MODIFICAR";
-                this.Text = "Formulario MODIFICAR materia";
-                band = true;
-                id_materia = idMateria;
+                this.Text = "Formulario ALTA materia";
+                this.btnAceptar.Text = "AGREGAR";
+                // this.cmbEspecialidades.Text = "Seleccione una especialidad";
             }
             else
             {
                 this.Text = "Formulario ALTA materia";
                 this.btnAceptar.Text = "AGREGAR";
                 // this.cmbEspecialidades.Text = "Seleccione una especialidad";
+                this.textBoxDescripMateria.Text = materia.DescMateria.ToString();
+                this.textBoxHsSem.Text = materia.HsSemanales.ToString();
+                PlanesDAO planDAO = new PlanesDAO();
+                this.comboBoxDescPlan.Text = planDAO.ObtenerDescripcionPlanes(materia.IdPlan);
+                this.btnAceptar.Text = "MODIFICAR";
+                this.Text = "Formulario MODIFICAR materia";
+                band = true;
+                materiaN = materia;
             }
         }
         public void cargar_planes()
@@ -65,27 +69,31 @@ namespace UI.Escritorio
             }
             else
             {
-                bool resultado;
+                MateriasDAO materiasDAO = new MateriasDAO();
                 if (band == true)       //el band es para saber si es un formulario de modificar o de alta, si es true es de modificar
                 {
-                    string desc = textBoxDescripMateria.Text;
-                    int hsSemanales = int.Parse(textBoxHsSem.Text);
-                    int plan = (int)comboBoxDescPlan.SelectedValue;
-                    int hsTotales = (hsSemanales * 40); // 4 semanas en 10 meses son 40 semanas
-                    MateriasDAO materiasDAO = new MateriasDAO();
-                    resultado = materiasDAO.ModificarMateria(id_materia, desc, hsSemanales, hsTotales, plan);
+                    materiaN.DescMateria = textBoxDescripMateria.Text;
+                    materiaN.HsSemanales = int.Parse(textBoxHsSem.Text);
+                    materiaN.IdPlan = (int)comboBoxDescPlan.SelectedValue;
+                    materiaN.HsTotales = (materiaN.HsSemanales * 40); // 4 semanas en 10 meses son 40 semanas
+                    band = materiasDAO.ModificarMateria(materiaN);
                 }
                 else
                 {
-                    string desc = textBoxDescripMateria.Text;
-                    int hsSemanales = int.Parse(textBoxHsSem.Text);
-                    int plan = (int)comboBoxDescPlan.SelectedValue;
-                    int hsTotales = (hsSemanales * 40); // 4 semanas en 10 meses son 40 semanas
-                    MateriasDAO materiasDAO = new MateriasDAO();
-                    resultado = materiasDAO.AgregarMateria(desc, hsSemanales, hsTotales, plan);
+
+                    materiaN = new Materia
+                    {
+                        DescMateria = textBoxDescripMateria.Text,
+                        HsSemanales = int.Parse(textBoxHsSem.Text),
+                        IdPlan = (int)comboBoxDescPlan.SelectedValue,
+                        HsTotales = (int.Parse(textBoxHsSem.Text) * 40), // 4 semanas en 10 meses son 40 semanas
+
+
+                    };
+                    band = materiasDAO.AgregarMateria(materiaN);
                 }
 
-                if (resultado)      //la var resultado es booleanos, si funciona todo ok muestro cartel
+                if (band)      //la var resultado es booleanos, si funciona todo ok muestro cartel
                 {
                     MessageBox.Show("La materia se agrego correctamente");
                 }

@@ -6,38 +6,38 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    internal class Materia
+    public class Materia
     {
-        int Id_materia, Hs_semanales, Hs_totales, Id_plan;
-        string Desc_materia;
+        int id_materia, hs_semanales, hs_totales, id_plan;
+        string desc_materia;
 
-        public int id_materia
+        public int IdMateria
         {
-            get { return Id_materia; }
-            set { Id_materia = value; }
+            get { return id_materia; }
+            set { id_materia = value; }
         }
 
-        public int hs_semanales
+        public int HsSemanales
         {
-            get { return Hs_semanales; }
-            set { Hs_semanales = value; }
+            get { return hs_semanales; }
+            set { hs_semanales = value; }
         }
-        public int hs_totales
+        public int HsTotales
         {
-            get { return Hs_totales; }
-            set { Hs_totales = value; }
+            get { return hs_totales; }
+            set { hs_totales = value; }
         }
 
-        public int id_plan
+        public int IdPlan
         {
-            get { return Id_plan; }
-            set { Id_plan = value; }
+            get { return id_plan; }
+            set { id_plan = value; }
         }
         
-        public string desc_materia
+        public string DescMateria
         {
-            get { return Desc_materia; }
-            set { Desc_materia = value; }
+            get { return desc_materia; }
+            set { desc_materia = value; }
         }
     }
 }

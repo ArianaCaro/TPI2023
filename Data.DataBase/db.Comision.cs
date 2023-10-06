@@ -55,6 +55,36 @@ namespace Data.DataBase
             return dtComisiones;
         }
 
+        public string ObtenerDescripcionComision(int id_comision)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT desc_comision FROM Comisiones WHERE id_comision = @id_comision";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id_comision", id_comision);
+                        object result = command.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            return result.ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones (opcional)
+                Console.WriteLine("Error al obtener la descripción de la comision: " + ex.Message);
+            }
+
+            return null; // Devolver null si no se encuentra la descripción
+        }
+
 
         public bool ModificarComision(Comision comision)
         {

@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Adaptador.cs" />
     <Compile Include="db.Comision.cs" />
+    <Compile Include="db.Cursos.cs" />
     <Compile Include="db.Inscripcion.cs" />
     <Compile Include="db.Personas.cs" />
     <Compile Include="db.Planes.cs" />

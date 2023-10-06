@@ -212,3 +212,5 @@ C:\Users\bruno\Downloads\TPI2023\UI.Escritorio\obj\Debug\UI.Escritorio.formUsuar
 C:\Users\bruno\Downloads\TPI2023\UI.Escritorio\obj\Debug\UI.Escritorio.formUsuarioOpc.resources
 C:\Users\bruno\Downloads\TPI2023\UI.Escritorio\obj\Debug\UI.Escritorio.formInscripcion.resources
 C:\Users\bruno\Downloads\TPI2023\UI.Escritorio\obj\Debug\UI.Escritorio.formInscripcionOpc.resources
+C:\Users\bruno\Downloads\TPI2023\UI.Escritorio\obj\Debug\UI.Escritorio.formCurso.resources
+C:\Users\bruno\Downloads\TPI2023\UI.Escritorio\obj\Debug\UI.Escritorio.formCursoOpc.resources

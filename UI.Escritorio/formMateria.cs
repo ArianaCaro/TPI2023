@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,12 +16,11 @@ namespace UI.Escritorio
 {
     public partial class formMateria : Form
     {
-        int idMateria, IdPlan;
-        int hsSemanales, hsTotales;
-        string descMateria;
+        private Materia materiaSeleccionada;
         public formMateria()
         {
             InitializeComponent();
+            ActualizarDataGridView();
         }
 
         private void formMateria_Load(object sender, EventArgs e)
@@ -51,21 +51,21 @@ namespace UI.Escritorio
 
         private void btnAlta_Click(object sender, EventArgs e)
         {
-            formMateriaOpc frmMateriaOp = new formMateriaOpc(0, "x", 0, 0, 0);
-            if (DialogResult.OK == frmMateriaOp.ShowDialog()) 
-            ActualizarDataGridView();
+            Materia nuevaMateria = null;
+            formMateriaOpc frmMateriaOp = new formMateriaOpc(nuevaMateria);
+            if (DialogResult.OK == frmMateriaOp.ShowDialog())
+                ActualizarDataGridView();
         }
 
         private void btnBaja_Click(object sender, EventArgs e)
         {
-            DialogResult res = MessageBox.Show($"Desea borrar {descMateria}", "Confirmar Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult res = MessageBox.Show($"Desea borrar {materiaSeleccionada.DescMateria}", "Confirmar Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (res == DialogResult.Yes)
             {
                 MateriasDAO materiasDAO = new MateriasDAO();
-              
-                bool eliminado = materiasDAO.EliminarMateria(idMateria, descMateria, hsSemanales, hsTotales, IdPlan);   //eliminado es mi variable bandera para saber si el metodo de eliminar funciono bien
-                if (eliminado)       
+                bool eliminado = materiasDAO.EliminarMateria(materiaSeleccionada);   //eliminado es mi variable bandera para saber si el metodo de eliminar funciono bien
+                if (eliminado)
                 {
                     MessageBox.Show("La materia ha sido eliminada correctamente.", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -85,18 +85,24 @@ namespace UI.Escritorio
 
         private void dgvMaterias_CellMouseClick_1(object sender, DataGridViewCellMouseEventArgs e)
         {
-            idMateria = int.Parse(dgvMaterias.CurrentRow.Cells[0].Value.ToString());
-            descMateria = dgvMaterias.CurrentRow.Cells[1].Value.ToString();
-            hsSemanales = int.Parse(dgvMaterias.CurrentRow.Cells[2].Value.ToString());
-            IdPlan = int.Parse(dgvMaterias.CurrentRow.Cells[4].Value.ToString());
-            hsTotales = (hsSemanales * 40); // 4 semanas en 10 meses son 40 semanas
+
+            int ht = int.Parse(dgvMaterias.CurrentRow.Cells[2].Value.ToString());
+            materiaSeleccionada = new Materia
+            {
+                IdMateria = int.Parse(dgvMaterias.CurrentRow.Cells[0].Value.ToString()),
+                DescMateria = dgvMaterias.CurrentRow.Cells[1].Value.ToString(),
+                HsSemanales = int.Parse(dgvMaterias.CurrentRow.Cells[2].Value.ToString()),
+                IdPlan = int.Parse(dgvMaterias.CurrentRow.Cells[4].Value.ToString()),
+                HsTotales = ht * 40 // 4 semanas en 10 meses son 40 semanas
+            };
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            formMateriaOpc frmMateriaOpc = new formMateriaOpc(idMateria, descMateria, hsSemanales, hsTotales, IdPlan);
-            if (DialogResult.OK == frmMateriaOpc.ShowDialog()) 
-            ActualizarDataGridView();
+
+            formMateriaOpc frmMateriaOp = new formMateriaOpc(materiaSeleccionada);
+            if (DialogResult.OK == frmMateriaOp.ShowDialog())
+                ActualizarDataGridView();
         }
     }
 }

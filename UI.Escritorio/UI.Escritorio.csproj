@@ -55,6 +55,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="formCurso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formCurso.Designer.cs">
+      <DependentUpon>formCurso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formCursoOpc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formCursoOpc.Designer.cs">
+      <DependentUpon>formCursoOpc.cs</DependentUpon>
+    </Compile>
     <Compile Include="formInscripcion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +205,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formComisionOpc.resx">
       <DependentUpon>formComisionOpc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formCurso.resx">
+      <DependentUpon>formCurso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formCursoOpc.resx">
+      <DependentUpon>formCursoOpc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formEspecialidad.resx">
       <DependentUpon>formEspecialidad.cs</DependentUpon>

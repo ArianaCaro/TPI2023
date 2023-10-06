@@ -19,7 +19,7 @@ namespace UI.Escritorio
         }
 
         private void formMain_Shown(object sender, EventArgs e) 
-        {
+        {/*
             formLogin appLogin = new formLogin();         //esto es para ejecutar el login pero esta desactivado para ejecutar y probar las otras opciones
             if (appLogin.ShowDialog() != DialogResult.OK)
             {
@@ -55,8 +55,8 @@ namespace UI.Escritorio
                     break;
                 /*default:
                     // Si el rol no coincide con ninguno de los casos anteriores, puedes manejarlo aquí
-                    break;*/
-            }
+                    break;*
+            }*/
         }
 
         #region USUARIOS
@@ -93,7 +93,8 @@ namespace UI.Escritorio
 
         private void cursosMnu_Click(object sender, EventArgs e)
         {
-
+            formCurso frmCurso = new formCurso();
+            frmCurso.ShowDialog();
         }
 
         #region MATERIAS
