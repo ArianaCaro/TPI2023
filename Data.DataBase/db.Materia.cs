@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Configuration;
 using Entidades;
 
 
@@ -13,9 +8,9 @@ namespace Data.DataBase
 {
     public class MateriasDAO
     {
-        //private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
+        private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
         // private string connectionString = "Data Source=(localdb)\\NBX;Database=TPI2023M07; Integrated Security=True";
-        private string connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
+       // private string connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
 
         public DataTable ObtenerTodasLasMaterias()
         {
@@ -91,39 +86,33 @@ namespace Data.DataBase
         }
         public bool EliminarMateria(Materia materia)
         {
+            try
             {
-                try
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    connection.Open();
+
+                    string query = "DELETE FROM Materias WHERE id_materia = @id_materia";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        connection.Open();
+                        command.Parameters.AddWithValue("@id_materia", materia.IdMateria);
 
-                        // Definir la consulta SQL para eliminar la comision
-                        string query = "DELETE FROM Materias WHERE id_materia = @id_materia AND desc_materia = @desc_materia AND hs_semanales = @hs_semanales AND hs_totales = @hs_totales AND id_plan = @id_plan";
+                        int rowsAffected = command.ExecuteNonQuery();
 
-                        using (SqlCommand command = new SqlCommand(query, connection))
-                        {
-                            // Agregar los parámetros a la consulta
-                            command.Parameters.AddWithValue("@id_materia", materia.IdMateria);
-                            command.Parameters.AddWithValue("@desc_materia", materia.DescMateria);
-                            command.Parameters.AddWithValue("@hs_semanales", materia.HsSemanales);
-                            command.Parameters.AddWithValue("@hs_totales", materia.HsTotales);
-                            command.Parameters.AddWithValue("@id_plan", materia.IdPlan);
-
-                            // Ejecutar la consulta
-                            int rowsAffected = command.ExecuteNonQuery();
-
-                            // Si se eliminó al menos una fila, significa que el plan se eliminó correctamente
-                            return rowsAffected > 0;
-                        }
+                        // Si se eliminó al menos una fila, significa que el plan se eliminó correctamente
+                        return rowsAffected > 0;
                     }
                 }
-                catch/* (SqlException ex)*/
-                {
-                    return false;
-                }
             }
+            catch
+            {
+                return false;
+            }   
         }
+
+
+
         public string ObtenerDescripcionMateria(int id_materia)
         {
             try

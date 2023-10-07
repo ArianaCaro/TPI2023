@@ -51,47 +51,47 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(43, 89);
+            this.label2.Location = new System.Drawing.Point(28, 73);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Descripcion";
+            this.label2.Text = "Descripcion:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(43, 119);
+            this.label3.Location = new System.Drawing.Point(28, 119);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 13);
+            this.label3.Size = new System.Drawing.Size(91, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Horas semanales";
+            this.label3.Text = "Horas semanales:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(43, 144);
+            this.label4.Location = new System.Drawing.Point(28, 166);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(28, 13);
+            this.label4.Size = new System.Drawing.Size(31, 13);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Plan";
+            this.label4.Text = "Plan:";
             // 
             // textBoxDescripMateria
             // 
-            this.textBoxDescripMateria.Location = new System.Drawing.Point(137, 86);
+            this.textBoxDescripMateria.Location = new System.Drawing.Point(125, 70);
             this.textBoxDescripMateria.Name = "textBoxDescripMateria";
             this.textBoxDescripMateria.Size = new System.Drawing.Size(121, 20);
             this.textBoxDescripMateria.TabIndex = 4;
             // 
             // textBoxHsSem
             // 
-            this.textBoxHsSem.Location = new System.Drawing.Point(137, 112);
+            this.textBoxHsSem.Location = new System.Drawing.Point(125, 119);
             this.textBoxHsSem.Name = "textBoxHsSem";
             this.textBoxHsSem.Size = new System.Drawing.Size(121, 20);
             this.textBoxHsSem.TabIndex = 5;
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(183, 206);
+            this.btnAceptar.Location = new System.Drawing.Point(171, 206);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
             this.btnAceptar.TabIndex = 7;
@@ -101,7 +101,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(44, 206);
+            this.btnCancelar.Location = new System.Drawing.Point(31, 206);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 8;
@@ -112,7 +112,7 @@
             // comboBoxDescPlan
             // 
             this.comboBoxDescPlan.FormattingEnabled = true;
-            this.comboBoxDescPlan.Location = new System.Drawing.Point(137, 141);
+            this.comboBoxDescPlan.Location = new System.Drawing.Point(125, 163);
             this.comboBoxDescPlan.Name = "comboBoxDescPlan";
             this.comboBoxDescPlan.Size = new System.Drawing.Size(121, 21);
             this.comboBoxDescPlan.TabIndex = 9;
@@ -121,7 +121,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(315, 280);
+            this.ClientSize = new System.Drawing.Size(280, 262);
             this.Controls.Add(this.comboBoxDescPlan);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
@@ -131,12 +131,12 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "formMateriaOpc";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "formMateriaOp";
-            this.Load += new System.EventHandler(this.formMateriaOpc_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

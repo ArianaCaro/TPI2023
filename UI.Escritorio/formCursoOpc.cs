@@ -1,15 +1,10 @@
 ﻿using Data.DataBase;
 using Entidades;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
+
 
 namespace UI.Escritorio
 {
@@ -36,7 +31,7 @@ namespace UI.Escritorio
             else
             {
                 this.btnAceptar.Text = "MODIFICAR";
-                this.Text = "Formulario MODIFICAR Curso   " + curso.IdCurso;
+                this.Text = "Formulario MODIFICAR";
                 this.txtAnioCalendario.Text = curso.AnioCalendario.ToString();
                 this.txtCupo.Text = curso.Cupo.ToString();
                 MateriasDAO matDAO = new MateriasDAO();
@@ -70,74 +65,43 @@ namespace UI.Escritorio
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (cmbComision.Text.Length == 0 || txtCupo.Text.Length == 0 || txtAnioCalendario.Text.Length == 0 || cmbMateria.Text.Length == 0)
+            if (cmbMateria.SelectedIndex < 0 || cmbComision.SelectedIndex < 0 || txtAnioCalendario.Text.Length == 0 || txtCupo.Text.Length == 0)
             {
-                MessageBox.Show("Cargar datos correctamente");
+                MessageBox.Show("Complete todos los campos antes de continuar.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
                 CursosDAO cursosDAO = new CursosDAO();
-                Curso curso = new Curso();
                 if (band == true)       //band: si es true es para modificar sino para dar de alta 
                 {
                     cursoN.AnioCalendario = int.Parse(txtAnioCalendario.Text);
                     cursoN.Cupo = int.Parse(txtCupo.Text);
-                    if (cmbComision.SelectedValue != null)
-                    {
-                        if (cmbComision.SelectedValue is int)
-                        {
-                            cursoN.IdMateria = (int)cmbMateria.SelectedValue;
-                            cursoN.IdComision = (int)cmbComision.SelectedValue;//error                            
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error al cargar Curso");
-                    }
+                    cursoN.IdMateria = (int)cmbMateria.SelectedValue;
+                    cursoN.IdComision = (int)cmbComision.SelectedValue;
                     band = cursosDAO.ModificarCurso(cursoN);
-                    if (band)
-                    {
-                        MessageBox.Show("El curso se modifico correctamente");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error al cargar Curso");
-                    }
                 }
                 else
                 {
-                    curso = new Curso
+                    Curso curso = new Curso
                     {
                         AnioCalendario = int.Parse(txtAnioCalendario.Text),
                         Cupo = int.Parse(txtCupo.Text),
-                        /* IdComision = cmbComision.Text,
-                         IdMateria = cmbMaterias.Text,*/
-
-                        IdComision = (int)cmbComision.SelectedValue,//daba error
-                        IdMateria = (int)cmbMateria.SelectedValue //la conversion especifica no es valida
+                        IdComision = (int)cmbComision.SelectedValue,
+                        IdMateria = (int)cmbMateria.SelectedValue,
                     };
                     band = cursosDAO.InsertarCursos(curso);
-                    if (band)
-                    {
-                        MessageBox.Show("El curso se agrego correctamente");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error al cargar Curso");
-                    }
                 }
-
-                /* if (band)
-                 {
-                     MessageBox.Show("El curso se agrego correctamente");
-                 }
-                 else
-                 {
-                     MessageBox.Show("Error al cargar Curso");
-                 }*/
+                if (band)
+                {
+                    MessageBox.Show("El curso se agregó correctamente");
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Error al cargar el curso");
+                }
             }
-            this.DialogResult = DialogResult.OK;
-        
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

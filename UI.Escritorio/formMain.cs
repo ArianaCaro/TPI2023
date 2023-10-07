@@ -19,7 +19,7 @@ namespace UI.Escritorio
         }
 
         private void formMain_Shown(object sender, EventArgs e) 
-        {/*
+        {
             formLogin appLogin = new formLogin();         //esto es para ejecutar el login pero esta desactivado para ejecutar y probar las otras opciones
             if (appLogin.ShowDialog() != DialogResult.OK)
             {
@@ -29,15 +29,15 @@ namespace UI.Escritorio
             switch (appLogin.TipoUsuario)
             {
                 case "Alumno":
-                    usuariosMnu.Enabled = false;
-                    alumnosMnu.Enabled = false;
-                    docentesMnu.Enabled = false;
-                    comisionesMnu.Enabled = true;
-                    cursosMnu.Enabled = true;
-                    materiasMnu.Enabled = true;
-                    especialidadesMnu.Enabled = true;   
-                    planesMnu.Enabled= true;
-                    inscripcionesMnu.Enabled = true;    
+                    usuariosMnu.Visible = false;
+                    alumnosMnu.Visible = false;
+                    docentesMnu.Visible = false;
+                    comisionesMnu.Visible = true;
+                    cursosMnu.Visible = true;
+                    materiasMnu.Visible = true;
+                    especialidadesMnu.Visible = true;   
+                    planesMnu.Visible = true;
+                    inscripcionesMnu.Visible = true;    
                     break;
                 case "Docente":
                     usuariosMnu.Enabled = false;
@@ -50,13 +50,7 @@ namespace UI.Escritorio
                     planesMnu.Enabled = true;
                     inscripcionesMnu.Enabled = true;
                     break;
-                case "Administrador":
-                    // Habilita todas las opciones de menú para los administradores
-                    break;
-                /*default:
-                    // Si el rol no coincide con ninguno de los casos anteriores, puedes manejarlo aquí
-                    break;*
-            }*/
+            }
         }
 
         #region USUARIOS
@@ -91,11 +85,13 @@ namespace UI.Escritorio
         }
         #endregion
 
+        #region CURSOS
         private void cursosMnu_Click(object sender, EventArgs e)
         {
             formCurso frmCurso = new formCurso();
             frmCurso.ShowDialog();
         }
+        #endregion
 
         #region MATERIAS
         private void materiasMnu_Click(object sender, EventArgs e)

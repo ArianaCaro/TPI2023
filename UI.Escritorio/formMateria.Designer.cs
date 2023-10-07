@@ -34,15 +34,15 @@
             this.btnBaja = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dgvMaterias = new System.Windows.Forms.DataGridView();
-            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.tPI2023M07DataSet2 = new UI.Escritorio.TPI2023M07DataSet2();
-            this.materiasTableAdapter2 = new UI.Escritorio.TPI2023M07DataSet2TableAdapters.MateriasTableAdapter();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.idmateriaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descmateriaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hssemanalesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hstotalesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_plan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.tPI2023M07DataSet2 = new UI.Escritorio.TPI2023M07DataSet2();
+            this.materiasTableAdapter2 = new UI.Escritorio.TPI2023M07DataSet2TableAdapters.MateriasTableAdapter();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
@@ -52,7 +52,7 @@
             // 
             // btnAlta
             // 
-            this.btnAlta.Location = new System.Drawing.Point(350, 231);
+            this.btnAlta.Location = new System.Drawing.Point(371, 233);
             this.btnAlta.Name = "btnAlta";
             this.btnAlta.Size = new System.Drawing.Size(75, 23);
             this.btnAlta.TabIndex = 1;
@@ -62,7 +62,7 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(246, 231);
+            this.btnModificar.Location = new System.Drawing.Point(246, 233);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(75, 23);
             this.btnModificar.TabIndex = 2;
@@ -72,7 +72,7 @@
             // 
             // btnBaja
             // 
-            this.btnBaja.Location = new System.Drawing.Point(133, 231);
+            this.btnBaja.Location = new System.Drawing.Point(133, 233);
             this.btnBaja.Name = "btnBaja";
             this.btnBaja.Size = new System.Drawing.Size(75, 23);
             this.btnBaja.TabIndex = 3;
@@ -101,31 +101,6 @@
             this.dgvMaterias.Size = new System.Drawing.Size(546, 187);
             this.dgvMaterias.TabIndex = 4;
             this.dgvMaterias.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvMaterias_CellMouseClick_1);
-            // 
-            // bindingSource2
-            // 
-            this.bindingSource2.DataMember = "Materias";
-            this.bindingSource2.DataSource = this.tPI2023M07DataSet2;
-            // 
-            // tPI2023M07DataSet2
-            // 
-            this.tPI2023M07DataSet2.DataSetName = "TPI2023M07DataSet2";
-            this.tPI2023M07DataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // materiasTableAdapter2
-            // 
-            this.materiasTableAdapter2.ClearBeforeFill = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.DataSource = this.bindingSource2;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 38);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(554, 187);
-            this.dataGridView1.TabIndex = 4;
             // 
             // idmateriaDataGridViewTextBoxColumn
             // 
@@ -159,11 +134,36 @@
             this.id_plan.Name = "id_plan";
             this.id_plan.Visible = false;
             // 
+            // bindingSource2
+            // 
+            this.bindingSource2.DataMember = "Materias";
+            this.bindingSource2.DataSource = this.tPI2023M07DataSet2;
+            // 
+            // tPI2023M07DataSet2
+            // 
+            this.tPI2023M07DataSet2.DataSetName = "TPI2023M07DataSet2";
+            this.tPI2023M07DataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // materiasTableAdapter2
+            // 
+            this.materiasTableAdapter2.ClearBeforeFill = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.DataSource = this.bindingSource2;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 38);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(554, 187);
+            this.dataGridView1.TabIndex = 4;
+            // 
             // formMateria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(576, 277);
+            this.ClientSize = new System.Drawing.Size(576, 268);
             this.Controls.Add(this.dgvMaterias);
             this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.btnModificar);
@@ -173,7 +173,6 @@
             this.Name = "formMateria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Materias";
-            this.Load += new System.EventHandler(this.formMateria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterias)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();

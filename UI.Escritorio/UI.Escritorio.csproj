@@ -170,6 +170,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TPI2023M07DataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="TPI2023M07DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TPI2023M07DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="TPI2023M07DataSet2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -283,6 +288,17 @@
     </None>
     <None Include="TPI2023M07DataSet.xss">
       <DependentUpon>TPI2023M07DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet1.xsc">
+      <DependentUpon>TPI2023M07DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TPI2023M07DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TPI2023M07DataSet1.xss">
+      <DependentUpon>TPI2023M07DataSet1.xsd</DependentUpon>
     </None>
     <None Include="TPI2023M07DataSet2.xsc">
       <DependentUpon>TPI2023M07DataSet2.xsd</DependentUpon>

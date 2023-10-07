@@ -43,7 +43,7 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(260, 290);
+            this.btnAceptar.Location = new System.Drawing.Point(168, 263);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
             this.btnAceptar.TabIndex = 0;
@@ -53,7 +53,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(83, 289);
+            this.btnCancelar.Location = new System.Drawing.Point(34, 263);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 1;
@@ -64,7 +64,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(83, 74);
+            this.label1.Location = new System.Drawing.Point(31, 61);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 2;
@@ -73,7 +73,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(83, 138);
+            this.label2.Location = new System.Drawing.Point(31, 114);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 3;
@@ -82,7 +82,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(82, 185);
+            this.label3.Location = new System.Drawing.Point(31, 163);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 4;
@@ -91,7 +91,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(83, 238);
+            this.label4.Location = new System.Drawing.Point(31, 215);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 13);
             this.label4.TabIndex = 5;
@@ -99,38 +99,38 @@
             // 
             // txtAnioCalendario
             // 
-            this.txtAnioCalendario.Location = new System.Drawing.Point(170, 74);
+            this.txtAnioCalendario.Location = new System.Drawing.Point(119, 58);
             this.txtAnioCalendario.Name = "txtAnioCalendario";
-            this.txtAnioCalendario.Size = new System.Drawing.Size(100, 20);
+            this.txtAnioCalendario.Size = new System.Drawing.Size(124, 20);
             this.txtAnioCalendario.TabIndex = 6;
             // 
             // txtCupo
             // 
-            this.txtCupo.Location = new System.Drawing.Point(170, 138);
+            this.txtCupo.Location = new System.Drawing.Point(119, 111);
             this.txtCupo.Name = "txtCupo";
-            this.txtCupo.Size = new System.Drawing.Size(100, 20);
+            this.txtCupo.Size = new System.Drawing.Size(124, 20);
             this.txtCupo.TabIndex = 7;
             // 
             // cmbMateria
             // 
             this.cmbMateria.FormattingEnabled = true;
-            this.cmbMateria.Location = new System.Drawing.Point(170, 185);
+            this.cmbMateria.Location = new System.Drawing.Point(119, 160);
             this.cmbMateria.Name = "cmbMateria";
-            this.cmbMateria.Size = new System.Drawing.Size(121, 21);
+            this.cmbMateria.Size = new System.Drawing.Size(124, 21);
             this.cmbMateria.TabIndex = 8;
             // 
             // cmbComision
             // 
             this.cmbComision.FormattingEnabled = true;
-            this.cmbComision.Location = new System.Drawing.Point(170, 238);
+            this.cmbComision.Location = new System.Drawing.Point(119, 212);
             this.cmbComision.Name = "cmbComision";
-            this.cmbComision.Size = new System.Drawing.Size(121, 21);
+            this.cmbComision.Size = new System.Drawing.Size(124, 21);
             this.cmbComision.TabIndex = 9;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(170, 11);
+            this.label5.Location = new System.Drawing.Point(156, 24);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 13);
             this.label5.TabIndex = 10;
@@ -140,7 +140,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(393, 352);
+            this.ClientSize = new System.Drawing.Size(284, 310);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cmbComision);
             this.Controls.Add(this.cmbMateria);
@@ -152,8 +152,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "formCursoOpc";
-            this.Text = "formCursoOpc";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Formulario Curso";
             this.ResumeLayout(false);
             this.PerformLayout();
 

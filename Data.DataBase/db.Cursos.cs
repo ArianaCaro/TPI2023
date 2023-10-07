@@ -12,11 +12,10 @@ namespace Data.DataBase
     public class CursosDAO
     {
         // Cadena de conexión a la base de datos
-        //private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
-        private string connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
+        private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
+        //private string connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
         //private string connectionString = "Data Source=(localdb)\\NBX;Database=TPI2023M07; Integrated Security=True";
 
-        // Método para insertar una nueva comision en la base de datos
         public bool InsertarCursos(Curso curso)
         {
             try
@@ -42,6 +41,7 @@ namespace Data.DataBase
                 return false;
             }
         }
+
         public DataTable ObtenerTodasLosCursos()
         {
             DataTable dtCursos = new DataTable();
@@ -97,7 +97,7 @@ namespace Data.DataBase
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         connection.Open();
-                        string query = "DELETE FROM Cursos WHERE  id_curso = @id_curso"; //AND id_comision = @id_comision AND id_materia = @id_materia AND anio_calendario = @anio_calendario AND cupo = @cupo;
+                        string query = "DELETE FROM Cursos WHERE  id_curso = @id_curso";
 
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {

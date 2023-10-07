@@ -1,13 +1,7 @@
 ﻿using Data.DataBase;
 using Entidades;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UI.Escritorio
@@ -27,7 +21,7 @@ namespace UI.Escritorio
             CursosDAO cursoDAO = new CursosDAO();
             DataTable dtCursos = cursoDAO.ObtenerTodasLosCursos();
 
-            DataColumn descripcionMateriaColumn = new DataColumn("MATERIA", typeof(string));
+            DataColumn descripcionMateriaColumn = new DataColumn("Materia", typeof(string));
             dtCursos.Columns.Add(descripcionMateriaColumn);
 
             MateriasDAO materiaDAO = new MateriasDAO();
@@ -35,14 +29,15 @@ namespace UI.Escritorio
             {
                 int idMateria = Convert.ToInt32(row["id_materia"]);
                 string descripcionMateria = materiaDAO.ObtenerDescripcionMateria(idMateria);
-                row["MATERIA"] = descripcionMateria;
+                row["Materia"] = descripcionMateria;
             }
             dvgCursos.AutoGenerateColumns = true;
             dvgCursos.DataSource = dtCursos;
+            dvgCursos.Columns["Materia"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             //COLUMNA COMISION
 
-            DataColumn descripcionComisionColumn = new DataColumn("COMISION", typeof(string));
+            DataColumn descripcionComisionColumn = new DataColumn("Comision", typeof(string));
             dtCursos.Columns.Add(descripcionComisionColumn);
 
             ComisionesDAO comisionesDAO = new ComisionesDAO();
@@ -50,10 +45,11 @@ namespace UI.Escritorio
             {
                 int idComision = Convert.ToInt32(row["id_comision"]);
                 string descripcionComision = comisionesDAO.ObtenerDescripcionComision(idComision);
-                row["COMISION"] = descripcionComision;
+                row["Comision"] = descripcionComision;
             }
             dvgCursos.AutoGenerateColumns = true;
             dvgCursos.DataSource = dtCursos;
+            dvgCursos.Columns["Comision"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         private void btnAlta_Click(object sender, EventArgs e)
@@ -96,7 +92,6 @@ namespace UI.Escritorio
             {
                 MessageBox.Show("Debe seleccionar un curso antes de realizar la baja.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
             ActualizarDataGridView();
         }
 
@@ -107,8 +102,8 @@ namespace UI.Escritorio
                 IdCurso = int.Parse(dvgCursos.CurrentRow.Cells[0].Value.ToString()),
                 AnioCalendario = int.Parse(dvgCursos.CurrentRow.Cells[1].Value.ToString()),
                 Cupo = int.Parse(dvgCursos.CurrentRow.Cells[2].Value.ToString()),
-                IdMateria = int.Parse(dvgCursos.CurrentRow.Cells[3].Value.ToString()),
-                IdComision = int.Parse(dvgCursos.CurrentRow.Cells[4].Value.ToString())
+                IdMateria = int.Parse(dvgCursos.CurrentRow.Cells[4].Value.ToString()),
+                IdComision = int.Parse(dvgCursos.CurrentRow.Cells[3].Value.ToString())
             };
         }
     }
