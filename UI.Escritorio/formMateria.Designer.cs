@@ -168,6 +168,7 @@
             this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAlta);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "formMateria";

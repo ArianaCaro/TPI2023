@@ -15,12 +15,14 @@ namespace UI.Escritorio
         int band = 0;
         Persona personaM;
         int tipo_per;
+        bool b;
 
         public formPersonaOpc(Persona persona, int tipo)
         {
             InitializeComponent();
             cargar_planes();
             tipo_per = tipo;
+            b = true;
 
             if(persona == null)
             {
@@ -45,6 +47,16 @@ namespace UI.Escritorio
                 personaM = persona;
             }
         }
+
+        public formPersonaOpc(int tipo_persona/*Persona persona*/)
+        {
+            InitializeComponent();
+            cargar_planes();
+            this.Text = "Formulario Alta";
+            band = 2;       //NO HARIA FALTA CREO
+            tipo_per = tipo_persona;
+        }
+
         public void cargar_planes()
         {
             PlanesDAO planesDAO = new PlanesDAO();
@@ -55,7 +67,7 @@ namespace UI.Escritorio
             cmbPlanes.DataSource = dtPlanes;
         }
        // public int IdUsuario { get { } set { personaM = value; }} //necesario al crear usuarios
-        public int IdUsuario { get; private set; }
+        public int IdPersona { get; private set; }
 
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -68,7 +80,7 @@ namespace UI.Escritorio
             {
                 PersonasDAO personaDAO = new PersonasDAO();
 
-                if (band == 1)     //el band es para saber si es un formulario de modificar o de alta, si es 1 es de modificar
+                if (band == 1)     //el band es para saber si es un formulario de modificar o de alta, si es 1 es de modificar //SE PODRIA USAR personaM como band y preguntar si es not null en vez de la band y gastar memoria
                 {
                     personaM.Nombre = txtNombre.Text;
                     personaM.Apellido = txtApellido.Text;
@@ -95,8 +107,35 @@ namespace UI.Escritorio
                         IdPlan = (int)cmbPlanes.SelectedValue,
                         TipoPersona = tipo_per,
                     };
+
+                   /* if (band == 0)
+                    {*/
+                        band = personaDAO.InsertarPersona(persona);                 //NO NECESITO LO DE ABAJO, TERMINAR ACA SI ES DIRECTO DE USUARIO
+                        IdPersona = band;
+                    if (b == true)
+                    {
+                        formUsuarioOpc frmUsuarioAlta = new formUsuarioOpc(band);        //le creo un usuario a la persona que cargo
+                        if (DialogResult.OK == frmUsuarioAlta.ShowDialog()) { }
+                    }
+
+                    //IdPersona = band;
+                    /* if (band == 0)//teNGO QUE ENTRAR SI O SI POR ALTA DE ALUMNO O DOCETE DE SUS OPCIONES
+                     {
+                         formUsuarioOpc frmUsuarioAlta = new formUsuarioOpc(band);        //le creo un usuario a la persona que cargo
+                         if (DialogResult.OK == frmUsuarioAlta.ShowDialog()) { }
+                     }*/
+                    /*}*//*
+                    else
+                    {
+                        band = personaDAO.InsertarPersona(persona);
+                    }*/
+                    /*
                     band = personaDAO.InsertarPersona(persona);
-                    IdUsuario = band;               //copio el id generado ultimo para poder guardarlo en usuario
+                    IdPersona = band; */              //copio el id generado ultimo para poder guardarlo en usuario
+                                                      //  Usuario usuario = null;
+                    /* formUsuarioOpc frmUsuarioAlta = new formUsuarioOpc(IdPersona);        //le creo un usuario a la persona que cargo
+                     if (DialogResult.OK == frmUsuarioAlta.ShowDialog()) { }*/
+                   // IdPersona = band;
                 }
 
                 if (band != 0)

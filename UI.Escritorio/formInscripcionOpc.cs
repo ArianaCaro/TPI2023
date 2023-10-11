@@ -3,6 +3,7 @@ using Entidades;
 using System;
 using System.Data;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace UI.Escritorio
@@ -20,6 +21,10 @@ namespace UI.Escritorio
             {
                 this.Text = "Formulario Alta";
                 this.btnAceptar.Text = "AGREGAR";
+                this.cmbCondicion.Text = "cursando";
+                this.txtNota.Text = "0";
+                cmbCondicion.Enabled = false;
+                txtNota.Enabled = false;
             }
             else
             {
@@ -35,12 +40,12 @@ namespace UI.Escritorio
 
         public void cargar_cursos()
         {
-           // CursosDAO cursosDAO = new CursosDAO();
-         //   DataTable dtCursos = cursosDAO.ObtenerTodosLosCursos();
+            CursosDAO cursosDAO = new CursosDAO();
+            DataTable dtCursos = cursosDAO.ObtenerTodasLosCursos();
 
-            cmbCurso.ValueMember = "";
-            cmbCurso.DisplayMember = "";
-          //  cmbCurso.DataSource = dtCursos;
+            cmbCurso.ValueMember = "id_curso";
+            cmbCurso.DisplayMember = "id_curso";
+            cmbCurso.DataSource = dtCursos;
         }
         private void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -63,6 +68,7 @@ namespace UI.Escritorio
                 {
                     Inscripcion nuevaInscripcion = new Inscripcion
                     {
+                       // IdAlumno = ,
                         IdCurso = (int)cmbCurso.SelectedValue,
                         Condicion = (string)cmbCondicion.Text,
                         Nota = int.Parse(txtNota.Text),

@@ -18,7 +18,7 @@ namespace UI.Escritorio
     {
         Usuario usuarioM;
         bool band = false;
-       // int id;
+        int id;
         public formUsuarioOpc(Usuario usuario)
         {
             InitializeComponent();
@@ -27,6 +27,7 @@ namespace UI.Escritorio
             {
                 this.Text = "Formulario Alta";
                 this.btnAceptar.Text = "AGREGAR";
+                id = 0;
             }
             else
             {
@@ -43,10 +44,18 @@ namespace UI.Escritorio
             }            
         }
 
+        public formUsuarioOpc(int id_persona)
+        {
+            InitializeComponent();
+            this.Text = "Formulario Alta Usuario";/*
+            this.btnAceptar.Text = "AGREGAR";*/
+            id = id_persona;
+        }
+
 
         private void btnAceptar_Click_1(object sender, EventArgs e)
         {
-            int id;     
+         //   int id;     
             if (txtNombre.Text.Length == 0 || cmbTipoUsuario.SelectedIndex < 0 || txtClave.Text != txtConfirma.Text)
             {
                 MessageBox.Show("Complete correctamente todos los campos antes de continuar.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -63,8 +72,8 @@ namespace UI.Escritorio
                     band = usuarioDAO.ModificarUsuario(usuarioM);
                 }
                 else
-                {
-                    Persona nuevaPersona = null;
+                {/*
+                    Persona nuevaPersona = null;*/
                     int tipoUsuario = 0; // Valor predeterminado para administrador
 
                     if (cmbTipoUsuario.SelectedIndex == 0) // "Alumno" seleccionado
@@ -76,18 +85,42 @@ namespace UI.Escritorio
                         tipoUsuario = 2;
                     }
 
-                    formPersonaOpc frmPersonaAlta = new formPersonaOpc(nuevaPersona, tipoUsuario);
-                    if (DialogResult.OK == frmPersonaAlta.ShowDialog()) { }
+                    /* formPersonaOpc frmPersonaAlta = new formPersonaOpc(nuevaPersona, tipoUsuario);
+                     if (DialogResult.OK == frmPersonaAlta.ShowDialog()) { }
 
-                    id = frmPersonaAlta.IdUsuario;
-                    Usuario usuario = new Usuario
+                     id = frmPersonaAlta.IdUsuario;*//*
+
+                     if (id == 0)
+                     {
+                        // Persona nuevaPersona = null;
+                         formPersonaOpc frmPersonaAlta = new formPersonaOpc(/*nuevaPersona*);
+                         if (DialogResult.OK == frmPersonaAlta.ShowDialog()) { }
+                         MessageBox.Show("entroooo333");
+                     }*/
+                    /*  else
+                      {*/
+                    if (id == 0)
                     {
-                        NombreUsuario = txtNombre.Text,
-                        Clave = txtClave.Text,
-                        Tipo = cmbTipoUsuario.Text,
-                        IdPersona = id,
-                    };
-                    band = usuarioDAO.InsertarUsuario(usuario); 
+                        formPersonaOpc frmPersonaAlta = new formPersonaOpc(tipoUsuario);            //SI O SI, A CADA ALTA DESDE USUARIO DEBO LLAMAR A PERSONA
+                        if (DialogResult.OK == frmPersonaAlta.ShowDialog()) { }                     //SOLO EJECUTRAR SI ES DE LA OPCION USUARIO DIRECTO, SINO NO LO NECESITO, NO LO QUIERO
+                        id = frmPersonaAlta.IdPersona;
+                    }
+
+                    Usuario usuario = new Usuario
+                        {
+                            NombreUsuario = txtNombre.Text,
+                            Clave = txtClave.Text,
+                            Tipo = cmbTipoUsuario.Text,
+                            IdPersona = id,
+                        };
+                        band = usuarioDAO.InsertarUsuario(usuario);/*
+
+                    if (id == 0)
+                    {
+                        formPersonaOpc frmPersonaAlta = new formPersonaOpc(tipoUsuario);
+                        if (DialogResult.OK == frmPersonaAlta.ShowDialog()) { }
+                    }*/
+                   // }
                 }
 
                 if (band == true)

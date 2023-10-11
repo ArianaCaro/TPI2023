@@ -122,5 +122,11 @@ namespace UI.Escritorio
             formInscripcion frmInscripcion  = new formInscripcion();
             frmInscripcion.ShowDialog();
         }
+
+        private void notasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formInscripcion frmInscripcion = new formInscripcion();
+            frmInscripcion.ShowDialog();
+        }
     }
 }

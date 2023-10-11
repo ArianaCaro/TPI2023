@@ -49,8 +49,10 @@ namespace UI.Escritorio
         {
             Usuario nuevoUsuario = null;
             formUsuarioOpc frmUsuarioOp = new formUsuarioOpc(nuevoUsuario);
-            if (DialogResult.OK == frmUsuarioOp.ShowDialog())
-               ActualizarDataGridView();
+            if (DialogResult.OK == frmUsuarioOp.ShowDialog())/*
+            formPersonaOpc frmPersona = new formPersonaOpc();
+            if (DialogResult.OK == frmPersona.ShowDialog()) */
+              ActualizarDataGridView();
         }
 
         private void btnModifica_Click(object sender, EventArgs e)
