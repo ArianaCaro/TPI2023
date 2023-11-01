@@ -1,5 +1,5 @@
-﻿using Data.DataBase;
-using Entidades;
+﻿using Entidades;
+using Servicios;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -27,7 +27,7 @@ namespace UI.Escritorio
                 this.Text = "Formulario MODIFICAR materia";
                 this.textBoxDescripMateria.Text = materia.DescMateria.ToString();
                 this.textBoxHsSem.Text = materia.HsSemanales.ToString();
-                PlanesDAO planDAO = new PlanesDAO();
+                S_Plan planDAO = new S_Plan();
                 this.comboBoxDescPlan.Text = planDAO.ObtenerDescripcionPlanes(materia.IdPlan);
                 this.btnAceptar.Text = "MODIFICAR";
                 band = true;
@@ -37,7 +37,7 @@ namespace UI.Escritorio
 
         public void cargar_planes()
         {
-            PlanesDAO planesDAO = new PlanesDAO();
+            S_Plan planesDAO = new S_Plan();
             DataTable dtPlanes = planesDAO.ObtenerTodosLosPlanes();
 
             comboBoxDescPlan.ValueMember = "id_plan";
@@ -54,7 +54,7 @@ namespace UI.Escritorio
             }
             else
             {
-                MateriasDAO materiasDAO = new MateriasDAO();
+                S_Materia materiasDAO = new S_Materia();
                 if (band == true)            //el band es para saber si es un formulario de modificar o de alta, si es true es de modificar
                 {
                     materiaN.DescMateria = textBoxDescripMateria.Text;

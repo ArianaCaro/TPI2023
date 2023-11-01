@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
-using Data.DataBase;
+using Servicios;
 using Entidades;
 
 namespace UI.Escritorio
@@ -18,7 +18,7 @@ namespace UI.Escritorio
 
         private void ActualizarDataGridView()                   //metodo para actualizar la grilla
         {
-            EspecialidadesDAO especialidadesDAO = new EspecialidadesDAO();
+            S_Especialidad especialidadesDAO = new S_Especialidad();
             DataTable dtEspecialidades = especialidadesDAO.ObtenerTodasLasEspecialidades();
             dgvEspecialidad.DataSource = dtEspecialidades;
         }
@@ -44,7 +44,7 @@ namespace UI.Escritorio
 
             if (res == DialogResult.Yes)
             {
-                EspecialidadesDAO especialidadesDAO = new EspecialidadesDAO();
+                S_Especialidad especialidadesDAO = new S_Especialidad();
                 bool resultado = especialidadesDAO.EliminarEspecialidad(especialidadSeleccionada);      //el metodo eliminar devuelve bool, true si esta ok
 
                 if (resultado)

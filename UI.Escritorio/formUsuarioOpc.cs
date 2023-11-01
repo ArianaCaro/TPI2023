@@ -1,4 +1,4 @@
-﻿using Data.DataBase;
+﻿using Servicios;
 using Entidades;
 using System;
 using System.Collections.Generic;
@@ -19,108 +19,52 @@ namespace UI.Escritorio
         Usuario usuarioM;
         bool band = false;
         int id;
-        public formUsuarioOpc(Usuario usuario)
+        public formUsuarioOpc(Usuario usuario)      //constructor modificar desde usuario
         {
             InitializeComponent();
-            
-            if(usuario == null)
-            {
-                this.Text = "Formulario Alta";
-                this.btnAceptar.Text = "AGREGAR";
-                id = 0;
-            }
-            else
-            {
-                this.txtNombre.Text = usuario.NombreUsuario;
-                this.txtClave.Text = usuario.Clave;
-                this.txtConfirma.Text = usuario.Clave;
-                this.cmbTipoUsuario.Text = usuario.Tipo;
-               // this.cmbTipoUsuario.Text = usuario;
-                //combobox= sdiejfei
-                this.btnAceptar.Text = "MODIFICAR";
-                this.Text = "Formulario Modificar";
-                band = true;
-                usuarioM = usuario;    
-            }            
-        }
 
-        public formUsuarioOpc(int id_persona)
+            this.txtNombre.Text = usuario.NombreUsuario;
+            this.txtClave.Text = usuario.Clave;
+            this.btnAceptar.Text = "MODIFICAR";
+            this.Text = "Formulario Modificar";
+            band = true;
+            usuarioM = usuario;
+        }
+                      
+
+        public formUsuarioOpc(int id_persona)           //constructor alta desde persona
         {
             InitializeComponent();
-            this.Text = "Formulario Alta Usuario";/*
-            this.btnAceptar.Text = "AGREGAR";*/
+            this.Text = "Formulario Alta Usuario";
             id = id_persona;
         }
 
 
         private void btnAceptar_Click_1(object sender, EventArgs e)
-        {
-         //   int id;     
-            if (txtNombre.Text.Length == 0 || cmbTipoUsuario.SelectedIndex < 0 || txtClave.Text != txtConfirma.Text)
+        {  
+            if (txtNombre.Text.Length == 0 || txtClave.Text != txtConfirma.Text)
             {
                 MessageBox.Show("Complete correctamente todos los campos antes de continuar.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                UsuariosDAO usuarioDAO = new UsuariosDAO();
+                S_Usuario usuarioDAO = new S_Usuario();
 
-                if (band == true)     //el band es para saber si es un formulario de modificar o de alta, si es true es de modificar
+                if (this.btnAceptar.Text == "MODIFICAR")     
                 {
                     usuarioM.NombreUsuario = txtNombre.Text;
                     usuarioM.Clave = txtClave.Text;
-                    usuarioM.Tipo = cmbTipoUsuario.Text;
                     band = usuarioDAO.ModificarUsuario(usuarioM);
                 }
                 else
-                {/*
-                    Persona nuevaPersona = null;*/
-                    int tipoUsuario = 0; // Valor predeterminado para administrador
-
-                    if (cmbTipoUsuario.SelectedIndex == 0) // "Alumno" seleccionado
-                    {
-                        tipoUsuario = 1;
-                    }
-                    else if (cmbTipoUsuario.SelectedIndex == 1) // "Docente" seleccionado
-                    {
-                        tipoUsuario = 2;
-                    }
-
-                    /* formPersonaOpc frmPersonaAlta = new formPersonaOpc(nuevaPersona, tipoUsuario);
-                     if (DialogResult.OK == frmPersonaAlta.ShowDialog()) { }
-
-                     id = frmPersonaAlta.IdUsuario;*//*
-
-                     if (id == 0)
-                     {
-                        // Persona nuevaPersona = null;
-                         formPersonaOpc frmPersonaAlta = new formPersonaOpc(/*nuevaPersona*);
-                         if (DialogResult.OK == frmPersonaAlta.ShowDialog()) { }
-                         MessageBox.Show("entroooo333");
-                     }*/
-                    /*  else
-                      {*/
-                    if (id == 0)
-                    {
-                        formPersonaOpc frmPersonaAlta = new formPersonaOpc(tipoUsuario);            //SI O SI, A CADA ALTA DESDE USUARIO DEBO LLAMAR A PERSONA
-                        if (DialogResult.OK == frmPersonaAlta.ShowDialog()) { }                     //SOLO EJECUTRAR SI ES DE LA OPCION USUARIO DIRECTO, SINO NO LO NECESITO, NO LO QUIERO
-                        id = frmPersonaAlta.IdPersona;
-                    }
-
+                {
                     Usuario usuario = new Usuario
                         {
                             NombreUsuario = txtNombre.Text,
                             Clave = txtClave.Text,
-                            Tipo = cmbTipoUsuario.Text,
                             IdPersona = id,
                         };
-                        band = usuarioDAO.InsertarUsuario(usuario);/*
-
-                    if (id == 0)
-                    {
-                        formPersonaOpc frmPersonaAlta = new formPersonaOpc(tipoUsuario);
-                        if (DialogResult.OK == frmPersonaAlta.ShowDialog()) { }
-                    }*/
-                   // }
+                        band = usuarioDAO.InsertarUsuario(usuario);
                 }
 
                 if (band == true)
@@ -131,7 +75,7 @@ namespace UI.Escritorio
                 }
                 else
                 {
-                    MessageBox.Show("Error al cargar");
+                    MessageBox.Show("Error al cargar usuario");
                 }
             }
         }

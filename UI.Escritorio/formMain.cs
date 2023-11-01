@@ -13,6 +13,7 @@ namespace UI.Escritorio
 {
     public partial class formMain : Form
     {
+        int tipo_user;
         public formMain()
         {
             InitializeComponent();
@@ -25,10 +26,11 @@ namespace UI.Escritorio
             {
                 this.Dispose();
             }
+            tipo_user = appLogin.TipoUsuario;
             // Según el rol del usuario autenticado, habilitar o deshabilitar opciones de menú
             switch (appLogin.TipoUsuario)
             {
-                case "Alumno":
+                case 1:
                     usuariosMnu.Visible = false;
                     alumnosMnu.Visible = false;
                     docentesMnu.Visible = false;
@@ -37,18 +39,20 @@ namespace UI.Escritorio
                     materiasMnu.Visible = true;
                     especialidadesMnu.Visible = true;   
                     planesMnu.Visible = true;
-                    inscripcionesMnu.Visible = true;    
+                    inscripcionesMnu.Visible = true;
+                    notasMnu.Visible = false;
                     break;
-                case "Docente":
-                    usuariosMnu.Enabled = false;
-                    alumnosMnu.Enabled = true;
-                    docentesMnu.Enabled = true;
-                    comisionesMnu.Enabled = true;
-                    cursosMnu.Enabled = true;
-                    materiasMnu.Enabled = true;
-                    especialidadesMnu.Enabled = true;
-                    planesMnu.Enabled = true;
-                    inscripcionesMnu.Enabled = true;
+                case 2:
+                    usuariosMnu.Visible = false;
+                    alumnosMnu.Visible = true;
+                    docentesMnu.Visible = false;
+                    comisionesMnu.Visible = true;
+                    cursosMnu.Visible = true;
+                    materiasMnu.Visible = false;
+                    especialidadesMnu.Visible = false;
+                    planesMnu.Visible = true;
+                    inscripcionesMnu.Visible = false;
+                    notasMnu.Visible = true;
                     break;
             }
         }
@@ -119,13 +123,13 @@ namespace UI.Escritorio
 
         private void inscripcionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            formInscripcion frmInscripcion  = new formInscripcion();
+            formInscripcion frmInscripcion  = new formInscripcion(tipo_user);
             frmInscripcion.ShowDialog();
         }
 
         private void notasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            formInscripcion frmInscripcion = new formInscripcion();
+            formInscripcion frmInscripcion = new formInscripcion(tipo_user);
             frmInscripcion.ShowDialog();
         }
     }

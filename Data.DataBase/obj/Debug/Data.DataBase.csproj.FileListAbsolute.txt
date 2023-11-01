@@ -64,3 +64,14 @@ C:\Users\ALUMNO\Downloads\TPI2023\Data.DataBase\obj\Debug\Data.DataBase.csproj.C
 C:\Users\ALUMNO\Downloads\TPI2023\Data.DataBase\obj\Debug\Data.DataBase.csproj.CopyComplete
 C:\Users\ALUMNO\Downloads\TPI2023\Data.DataBase\obj\Debug\Data.DataBase.exe
 C:\Users\ALUMNO\Downloads\TPI2023\Data.DataBase\obj\Debug\Data.DataBase.pdb
+C:\Users\potyl\Desktop\Poty\Facultad\c#\TPI_Raul\TPI2023\Data.DataBase\bin\Debug\Data.DataBase.exe.config
+C:\Users\potyl\Desktop\Poty\Facultad\c#\TPI_Raul\TPI2023\Data.DataBase\bin\Debug\Data.DataBase.exe
+C:\Users\potyl\Desktop\Poty\Facultad\c#\TPI_Raul\TPI2023\Data.DataBase\bin\Debug\Data.DataBase.pdb
+C:\Users\potyl\Desktop\Poty\Facultad\c#\TPI_Raul\TPI2023\Data.DataBase\bin\Debug\Entidades.dll
+C:\Users\potyl\Desktop\Poty\Facultad\c#\TPI_Raul\TPI2023\Data.DataBase\bin\Debug\Entidades.pdb
+C:\Users\potyl\Desktop\Poty\Facultad\c#\TPI_Raul\TPI2023\Data.DataBase\obj\Debug\Data.DataBase.csproj.AssemblyReference.cache
+C:\Users\potyl\Desktop\Poty\Facultad\c#\TPI_Raul\TPI2023\Data.DataBase\obj\Debug\Data.DataBase.csproj.SuggestedBindingRedirects.cache
+C:\Users\potyl\Desktop\Poty\Facultad\c#\TPI_Raul\TPI2023\Data.DataBase\obj\Debug\Data.DataBase.csproj.CoreCompileInputs.cache
+C:\Users\potyl\Desktop\Poty\Facultad\c#\TPI_Raul\TPI2023\Data.DataBase\obj\Debug\Data.DataBase.csproj.CopyComplete
+C:\Users\potyl\Desktop\Poty\Facultad\c#\TPI_Raul\TPI2023\Data.DataBase\obj\Debug\Data.DataBase.exe
+C:\Users\potyl\Desktop\Poty\Facultad\c#\TPI_Raul\TPI2023\Data.DataBase\obj\Debug\Data.DataBase.pdb

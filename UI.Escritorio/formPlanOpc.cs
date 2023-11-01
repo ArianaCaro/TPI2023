@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using Entidades;
-using Data.DataBase;
+using Servicios;
 
 namespace UI.Escritorio
 {
@@ -24,7 +24,7 @@ namespace UI.Escritorio
             else
             {
                 this.txtDescPlan.Text = plan.DescPlan;
-                EspecialidadesDAO espDAO = new EspecialidadesDAO();
+                S_Especialidad espDAO = new S_Especialidad();
                 this.cmbEspecialidades.Text = espDAO.ObtenerDescripcionEspecialidad(plan.IdEspecialidad);
                 this.btnAgregar.Text = "MODIFICAR";
                 this.Text = "Formulario MODIFICAR Plan";
@@ -33,8 +33,8 @@ namespace UI.Escritorio
             }               
         }
         public void cargar_especialidades() 
-        {        
-            EspecialidadesDAO especialidadesDAO = new EspecialidadesDAO();
+        {
+            S_Especialidad especialidadesDAO = new S_Especialidad();
             DataTable dtEspecialidades = especialidadesDAO.ObtenerTodasLasEspecialidades();
 
             cmbEspecialidades.ValueMember = "id_especialidad";
@@ -51,7 +51,7 @@ namespace UI.Escritorio
             }
             else
             {
-                PlanesDAO planesDAO = new PlanesDAO();
+                S_Plan planesDAO = new S_Plan();
 
                 if (band == true)       //el band es para saber si es un formulario de modificar o de alta, si es true es de modificar
                 {

@@ -1,4 +1,4 @@
-﻿using Data.DataBase;
+﻿using Servicios;
 using Entidades;
 using System;
 using System.Data;
@@ -11,36 +11,36 @@ namespace UI.Escritorio
     public partial class formInscripcionOpc : Form
     {
         Inscripcion inscripcionM;
-        bool band = false;
+        public formInscripcionOpc()     //constructor si la inscripcion es de alta
+        {
+            InitializeComponent();
+            cargar_cursos();
+            this.Text = "Formulario Alta";
+            this.btnAceptar.Text = "AGREGAR";
+            this.cmbCondicion.Text = "cursando";
+            this.txtNota.Text = "0";
+            cmbCondicion.Enabled = false;
+            txtNota.Enabled = false;
+        }
         public formInscripcionOpc(Inscripcion inscripcion)
         {
             InitializeComponent();
             cargar_cursos();
 
-            if (inscripcion == null)
-            {
-                this.Text = "Formulario Alta";
-                this.btnAceptar.Text = "AGREGAR";
-                this.cmbCondicion.Text = "cursando";
-                this.txtNota.Text = "0";
-                cmbCondicion.Enabled = false;
-                txtNota.Enabled = false;
-            }
-            else
-            {
-                this.cmbCurso.Text = inscripcion.IdCurso.ToString();
-                this.cmbCondicion.Text = inscripcion.Condicion;
-                this.txtNota.Text = inscripcion.Nota.ToString();
-                this.btnAceptar.Text = "MODIFICAR";
-                this.Text = "Formulario Modificar";
-                band = true;
-                inscripcionM = inscripcion;
-            }
+            this.cmbCurso.Text = inscripcion.IdCurso.ToString();
+            this.cmbCondicion.Text = inscripcion.Condicion;
+            this.txtNota.Text = inscripcion.Nota.ToString();
+            this.btnAceptar.Text = "MODIFICAR";
+            this.Text = "Formulario Modificar";
+            inscripcionM = inscripcion;
+            this.cmbCurso.Enabled = false;
         }
+           
+        
 
         public void cargar_cursos()
         {
-            CursosDAO cursosDAO = new CursosDAO();
+            S_Curso cursosDAO = new S_Curso();
             DataTable dtCursos = cursosDAO.ObtenerTodasLosCursos();
 
             cmbCurso.ValueMember = "id_curso";
@@ -55,12 +55,14 @@ namespace UI.Escritorio
             }
             else
             {
-                InscripcionesDAO inscripcionDAO = new InscripcionesDAO();
+                bool band;
+                S_Inscripcion inscripcionDAO = new S_Inscripcion();
 
-                if (band == true)     //el band es para saber si es un formulario de modificar o de alta, si es true es de modificar
+                if (btnAceptar.Text == "MODIFICAR")     
                 {
+                    inscripcionM.IdAlumno = inscripcionM.IdAlumno;
                     inscripcionM.IdCurso = (int)cmbCurso.SelectedValue;
-                    inscripcionM.Condicion = (string)cmbCondicion.SelectedValue;
+                    inscripcionM.Condicion = cmbCondicion.SelectedItem as string;
                     inscripcionM.Nota = int.Parse(txtNota.Text);
                     band = inscripcionDAO.ModificarInscripcion(inscripcionM);
                 }
@@ -68,7 +70,7 @@ namespace UI.Escritorio
                 {
                     Inscripcion nuevaInscripcion = new Inscripcion
                     {
-                       // IdAlumno = ,
+                        IdAlumno =formLogin.id_usuario,
                         IdCurso = (int)cmbCurso.SelectedValue,
                         Condicion = (string)cmbCondicion.Text,
                         Nota = int.Parse(txtNota.Text),
@@ -92,6 +94,7 @@ namespace UI.Escritorio
         {
             this.DialogResult = DialogResult.Cancel;
         }
+
     }
 }
 

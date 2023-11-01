@@ -8,14 +8,14 @@ namespace Data.DataBase
 {
     public class MateriasDAO
     {
-        private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
+       // private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
         // private string connectionString = "Data Source=(localdb)\\NBX;Database=TPI2023M07; Integrated Security=True";
        // private string connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
 
         public DataTable ObtenerTodasLasMaterias()
         {
             DataTable dtMaterias = new DataTable();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
             {
                 string query = "SELECT id_materia, desc_materia,hs_semanales, hs_totales, id_plan FROM Materias";
                 using (SqlCommand commnad = new SqlCommand(query, connection))
@@ -31,7 +31,7 @@ namespace Data.DataBase
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
                 {
                     connection.Open();
                     string query = "INSERT INTO Materias (desc_materia, hs_semanales, hs_totales, id_plan) VALUES (@desc_materia, @hs_semanales, @hs_totales, @id_plan)";
@@ -58,7 +58,7 @@ namespace Data.DataBase
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
                 {
                     connection.Open();
 
@@ -88,7 +88,7 @@ namespace Data.DataBase
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
                 {
                     connection.Open();
 
@@ -117,7 +117,7 @@ namespace Data.DataBase
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
                 {
                     connection.Open();
                     string query = "SELECT desc_materia FROM Materias WHERE id_materia = @id_materia";

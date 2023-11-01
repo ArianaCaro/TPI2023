@@ -1,4 +1,4 @@
-﻿using Data.DataBase;
+﻿using Servicios;
 using Entidades;
 using System;
 using System.Collections.Generic;
@@ -24,13 +24,13 @@ namespace UI.Escritorio
 
         private void ActualizarDataGridView()
         {
-            UsuariosDAO usuarioDAO = new UsuariosDAO();
+            S_Usuario usuarioDAO = new S_Usuario();
             DataTable dtUsuarios = usuarioDAO.ObtenerTodosLosUsuarios();
 
             dtUsuarios.Columns.Add("Apellido", typeof(string));
             dtUsuarios.Columns.Add("Email", typeof(string)); 
 
-            PersonasDAO personaDAO = new PersonasDAO();
+            S_Persona personaDAO = new S_Persona();
             foreach (DataRow row in dtUsuarios.Rows)
             {
 
@@ -47,11 +47,13 @@ namespace UI.Escritorio
 
         private void btnAlta_Click(object sender, EventArgs e)
         {
-            Usuario nuevoUsuario = null;
-            formUsuarioOpc frmUsuarioOp = new formUsuarioOpc(nuevoUsuario);
-            if (DialogResult.OK == frmUsuarioOp.ShowDialog())/*
+            /* Usuario nuevoUsuario = null;
+             formUsuarioOpc frmUsuarioOp = new formUsuarioOpc(nuevoUsuario);
+             if (DialogResult.OK == frmUsuarioOp.ShowDialog())/*
+             formPersonaOpc frmPersona = new formPersonaOpc();
+             if (DialogResult.OK == frmPersona.ShowDialog()) */
             formPersonaOpc frmPersona = new formPersonaOpc();
-            if (DialogResult.OK == frmPersona.ShowDialog()) */
+            frmPersona.ShowDialog();
               ActualizarDataGridView();
         }
 
@@ -69,7 +71,7 @@ namespace UI.Escritorio
 
                 if (res == DialogResult.Yes)
                 {
-                    UsuariosDAO usuarioDAO = new UsuariosDAO();
+                    S_Usuario usuarioDAO = new S_Usuario();
                     bool eliminado = usuarioDAO.EliminarUsuario(usuarioSeleccionado);   //eliminado es mi variable bandera para saber si el metodo de eliminar funciono bien
 
                     if (eliminado)
@@ -98,8 +100,7 @@ namespace UI.Escritorio
                 IdUsuario= int.Parse(dgvUsuarios.CurrentRow.Cells[0].Value.ToString()),
                 NombreUsuario = dgvUsuarios.CurrentRow.Cells[1].Value.ToString(),
                 Clave = dgvUsuarios.CurrentRow.Cells[2].Value.ToString(),
-                Tipo = dgvUsuarios.CurrentRow.Cells[3].Value.ToString(),
-                IdPersona = int.Parse(dgvUsuarios.CurrentRow.Cells[4].Value.ToString()),          
+                IdPersona = int.Parse(dgvUsuarios.CurrentRow.Cells[3].Value.ToString()),          
             };
         }
 
@@ -110,20 +111,19 @@ namespace UI.Escritorio
             dgvUsuarios.Columns["id_usuario"].HeaderText = "ID Usuario";
             dgvUsuarios.Columns["nombre_usuario"].HeaderText = "Usuario";
             dgvUsuarios.Columns["clave"].HeaderText = "Clave";
-            dgvUsuarios.Columns["tipo"].HeaderText = "TipoUsuario";
             dgvUsuarios.Columns["id_persona"].HeaderText = "ID Persona";
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             string apellidoBusqueda = txtApellidoBusca.Text;
-            UsuariosDAO usuarioDAO = new UsuariosDAO();
+            S_Usuario usuarioDAO = new S_Usuario();
             DataTable dtBusqueda = usuarioDAO.BusquedaFiltrada(apellidoBusqueda);
             
             dtBusqueda.Columns.Add("Apellido", typeof(string));
             dtBusqueda.Columns.Add("Email", typeof(string));
 
-            PersonasDAO personaDAO = new PersonasDAO();
+            S_Persona personaDAO = new S_Persona();
             foreach (DataRow row in dtBusqueda.Rows)
             {
 

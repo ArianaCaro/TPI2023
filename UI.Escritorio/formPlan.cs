@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
-using Data.DataBase;
+using Servicios;
 using Entidades;
 
 namespace UI.Escritorio
@@ -18,13 +18,13 @@ namespace UI.Escritorio
 
         private void ActualizarDataGridView()
         {          
-            PlanesDAO planesDao = new PlanesDAO();
+            S_Plan planesDao = new S_Plan();
             DataTable dtPlanes = planesDao.ObtenerTodosLosPlanes();
 
             DataColumn descripcionEspecialidadColumn = new DataColumn("Especialidad", typeof(string));
             dtPlanes.Columns.Add(descripcionEspecialidadColumn);
 
-            EspecialidadesDAO espDAO = new EspecialidadesDAO();
+            S_Especialidad espDAO = new S_Especialidad();
             foreach (DataRow row in dtPlanes.Rows)
             {
                 int idEspecialidad = Convert.ToInt32(row["id_Especialidad"]);
@@ -59,7 +59,7 @@ namespace UI.Escritorio
 
             if (res == DialogResult.Yes)
             {
-                PlanesDAO planesDAO = new PlanesDAO();
+                S_Plan planesDAO = new S_Plan();
                 bool eliminado = planesDAO.EliminarPlan(planSeleccionado);      //eliminado es mi variable bandera para saber si el metodo de eliminar funciono bien
 
                 if (eliminado)

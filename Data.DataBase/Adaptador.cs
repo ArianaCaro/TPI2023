@@ -6,40 +6,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 
-
-/*
-namespace DataDAO
+namespace Data.DataBase
 {
     public class Adaptador
     {
+        private static string connectionString;
 
-        private SqlConnection sqlCon;
-
-        const string claveConexionDefecto = "probando";
-
-        public SqlConnection SqlCon
+        static Adaptador()
         {
-            get { return sqlCon; }
-            set { sqlCon = value; }
-        }
+            // cadena de conexion
+            //connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
+            //connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
+            //connectionString = "Data Source=(localdb)\\NBX;Database=TPI2023M07; Integrated Security=True";
+            connectionString = "Data Source=TOMASLARDIZABAL\\SQLEXPRESS;Initial Catalog=Academia_tp;Integrated Security=True";
+    }
 
-        protected void AbrirConexion()
+        public static string GetConnection()
         {
-            string cadenaConexion = ConfigurationManager.ConnectionStrings[claveConexionDefecto].ConnectionString;
-            sqlCon = new SqlConnection(cadenaConexion);
-            sqlCon.Open();
-        }
-
-        protected void CerrarConexion()
-        {
-            sqlCon.Close();
-            sqlCon = null;
-        }
-
-        protected SqlDataReader ExecuteReader(String commandText)
-        {
-            throw new Exception("Metodo no implementado");
+            return connectionString;
         }
     }
 }
-*/

@@ -1,4 +1,4 @@
-﻿using Data.DataBase;
+﻿using Servicios;
 using Entidades;
 using System;
 using System.Data;
@@ -34,9 +34,9 @@ namespace UI.Escritorio
                 this.Text = "Formulario MODIFICAR";
                 this.txtAnioCalendario.Text = curso.AnioCalendario.ToString();
                 this.txtCupo.Text = curso.Cupo.ToString();
-                MateriasDAO matDAO = new MateriasDAO();
+                S_Materia matDAO = new S_Materia();
                 this.cmbMateria.Text = matDAO.ObtenerDescripcionMateria(curso.IdMateria);
-                ComisionesDAO comDAO = new ComisionesDAO();
+                S_Comision comDAO = new S_Comision();
                 this.cmbComision.Text = comDAO.ObtenerDescripcionComision(curso.IdComision);
                 band = true;
                 cursoN = curso;
@@ -45,7 +45,7 @@ namespace UI.Escritorio
 
         public void cargar_materias()
         {
-            MateriasDAO matDAO = new MateriasDAO();
+            S_Materia matDAO = new S_Materia();
             DataTable dtMaterias = matDAO.ObtenerTodasLasMaterias();
 
             cmbMateria.ValueMember = "id_materia";
@@ -54,7 +54,7 @@ namespace UI.Escritorio
         }
         public void cargar_comisiones()
         {
-            ComisionesDAO comDAO = new ComisionesDAO();
+            S_Comision comDAO = new S_Comision();
             DataTable dtComisiones = comDAO.ObtenerTodasLasComisiones();
 
             cmbComision.ValueMember = "id_comision";
@@ -71,7 +71,7 @@ namespace UI.Escritorio
             }
             else
             {
-                CursosDAO cursosDAO = new CursosDAO();
+                S_Curso cursosDAO = new S_Curso();
                 if (band == true)       //band: si es true es para modificar sino para dar de alta 
                 {
                     cursoN.AnioCalendario = int.Parse(txtAnioCalendario.Text);

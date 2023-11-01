@@ -262,7 +262,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "formPersona";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "formUsuarios";
+            this.Text = "Personas";
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersonas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.personasBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tPI2023M07DataSet4)).EndInit();

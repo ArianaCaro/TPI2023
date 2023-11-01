@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E7A5BAB2-2835-4B73-8880-314F0822FD21}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>UI.Escritorio</RootNamespace>
+    <AssemblyName>UI.Escritorio</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="formCurso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formCurso.Designer.cs">
+      <DependentUpon>formCurso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formCursoOpc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formCursoOpc.Designer.cs">
+      <DependentUpon>formCursoOpc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formInscripcion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formInscripcion.Designer.cs">
+      <DependentUpon>formInscripcion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formInscripcionOpc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formInscripcionOpc.Designer.cs">
+      <DependentUpon>formInscripcionOpc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formMateria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formMateria.Designer.cs">
+      <DependentUpon>formMateria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formComision.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formComision.Designer.cs">
+      <DependentUpon>formComision.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formComisionOpc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formComisionOpc.Designer.cs">
+      <DependentUpon>formComisionOpc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formEspecialidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formEspecialidad.Designer.cs">
+      <DependentUpon>formEspecialidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formEspecialidadOpc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formEspecialidadOpc.Designer.cs">
+      <DependentUpon>formEspecialidadOpc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formLogin.Designer.cs">
+      <DependentUpon>formLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formMain.Designer.cs">
+      <DependentUpon>formMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formMateriaOpc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formMateriaOpc.Designer.cs">
+      <DependentUpon>formMateriaOpc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formPersonaOpc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formPersonaOpc.Designer.cs">
+      <DependentUpon>formPersonaOpc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formPlan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formPlan.Designer.cs">
+      <DependentUpon>formPlan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formPlanOpc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formPlanOpc.Designer.cs">
+      <DependentUpon>formPlanOpc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formPersona.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formPersona.Designer.cs">
+      <DependentUpon>formPersona.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formUsuario.Designer.cs">
+      <DependentUpon>formUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formUsuarioOpc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formUsuarioOpc.Designer.cs">
+      <DependentUpon>formUsuarioOpc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TPI2023M07DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TPI2023M07DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TPI2023M07DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TPI2023M07DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TPI2023M07DataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TPI2023M07DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TPI2023M07DataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TPI2023M07DataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TPI2023M07DataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TPI2023M07DataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TPI2023M07DataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TPI2023M07DataSet5.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TPI2023M07DataSet6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TPI2023M07DataSet6.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TPI2023M07DataSet7.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TPI2023M07DataSet7.xsd</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="formComision.resx">
+      <DependentUpon>formComision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formComisionOpc.resx">
+      <DependentUpon>formComisionOpc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formCurso.resx">
+      <DependentUpon>formCurso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formCursoOpc.resx">
+      <DependentUpon>formCursoOpc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formEspecialidad.resx">
+      <DependentUpon>formEspecialidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formEspecialidadOpc.resx">
+      <DependentUpon>formEspecialidadOpc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formInscripcion.resx">
+      <DependentUpon>formInscripcion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formInscripcionOpc.resx">
+      <DependentUpon>formInscripcionOpc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formLogin.resx">
+      <DependentUpon>formLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formMain.resx">
+      <DependentUpon>formMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formMateria.resx">
+      <DependentUpon>formMateria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formMateriaOpc.resx">
+      <DependentUpon>formMateriaOpc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPersonaOpc.resx">
+      <DependentUpon>formPersonaOpc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPlan.resx">
+      <DependentUpon>formPlan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPlanOpc.resx">
+      <DependentUpon>formPlanOpc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPersona.resx">
+      <DependentUpon>formPersona.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formUsuario.resx">
+      <DependentUpon>formUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formUsuarioOpc.resx">
+      <DependentUpon>formUsuarioOpc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="TPI2023M07DataSet.xsc">
+      <DependentUpon>TPI2023M07DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TPI2023M07DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TPI2023M07DataSet.xss">
+      <DependentUpon>TPI2023M07DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet1.xsc">
+      <DependentUpon>TPI2023M07DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TPI2023M07DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TPI2023M07DataSet1.xss">
+      <DependentUpon>TPI2023M07DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet2.xsc">
+      <DependentUpon>TPI2023M07DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TPI2023M07DataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TPI2023M07DataSet2.xss">
+      <DependentUpon>TPI2023M07DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet3.xsc">
+      <DependentUpon>TPI2023M07DataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TPI2023M07DataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TPI2023M07DataSet3.xss">
+      <DependentUpon>TPI2023M07DataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet4.xsc">
+      <DependentUpon>TPI2023M07DataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TPI2023M07DataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TPI2023M07DataSet4.xss">
+      <DependentUpon>TPI2023M07DataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet5.xsc">
+      <DependentUpon>TPI2023M07DataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TPI2023M07DataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TPI2023M07DataSet5.xss">
+      <DependentUpon>TPI2023M07DataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet6.xsc">
+      <DependentUpon>TPI2023M07DataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet6.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TPI2023M07DataSet6.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TPI2023M07DataSet6.xss">
+      <DependentUpon>TPI2023M07DataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet7.xsc">
+      <DependentUpon>TPI2023M07DataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="TPI2023M07DataSet7.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TPI2023M07DataSet7.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TPI2023M07DataSet7.xss">
+      <DependentUpon>TPI2023M07DataSet7.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data.DataBase\Data.DataBase.csproj">
+      <Project>{07b4b4c6-33f3-4e5d-8e37-6a13ed6ef8fc}</Project>
+      <Name>Data.DataBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{750fef90-d303-4c2e-b559-36f78f399f56}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

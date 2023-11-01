@@ -1,6 +1,7 @@
-﻿using Data.DataBase;
-using System;
+﻿using System;
+using System.Data;
 using System.Windows.Forms;
+using Servicios;
 using Entidades;
 
 namespace UI.Escritorio
@@ -37,7 +38,7 @@ namespace UI.Escritorio
             }
             else
             {
-                EspecialidadesDAO especialidadesDAO = new EspecialidadesDAO();
+                S_Especialidad especialidadesDAO = new S_Especialidad();
 
                 if (band == true)       //el band es para saber si es un formulario de modificar o de alta, si es true es de modificar
                 {

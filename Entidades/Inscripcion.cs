@@ -2,11 +2,9 @@
 {
     public class Inscripcion
     {
-        private int id_inscripcion;
-        private int id_alumno;
-        private int id_curso;
-        private string condicion;
-        private int nota;
+         int id_inscripcion, id_alumno, id_curso,nota;
+         string condicion;
+
         public int IdInscripcion
         {
             get { return id_inscripcion; }

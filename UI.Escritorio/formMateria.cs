@@ -1,4 +1,4 @@
-﻿using Data.DataBase;
+﻿using Servicios;
 using Entidades;
 using System;
 using System.Data;
@@ -17,13 +17,13 @@ namespace UI.Escritorio
 
         private void ActualizarDataGridView()
         {
-            MateriasDAO materiasDAO = new MateriasDAO();
+            S_Materia materiasDAO = new S_Materia();
             DataTable dtMaterias = materiasDAO.ObtenerTodasLasMaterias();
 
             DataColumn descripcionPlanColumn = new DataColumn("Plan", typeof(string));
             dtMaterias.Columns.Add(descripcionPlanColumn);
 
-            PlanesDAO planDAO = new PlanesDAO();
+            S_Plan planDAO = new S_Plan();
             foreach (DataRow row in dtMaterias.Rows)
             {
                 int idPlan = Convert.ToInt32(row["id_plan"]);
@@ -55,7 +55,7 @@ namespace UI.Escritorio
 
             if (res == DialogResult.Yes)
             {
-                MateriasDAO materiasDAO = new MateriasDAO();
+                S_Materia materiasDAO = new S_Materia();
                 bool eliminado = materiasDAO.EliminarMateria(materiaSeleccionada);   //eliminado es mi variable bandera para saber si el metodo de eliminar funciono bien
                 if (eliminado)
                 {

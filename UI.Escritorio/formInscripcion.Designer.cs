@@ -42,9 +42,10 @@
             this.btnBaja = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
-            this.txtApellidoBusca = new System.Windows.Forms.TextBox();
+            this.txtCursoBusqueda = new System.Windows.Forms.TextBox();
             this.alumnos_InscripcionesTableAdapter = new UI.Escritorio.TPI2023M07DataSet7TableAdapters.Alumnos_InscripcionesTableAdapter();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblBusqueda = new System.Windows.Forms.Label();
+            this.btnReporte = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInscripciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.alumnosInscripcionesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tPI2023M07DataSet7)).BeginInit();
@@ -62,9 +63,11 @@
             this.condicionDataGridViewTextBoxColumn,
             this.notaDataGridViewTextBoxColumn});
             this.dgvInscripciones.DataSource = this.alumnosInscripcionesBindingSource;
-            this.dgvInscripciones.Location = new System.Drawing.Point(22, 69);
+            this.dgvInscripciones.Location = new System.Drawing.Point(29, 85);
+            this.dgvInscripciones.Margin = new System.Windows.Forms.Padding(4);
             this.dgvInscripciones.Name = "dgvInscripciones";
-            this.dgvInscripciones.Size = new System.Drawing.Size(749, 278);
+            this.dgvInscripciones.RowHeadersWidth = 51;
+            this.dgvInscripciones.Size = new System.Drawing.Size(999, 342);
             this.dgvInscripciones.TabIndex = 0;
             this.dgvInscripciones.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvInscripciones_CellMouseClick);
             // 
@@ -72,32 +75,42 @@
             // 
             this.idinscripcionDataGridViewTextBoxColumn.DataPropertyName = "id_inscripcion";
             this.idinscripcionDataGridViewTextBoxColumn.HeaderText = "ID Inscripcion";
+            this.idinscripcionDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.idinscripcionDataGridViewTextBoxColumn.Name = "idinscripcionDataGridViewTextBoxColumn";
             this.idinscripcionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idinscripcionDataGridViewTextBoxColumn.Width = 125;
             // 
             // idalumnoDataGridViewTextBoxColumn
             // 
             this.idalumnoDataGridViewTextBoxColumn.DataPropertyName = "id_alumno";
-            this.idalumnoDataGridViewTextBoxColumn.HeaderText = "id_alumno";
+            this.idalumnoDataGridViewTextBoxColumn.HeaderText = "ID Alumno";
+            this.idalumnoDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.idalumnoDataGridViewTextBoxColumn.Name = "idalumnoDataGridViewTextBoxColumn";
+            this.idalumnoDataGridViewTextBoxColumn.Width = 125;
             // 
             // idcursoDataGridViewTextBoxColumn
             // 
             this.idcursoDataGridViewTextBoxColumn.DataPropertyName = "id_curso";
-            this.idcursoDataGridViewTextBoxColumn.HeaderText = "id_curso";
+            this.idcursoDataGridViewTextBoxColumn.HeaderText = "ID Curso";
+            this.idcursoDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.idcursoDataGridViewTextBoxColumn.Name = "idcursoDataGridViewTextBoxColumn";
+            this.idcursoDataGridViewTextBoxColumn.Width = 125;
             // 
             // condicionDataGridViewTextBoxColumn
             // 
             this.condicionDataGridViewTextBoxColumn.DataPropertyName = "condicion";
             this.condicionDataGridViewTextBoxColumn.HeaderText = "Condicion";
+            this.condicionDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.condicionDataGridViewTextBoxColumn.Name = "condicionDataGridViewTextBoxColumn";
+            this.condicionDataGridViewTextBoxColumn.Width = 125;
             // 
             // notaDataGridViewTextBoxColumn
             // 
             this.notaDataGridViewTextBoxColumn.DataPropertyName = "nota";
             this.notaDataGridViewTextBoxColumn.HeaderText = "Nota";
+            this.notaDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.notaDataGridViewTextBoxColumn.Name = "notaDataGridViewTextBoxColumn";
+            this.notaDataGridViewTextBoxColumn.Width = 125;
             // 
             // alumnosInscripcionesBindingSource
             // 
@@ -111,9 +124,10 @@
             // 
             // btnAlta
             // 
-            this.btnAlta.Location = new System.Drawing.Point(445, 368);
+            this.btnAlta.Location = new System.Drawing.Point(593, 453);
+            this.btnAlta.Margin = new System.Windows.Forms.Padding(4);
             this.btnAlta.Name = "btnAlta";
-            this.btnAlta.Size = new System.Drawing.Size(75, 23);
+            this.btnAlta.Size = new System.Drawing.Size(100, 28);
             this.btnAlta.TabIndex = 1;
             this.btnAlta.Text = "ALTA";
             this.btnAlta.UseVisualStyleBackColor = true;
@@ -121,9 +135,10 @@
             // 
             // btnModifica
             // 
-            this.btnModifica.Location = new System.Drawing.Point(315, 367);
+            this.btnModifica.Location = new System.Drawing.Point(420, 452);
+            this.btnModifica.Margin = new System.Windows.Forms.Padding(4);
             this.btnModifica.Name = "btnModifica";
-            this.btnModifica.Size = new System.Drawing.Size(75, 23);
+            this.btnModifica.Size = new System.Drawing.Size(100, 28);
             this.btnModifica.TabIndex = 2;
             this.btnModifica.Text = "MODIFICAR";
             this.btnModifica.UseVisualStyleBackColor = true;
@@ -131,9 +146,10 @@
             // 
             // btnBaja
             // 
-            this.btnBaja.Location = new System.Drawing.Point(164, 367);
+            this.btnBaja.Location = new System.Drawing.Point(219, 452);
+            this.btnBaja.Margin = new System.Windows.Forms.Padding(4);
             this.btnBaja.Name = "btnBaja";
-            this.btnBaja.Size = new System.Drawing.Size(75, 23);
+            this.btnBaja.Size = new System.Drawing.Size(100, 28);
             this.btnBaja.TabIndex = 3;
             this.btnBaja.Text = "BAJA";
             this.btnBaja.UseVisualStyleBackColor = true;
@@ -141,9 +157,10 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(239, 40);
+            this.btnBuscar.Location = new System.Drawing.Point(319, 49);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscar.Size = new System.Drawing.Size(100, 28);
             this.btnBuscar.TabIndex = 4;
             this.btnBuscar.Text = "BUSCAR";
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -151,41 +168,55 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(696, 37);
+            this.btnReset.Location = new System.Drawing.Point(928, 46);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(4);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.Size = new System.Drawing.Size(100, 28);
             this.btnReset.TabIndex = 5;
             this.btnReset.Text = "RESET";
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
-            // txtApellidoBusca
+            // txtCursoBusqueda
             // 
-            this.txtApellidoBusca.Location = new System.Drawing.Point(62, 40);
-            this.txtApellidoBusca.Name = "txtApellidoBusca";
-            this.txtApellidoBusca.Size = new System.Drawing.Size(159, 20);
-            this.txtApellidoBusca.TabIndex = 6;
+            this.txtCursoBusqueda.Location = new System.Drawing.Point(83, 49);
+            this.txtCursoBusqueda.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCursoBusqueda.Name = "txtCursoBusqueda";
+            this.txtCursoBusqueda.Size = new System.Drawing.Size(211, 22);
+            this.txtCursoBusqueda.TabIndex = 6;
             // 
             // alumnos_InscripcionesTableAdapter
             // 
             this.alumnos_InscripcionesTableAdapter.ClearBeforeFill = true;
             // 
-            // label1
+            // lblBusqueda
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Curso:";
+            this.lblBusqueda.AutoSize = true;
+            this.lblBusqueda.Location = new System.Drawing.Point(25, 52);
+            this.lblBusqueda.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBusqueda.Name = "lblBusqueda";
+            this.lblBusqueda.Size = new System.Drawing.Size(45, 16);
+            this.lblBusqueda.TabIndex = 7;
+            this.lblBusqueda.Text = "Curso:";
+            // 
+            // btnReporte
+            // 
+            this.btnReporte.Location = new System.Drawing.Point(426, 49);
+            this.btnReporte.Name = "btnReporte";
+            this.btnReporte.Size = new System.Drawing.Size(100, 28);
+            this.btnReporte.TabIndex = 8;
+            this.btnReporte.Text = "REPORTE";
+            this.btnReporte.UseVisualStyleBackColor = true;
+            this.btnReporte.Click += new System.EventHandler(this.btnReporte_Click);
             // 
             // formInscripcion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(783, 406);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtApellidoBusca);
+            this.ClientSize = new System.Drawing.Size(1044, 500);
+            this.Controls.Add(this.btnReporte);
+            this.Controls.Add(this.lblBusqueda);
+            this.Controls.Add(this.txtCursoBusqueda);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnBaja);
@@ -193,6 +224,7 @@
             this.Controls.Add(this.btnAlta);
             this.Controls.Add(this.dgvInscripciones);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "formInscripcion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inscripciones";
@@ -212,15 +244,16 @@
         private System.Windows.Forms.Button btnBaja;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnReset;
-        private System.Windows.Forms.TextBox txtApellidoBusca;
+        private System.Windows.Forms.TextBox txtCursoBusqueda;
         private TPI2023M07DataSet7 tPI2023M07DataSet7;
         private System.Windows.Forms.BindingSource alumnosInscripcionesBindingSource;
         private TPI2023M07DataSet7TableAdapters.Alumnos_InscripcionesTableAdapter alumnos_InscripcionesTableAdapter;
+        private System.Windows.Forms.Label lblBusqueda;
         private System.Windows.Forms.DataGridViewTextBoxColumn idinscripcionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idalumnoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idcursoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn condicionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn notaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnReporte;
     }
 }

@@ -1,5 +1,4 @@
-﻿using Data.DataBase;
-using DataDAO;
+﻿using Servicios;
 using Entidades;
 using System;
 using System.Data;
@@ -20,13 +19,13 @@ namespace UI.Escritorio
 
         private void ActualizarDataGridView(int tipo)
         {
-            PersonasDAO personaDAO = new PersonasDAO();
+            S_Persona personaDAO = new S_Persona();
             DataTable dtPersonas = personaDAO.ObtenerTodasLasPersonas(tipo);
 
             DataColumn descripcionPlanColumn = new DataColumn("Plan", typeof(string));
             dtPersonas.Columns.Add(descripcionPlanColumn);
 
-            PlanesDAO planDAO = new PlanesDAO();
+            S_Plan planDAO = new S_Plan();
             foreach (DataRow row in dtPersonas.Rows)
             {
                 int idPlan = Convert.ToInt32(row["id_plan"]);
@@ -40,8 +39,7 @@ namespace UI.Escritorio
 
         private void btnAlta_Click(object sender, EventArgs e)
         {
-            Persona nuevaPersona = null;
-            formPersonaOpc frmPersonaOp = new formPersonaOpc(nuevaPersona,tipo_per);
+            formPersonaOpc frmPersonaOp = new formPersonaOpc(tipo_per);
             if(DialogResult.OK == frmPersonaOp.ShowDialog())
             ActualizarDataGridView(tipo_per);
         }
@@ -61,7 +59,7 @@ namespace UI.Escritorio
 
                 if (res == DialogResult.Yes)
                 {
-                    PersonasDAO personaDAO = new PersonasDAO();
+                    S_Persona personaDAO = new S_Persona();
                     bool eliminado = personaDAO.EliminarPersona(personaSeleccionada);  //eliminado es mi variable bandera para saber si el metodo de eliminar funciono bien
 
                     if (eliminado)
@@ -76,7 +74,7 @@ namespace UI.Escritorio
 
                 else
                 {
-                    MessageBox.Show("Debe seleccionar una persona antes de realizar la baja.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Operacion cancelada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
                 ActualizarDataGridView(tipo_per);
@@ -119,13 +117,13 @@ namespace UI.Escritorio
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             string apellidoBusqueda = txtApellidoBusca.Text;
-            PersonasDAO personaDAO = new PersonasDAO();
+            S_Persona personaDAO = new S_Persona();
             DataTable dtBusqueda = personaDAO.BusquedaFiltrada(tipo_per,apellidoBusqueda);
 
             DataColumn descripcioPlanColumn = new DataColumn("Plan", typeof(string));
             dtBusqueda.Columns.Add(descripcioPlanColumn);
 
-            PlanesDAO planDAO = new PlanesDAO();
+            S_Plan planDAO = new S_Plan();
             foreach (DataRow row in dtBusqueda.Rows)
             {
                 int idPlan = Convert.ToInt32(row["id_plan"]);

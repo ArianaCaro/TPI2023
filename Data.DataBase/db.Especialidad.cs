@@ -9,16 +9,16 @@ namespace Data.DataBase
     public class EspecialidadesDAO
     {
         // Cadena de conexión a la base de datos
-        private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
+       // private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
         //private string connectionString = "Data Source=(localdb)\\NBX;Integrated Security=True";
-        //private string connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
+       // private string connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
 
               
         public bool InsertarEspecialidad(Especialidad especialidad)       // Método para insertar una nueva especialidad en la base de datos  
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
                 {
                     connection.Open();
                     string query = "INSERT INTO Especialidades (desc_especialidad) VALUES (@desc_especialidad)";
@@ -42,7 +42,7 @@ namespace Data.DataBase
         {
             DataTable dtEspecialidades = new DataTable();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
             {
                 string query = "SELECT  id_especialidad, desc_especialidad FROM Especialidades";
 
@@ -60,7 +60,7 @@ namespace Data.DataBase
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
                 {
                     connection.Open();
                     string query = "SELECT desc_especialidad FROM Especialidades WHERE id_especialidad = @idEspecialidad";
@@ -91,7 +91,7 @@ namespace Data.DataBase
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
                 {
                     connection.Open();
                     string query = "UPDATE Especialidades SET desc_especialidad = @NuevaDescripcion WHERE id_especialidad = @id_especialidad";
@@ -120,18 +120,16 @@ namespace Data.DataBase
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
                 {
                     connection.Open();
-                    string query = "DELETE FROM Especialidades WHERE id_especialidad = @id_especialidad AND desc_especialidad = @desc_especialidad";
+                    string query = "DELETE FROM Especialidades WHERE id_especialidad = @id_especialidad";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@id_especialidad", especialidad.IdEspecialidad);
-                        command.Parameters.AddWithValue("@desc_especialidad", especialidad.DescEspecialidad);
 
                         int rowsAffected = command.ExecuteNonQuery();
-
                         return rowsAffected > 0;
                     }
                 }

@@ -1,9 +1,6 @@
-﻿using Data.DataBase;
-using DataDAO;
+﻿using Servicios;
 using Entidades;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
@@ -12,62 +9,62 @@ namespace UI.Escritorio
 {
     public partial class formPersonaOpc : Form
     {
-        int band = 0;
         Persona personaM;
-        int tipo_per;
-        bool b;
+        int tipo_per=0;
 
-        public formPersonaOpc(Persona persona, int tipo)
-        {
-            InitializeComponent();
-            cargar_planes();
-            tipo_per = tipo;
-            b = true;
-
-            if(persona == null)
-            {
-                this.Text = "Formulario Alta";
-                this.btnAceptar.Text = "AGREGAR";
-            }
-            else
-            {
-                this.txtNombre.Text = persona.Nombre;
-                this.txtApellido.Text = persona.Apellido;
-                this.txtDireccion.Text = persona.Direccion;
-                this.txtEmail.Text = persona.Email;
-                this.txtTelefono.Text = persona.Telefono;
-                this.dtpFechaNac.Text = persona.FechaNac.ToString();
-                this.txtLegajo.Text = persona.Legajo.ToString();
-                PlanesDAO planDAO = new PlanesDAO();
-                this.cmbPlanes.Text = planDAO.ObtenerDescripcionPlanes(persona.IdPlan);
-
-                this.btnAceptar.Text = "MODIFICAR";
-                this.Text = "Formulario Modificar";
-                band = 1;
-                personaM = persona;
-            }
-        }
-
-        public formPersonaOpc(int tipo_persona/*Persona persona*/)
+        public formPersonaOpc(int tipo) //constructor alta desde persona
         {
             InitializeComponent();
             cargar_planes();
             this.Text = "Formulario Alta";
-            band = 2;       //NO HARIA FALTA CREO
-            tipo_per = tipo_persona;
+            this.btnAceptar.Text = "AGREGAR";
+            tipo_per = tipo;
+            lblTipo.Visible = false;
+            cmbTipoUsuario.Visible = false;
+        }
+        public formPersonaOpc(Persona persona, int tipo)    //constructor modificar desde persona
+        {
+            InitializeComponent();
+            cargar_planes();
+            tipo_per = tipo;
+
+            this.txtNombre.Text = persona.Nombre;
+            this.txtApellido.Text = persona.Apellido;
+            this.txtDireccion.Text = persona.Direccion;
+            this.txtEmail.Text = persona.Email;
+            this.txtTelefono.Text = persona.Telefono;
+            this.dtpFechaNac.Text = persona.FechaNac.ToString();
+            this.txtLegajo.Text = persona.Legajo.ToString();
+            S_Plan planDAO = new S_Plan();
+            this.cmbPlanes.Text = planDAO.ObtenerDescripcionPlanes(persona.IdPlan);
+
+            lblTipo.Visible = false;
+            cmbTipoUsuario.Visible = false;
+
+            this.btnAceptar.Text = "MODIFICAR";
+            this.Text = "Formulario Modificar";
+            personaM = persona;
         }
 
+        public formPersonaOpc()     //constructor alta desde usuario
+        {
+            InitializeComponent();
+            cargar_planes();
+            this.btnAceptar.Text = "AGREGAR";
+        }
+            
+       
         public void cargar_planes()
         {
-            PlanesDAO planesDAO = new PlanesDAO();
+            S_Plan planesDAO = new S_Plan();
             DataTable dtPlanes = planesDAO.ObtenerTodosLosPlanes();
 
             cmbPlanes.ValueMember = "id_plan";
             cmbPlanes.DisplayMember = "desc_plan";
             cmbPlanes.DataSource = dtPlanes;
         }
-       // public int IdUsuario { get { } set { personaM = value; }} //necesario al crear usuarios
-        public int IdPersona { get; private set; }
+
+        //public int IdPersona { get; private set; }
 
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -78,9 +75,10 @@ namespace UI.Escritorio
             }
             else
             {
-                PersonasDAO personaDAO = new PersonasDAO();
+                int band;
+                S_Persona personaDAO = new S_Persona();
 
-                if (band == 1)     //el band es para saber si es un formulario de modificar o de alta, si es 1 es de modificar //SE PODRIA USAR personaM como band y preguntar si es not null en vez de la band y gastar memoria
+                if (this.btnAceptar.Text == "MODIFICAR")
                 {
                     personaM.Nombre = txtNombre.Text;
                     personaM.Apellido = txtApellido.Text;
@@ -95,6 +93,17 @@ namespace UI.Escritorio
                 }
                 else
                 {
+                    if(tipo_per == 0)
+                    {
+                        if (cmbTipoUsuario.SelectedIndex == 0) // "Alumno" seleccionado
+                        {
+                            tipo_per = 1;
+                        }
+                        else if (cmbTipoUsuario.SelectedIndex == 1) // "Docente" seleccionado
+                        {
+                            tipo_per = 2;
+                        }
+                    }
                     Persona persona = new Persona
                     {
                         Nombre = txtNombre.Text,
@@ -108,34 +117,9 @@ namespace UI.Escritorio
                         TipoPersona = tipo_per,
                     };
 
-                   /* if (band == 0)
-                    {*/
-                        band = personaDAO.InsertarPersona(persona);                 //NO NECESITO LO DE ABAJO, TERMINAR ACA SI ES DIRECTO DE USUARIO
-                        IdPersona = band;
-                    if (b == true)
-                    {
-                        formUsuarioOpc frmUsuarioAlta = new formUsuarioOpc(band);        //le creo un usuario a la persona que cargo
-                        if (DialogResult.OK == frmUsuarioAlta.ShowDialog()) { }
-                    }
-
-                    //IdPersona = band;
-                    /* if (band == 0)//teNGO QUE ENTRAR SI O SI POR ALTA DE ALUMNO O DOCETE DE SUS OPCIONES
-                     {
-                         formUsuarioOpc frmUsuarioAlta = new formUsuarioOpc(band);        //le creo un usuario a la persona que cargo
-                         if (DialogResult.OK == frmUsuarioAlta.ShowDialog()) { }
-                     }*/
-                    /*}*//*
-                    else
-                    {
-                        band = personaDAO.InsertarPersona(persona);
-                    }*/
-                    /*
                     band = personaDAO.InsertarPersona(persona);
-                    IdPersona = band; */              //copio el id generado ultimo para poder guardarlo en usuario
-                                                      //  Usuario usuario = null;
-                    /* formUsuarioOpc frmUsuarioAlta = new formUsuarioOpc(IdPersona);        //le creo un usuario a la persona que cargo
-                     if (DialogResult.OK == frmUsuarioAlta.ShowDialog()) { }*/
-                   // IdPersona = band;
+                    formUsuarioOpc frmUsuarioAlta = new formUsuarioOpc(band);        //le creo un usuario a la persona que cargo
+                    if (DialogResult.OK == frmUsuarioAlta.ShowDialog()) { } //frmUSuarioAlta.ShowDialog();
                 }
 
                 if (band != 0)

@@ -8,15 +8,15 @@ namespace Data.DataBase
     public class PlanesDAO
     {
         // Cadena de conexión a la base de datos
-        private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
+       // private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
         //private string connectionString = "Data Source=(localdb)\\NBX;Integrated Security=True";
-        //private string connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
+       // private string connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
 
         public bool InsertarPlan(Plan plan)        // Método para insertar un nuevo plan en la base de datos
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
                 {
                     connection.Open();
                     string query = "INSERT INTO Planes (desc_plan, id_especialidad) VALUES (@desc_plan, @id_especialidad)";
@@ -40,7 +40,7 @@ namespace Data.DataBase
         {
             DataTable dtPlanes = new DataTable();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
             {
                 string query = "SELECT id_plan, desc_plan, id_especialidad FROM Planes";
                                                     
@@ -59,7 +59,7 @@ namespace Data.DataBase
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
                 {
                     connection.Open();
                     string query = "SELECT desc_plan FROM Planes WHERE id_plan = @id_plan";
@@ -92,7 +92,7 @@ namespace Data.DataBase
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
                 {
                     connection.Open();
 
@@ -122,19 +122,16 @@ namespace Data.DataBase
             {
                 try
                 {
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
                     {
                         connection.Open();
-                        string query = "DELETE FROM Planes WHERE id_plan = @id_plan AND desc_plan = @desc_plan AND id_especialidad = @id_especialidad";
+                        string query = "DELETE FROM Planes WHERE id_plan = @id_plan ";
 
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
                             command.Parameters.AddWithValue("@id_plan", plan.IdPlan);
-                            command.Parameters.AddWithValue("@desc_plan", plan.DescPlan);
-                            command.Parameters.AddWithValue("@id_especialidad", plan.IdEspecialidad);
 
                             int rowsAffected = command.ExecuteNonQuery();
-
                             return rowsAffected > 0;
                         }
                     }

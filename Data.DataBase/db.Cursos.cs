@@ -12,8 +12,8 @@ namespace Data.DataBase
     public class CursosDAO
     {
         // Cadena de conexión a la base de datos
-        private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
-        //private string connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
+        //private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
+       private string connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
         //private string connectionString = "Data Source=(localdb)\\NBX;Database=TPI2023M07; Integrated Security=True";
 
         public bool InsertarCursos(Curso curso)
@@ -21,7 +21,7 @@ namespace Data.DataBase
             try
             {
 
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
                 {
                     connection.Open();
                     string query = "INSERT INTO Cursos (anio_calendario, cupo, id_comision, id_materia) VALUES (@anio_calendario, @cupo, @id_comision, @id_materia)";
@@ -32,6 +32,7 @@ namespace Data.DataBase
                         command.Parameters.AddWithValue("@id_comision", curso.IdComision);
                         command.Parameters.AddWithValue("@id_materia", curso.IdMateria);
                         int rowsAffected = command.ExecuteNonQuery();
+                      // ponemos  connection.Close(); ?
                         return rowsAffected > 0;
                     }
                 }
@@ -46,7 +47,7 @@ namespace Data.DataBase
         {
             DataTable dtCursos = new DataTable();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
             {
                 string query = "SELECT id_curso, anio_calendario, cupo, id_comision, id_materia FROM Cursos";
 
@@ -57,6 +58,7 @@ namespace Data.DataBase
                     SqlDataAdapter adapter = new SqlDataAdapter(commnad);
                     adapter.Fill(dtCursos);
                 }
+                // ponemos  connection.Close(); ?
             }
             return dtCursos;
         }
@@ -64,7 +66,7 @@ namespace Data.DataBase
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
                 {
                     connection.Open();
 
@@ -94,7 +96,7 @@ namespace Data.DataBase
             {
                 try
                 {
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
                     {
                         connection.Open();
                         string query = "DELETE FROM Cursos WHERE  id_curso = @id_curso";
@@ -102,11 +104,6 @@ namespace Data.DataBase
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
                             command.Parameters.AddWithValue("@id_curso", curso.IdCurso);
-                            command.Parameters.AddWithValue("@id_comision", curso.IdComision);
-                            command.Parameters.AddWithValue("@id_materia", curso.IdMateria);
-                            command.Parameters.AddWithValue("@anio_calendario", curso.AnioCalendario);
-                            command.Parameters.AddWithValue("@cupo", curso.Cupo);
-
                             int rowsAffected = command.ExecuteNonQuery();
                             return rowsAffected > 0;
                         }

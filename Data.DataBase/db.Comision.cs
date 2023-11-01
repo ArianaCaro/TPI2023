@@ -8,14 +8,14 @@ namespace Data.DataBase
     public class ComisionesDAO
     {
         // Cadena de conexión a la base de datos
-        private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
+       // private string connectionString = "Server=DESKTOP-QJEDU21;Database=TPI2023M07; Uid=sa; Pwd=sql2023";
        // private string connectionString = "Server=MS-12\\SQLEXPRESS;Database=TPI2023M07; Uid=net; Pwd=net";
 
         public bool InsertarComision(Comision comision)     // Método para insertar una nueva comision en la base de datos
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
                 {
                     connection.Open();
                     string query = "INSERT INTO Comisiones (desc_comision, anio_especialidad, id_plan) VALUES (@desc_comision, @anio_especialidad, @id_plan)";
@@ -40,7 +40,7 @@ namespace Data.DataBase
         {
             DataTable dtComisiones = new DataTable();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
             {
                 string query = "SELECT id_comision, desc_comision,anio_especialidad, id_plan FROM Comisiones";
 
@@ -59,7 +59,7 @@ namespace Data.DataBase
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
                 {
                     connection.Open();
                     string query = "SELECT desc_comision FROM Comisiones WHERE id_comision = @id_comision";
@@ -90,7 +90,7 @@ namespace Data.DataBase
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
                 {
                     connection.Open();
 
@@ -121,18 +121,14 @@ namespace Data.DataBase
             {
                 try
                 {
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    using (SqlConnection connection = new SqlConnection(Adaptador.GetConnection()))
                     {
                         connection.Open();
-                        string query = "DELETE FROM Comisiones WHERE id_comision = @id_comision AND desc_comision = @desc_comision AND anio_especialidad = @anio_especialidad AND id_plan = @id_plan";
+                        string query = "DELETE FROM Comisiones WHERE id_comision = @id_comision";
 
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
                             command.Parameters.AddWithValue("@id_comision", comision.IdComision);
-                            command.Parameters.AddWithValue("@desc_comision", comision.DescComision);
-                            command.Parameters.AddWithValue("@anio_especialidad", comision.AnioEspecialidad);
-                            command.Parameters.AddWithValue("@id_plan", comision.IdPlan);
-
                             int rowsAffected = command.ExecuteNonQuery();
                             return rowsAffected > 0;
                         }

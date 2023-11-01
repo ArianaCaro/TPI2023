@@ -1,4 +1,4 @@
-﻿using Data.DataBase;
+﻿using Servicios;
 using Entidades;
 using System;
 using System.Data;
@@ -25,7 +25,7 @@ namespace UI.Escritorio
             { 
                 this.txtDescripcion.Text = comision.DescComision;
                 this.txtAnioEspecialidad.Text = comision.AnioEspecialidad.ToString();
-                PlanesDAO planDAO = new PlanesDAO();
+                S_Plan planDAO = new S_Plan();
                 this.cmbPlanes.Text = planDAO.ObtenerDescripcionPlanes(comision.IdPlan);
                 this.btnAceptar.Text = "MODIFICAR";
                 this.Text = "Formulario MODIFICAR Comisión";
@@ -36,7 +36,7 @@ namespace UI.Escritorio
                            
         public void cargar_planes()
         {
-            PlanesDAO planesDAO = new PlanesDAO();
+            S_Plan planesDAO = new S_Plan();
             DataTable dtPlanes = planesDAO.ObtenerTodosLosPlanes();
 
             cmbPlanes.ValueMember = "id_plan";
@@ -52,7 +52,7 @@ namespace UI.Escritorio
             }
             else
             {
-                ComisionesDAO comisionDAO = new ComisionesDAO();   
+                S_Comision comisionDAO = new S_Comision();   
                 
                 if (band == true)       //el band es para saber si es un formulario de modificar o de alta, si es true es de modificar
                 {
