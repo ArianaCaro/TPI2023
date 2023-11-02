@@ -8,32 +8,31 @@ namespace UI.Escritorio
 {
     public partial class formComisionOpc : Form
     {
-        bool band = false;
         Comision comisionM;
+
+        public formComisionOpc()
+        {
+            InitializeComponent();
+            cargar_planes();
+            this.Text = "Formulario ALTA Comisión";
+            this.btnAceptar.Text = "AGREGAR";
+        }
 
         public formComisionOpc(Comision comision)
         {
             InitializeComponent();
             cargar_planes();
 
-            if (comision == null)
-            {
-                this.Text = "Formulario ALTA Comisión";
-                this.btnAceptar.Text = "AGREGAR";
-            }
-            else
-            { 
-                this.txtDescripcion.Text = comision.DescComision;
-                this.txtAnioEspecialidad.Text = comision.AnioEspecialidad.ToString();
-                S_Plan planDAO = new S_Plan();
-                this.cmbPlanes.Text = planDAO.ObtenerDescripcionPlanes(comision.IdPlan);
-                this.btnAceptar.Text = "MODIFICAR";
-                this.Text = "Formulario MODIFICAR Comisión";
-                band = true;
-                comisionM = comision;
-            }
+            this.txtDescripcion.Text = comision.DescComision;
+            this.txtAnioEspecialidad.Text = comision.AnioEspecialidad.ToString();
+            S_Plan planDAO = new S_Plan();
+            this.cmbPlanes.Text = planDAO.ObtenerDescripcionPlanes(comision.IdPlan);
+            this.btnAceptar.Text = "MODIFICAR";
+            this.Text = "Formulario MODIFICAR Comisión";
+            comisionM = comision;
         }
-                           
+            
+                              
         public void cargar_planes()
         {
             S_Plan planesDAO = new S_Plan();
@@ -52,9 +51,10 @@ namespace UI.Escritorio
             }
             else
             {
-                S_Comision comisionDAO = new S_Comision();   
-                
-                if (band == true)       //el band es para saber si es un formulario de modificar o de alta, si es true es de modificar
+                bool band;
+                S_Comision comisionDAO = new S_Comision();
+
+                if (this.btnAceptar.Text == "MODIFICAR")
                 {
                     comisionM.DescComision = txtDescripcion.Text;
                     comisionM.AnioEspecialidad = int.Parse(txtAnioEspecialidad.Text);

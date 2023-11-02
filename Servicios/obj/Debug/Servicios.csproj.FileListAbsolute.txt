@@ -1,0 +1,12 @@
+C:\Users\bruno\Downloads\TP\Servicios\bin\Debug\Servicios.dll
+C:\Users\bruno\Downloads\TP\Servicios\bin\Debug\Servicios.pdb
+C:\Users\bruno\Downloads\TP\Servicios\bin\Debug\Data.DataBase.exe
+C:\Users\bruno\Downloads\TP\Servicios\bin\Debug\Entidades.dll
+C:\Users\bruno\Downloads\TP\Servicios\bin\Debug\Data.DataBase.pdb
+C:\Users\bruno\Downloads\TP\Servicios\bin\Debug\Data.DataBase.exe.config
+C:\Users\bruno\Downloads\TP\Servicios\bin\Debug\Entidades.pdb
+C:\Users\bruno\Downloads\TP\Servicios\obj\Debug\Servicios.csproj.AssemblyReference.cache
+C:\Users\bruno\Downloads\TP\Servicios\obj\Debug\Servicios.csproj.CoreCompileInputs.cache
+C:\Users\bruno\Downloads\TP\Servicios\obj\Debug\Servicios.csproj.CopyComplete
+C:\Users\bruno\Downloads\TP\Servicios\obj\Debug\Servicios.dll
+C:\Users\bruno\Downloads\TP\Servicios\obj\Debug\Servicios.pdb

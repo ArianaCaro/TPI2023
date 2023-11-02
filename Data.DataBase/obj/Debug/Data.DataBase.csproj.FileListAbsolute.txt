@@ -75,3 +75,14 @@ C:\Users\potyl\Desktop\Poty\Facultad\c#\TPI_Raul\TPI2023\Data.DataBase\obj\Debug
 C:\Users\potyl\Desktop\Poty\Facultad\c#\TPI_Raul\TPI2023\Data.DataBase\obj\Debug\Data.DataBase.csproj.CopyComplete
 C:\Users\potyl\Desktop\Poty\Facultad\c#\TPI_Raul\TPI2023\Data.DataBase\obj\Debug\Data.DataBase.exe
 C:\Users\potyl\Desktop\Poty\Facultad\c#\TPI_Raul\TPI2023\Data.DataBase\obj\Debug\Data.DataBase.pdb
+C:\Users\bruno\Downloads\TP\Data.DataBase\bin\Debug\Data.DataBase.exe.config
+C:\Users\bruno\Downloads\TP\Data.DataBase\bin\Debug\Data.DataBase.exe
+C:\Users\bruno\Downloads\TP\Data.DataBase\bin\Debug\Data.DataBase.pdb
+C:\Users\bruno\Downloads\TP\Data.DataBase\bin\Debug\Entidades.dll
+C:\Users\bruno\Downloads\TP\Data.DataBase\bin\Debug\Entidades.pdb
+C:\Users\bruno\Downloads\TP\Data.DataBase\obj\Debug\Data.DataBase.csproj.AssemblyReference.cache
+C:\Users\bruno\Downloads\TP\Data.DataBase\obj\Debug\Data.DataBase.csproj.SuggestedBindingRedirects.cache
+C:\Users\bruno\Downloads\TP\Data.DataBase\obj\Debug\Data.DataBase.csproj.CoreCompileInputs.cache
+C:\Users\bruno\Downloads\TP\Data.DataBase\obj\Debug\Data.DataBase.csproj.CopyComplete
+C:\Users\bruno\Downloads\TP\Data.DataBase\obj\Debug\Data.DataBase.exe
+C:\Users\bruno\Downloads\TP\Data.DataBase\obj\Debug\Data.DataBase.pdb

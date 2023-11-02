@@ -38,8 +38,7 @@ namespace UI.Escritorio
 
         private void btnAlta_Click(object sender, EventArgs e)
         {
-            Comision nuevaComision = null;
-            formComisionOpc frmComisionOp = new formComisionOpc(nuevaComision);
+            formComisionOpc frmComisionOp = new formComisionOpc();
             frmComisionOp.ShowDialog();
             ActualizarDataGridView();
         }

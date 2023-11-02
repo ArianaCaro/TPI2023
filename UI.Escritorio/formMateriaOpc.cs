@@ -10,30 +10,30 @@ namespace UI.Escritorio
 {
     public partial class formMateriaOpc : Form
     {
-        bool band = false;
         Materia materiaN;
+
+        public formMateriaOpc()
+        {
+            InitializeComponent();
+            cargar_planes();
+            this.Text = "Formulario ALTA materia";
+            this.btnAceptar.Text = "AGREGAR";
+        }
         public formMateriaOpc(Materia materia)
         {
             InitializeComponent();
             cargar_planes();
 
-            if (materia == null)
-            {
-                this.Text = "Formulario ALTA materia";
-                this.btnAceptar.Text = "AGREGAR";
-            }
-            else
-            {
-                this.Text = "Formulario MODIFICAR materia";
-                this.textBoxDescripMateria.Text = materia.DescMateria.ToString();
-                this.textBoxHsSem.Text = materia.HsSemanales.ToString();
-                S_Plan planDAO = new S_Plan();
-                this.comboBoxDescPlan.Text = planDAO.ObtenerDescripcionPlanes(materia.IdPlan);
-                this.btnAceptar.Text = "MODIFICAR";
-                band = true;
-                materiaN = materia;
-            }
+            this.Text = "Formulario MODIFICAR materia";
+            this.textBoxDescripMateria.Text = materia.DescMateria.ToString();
+            this.textBoxHsSem.Text = materia.HsSemanales.ToString();
+            S_Plan planDAO = new S_Plan();
+            this.comboBoxDescPlan.Text = planDAO.ObtenerDescripcionPlanes(materia.IdPlan);
+            this.btnAceptar.Text = "MODIFICAR";
+            materiaN = materia;
         }
+            
+        
 
         public void cargar_planes()
         {
@@ -54,8 +54,9 @@ namespace UI.Escritorio
             }
             else
             {
+                bool band;
                 S_Materia materiasDAO = new S_Materia();
-                if (band == true)            //el band es para saber si es un formulario de modificar o de alta, si es true es de modificar
+                if (this.btnAceptar.Text == "MODIFICAR")
                 {
                     materiaN.DescMateria = textBoxDescripMateria.Text;
                     materiaN.HsSemanales = int.Parse(textBoxHsSem.Text);

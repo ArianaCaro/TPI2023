@@ -36,8 +36,7 @@ namespace UI.Escritorio
 
         private void btnAlta_Click(object sender, EventArgs e)
         {
-            Materia nuevaMateria = null;
-            formMateriaOpc frmMateriaOp = new formMateriaOpc(nuevaMateria);
+            formMateriaOpc frmMateriaOp = new formMateriaOpc();
             if (DialogResult.OK == frmMateriaOp.ShowDialog())
             ActualizarDataGridView();
         }

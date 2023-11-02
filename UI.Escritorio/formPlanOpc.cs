@@ -8,30 +8,30 @@ namespace UI.Escritorio
 {
     public partial class formPlanOpc : Form
     {
-        bool band = false;
         Plan planM;
+
+        public formPlanOpc()
+        {
+            InitializeComponent();
+            cargar_especialidades();
+            this.Text = "Formulario ALTA Plan";
+            this.btnAgregar.Text = "AGREGAR";
+        }
 
         public formPlanOpc(Plan plan)
         {
             InitializeComponent();
             cargar_especialidades();
 
-            if (plan == null)
-            {
-                this.Text = "Formulario ALTA Plan";
-                this.btnAgregar.Text = "AGREGAR";
-            }
-            else
-            {
-                this.txtDescPlan.Text = plan.DescPlan;
-                S_Especialidad espDAO = new S_Especialidad();
-                this.cmbEspecialidades.Text = espDAO.ObtenerDescripcionEspecialidad(plan.IdEspecialidad);
-                this.btnAgregar.Text = "MODIFICAR";
-                this.Text = "Formulario MODIFICAR Plan";
-                band = true;
-                planM = plan;
-            }               
+            this.txtDescPlan.Text = plan.DescPlan;
+            S_Especialidad espDAO = new S_Especialidad();
+            this.cmbEspecialidades.Text = espDAO.ObtenerDescripcionEspecialidad(plan.IdEspecialidad);
+            this.btnAgregar.Text = "MODIFICAR";
+            this.Text = "Formulario MODIFICAR Plan";
+            planM = plan;
         }
+                          
+        
         public void cargar_especialidades() 
         {
             S_Especialidad especialidadesDAO = new S_Especialidad();
@@ -51,9 +51,10 @@ namespace UI.Escritorio
             }
             else
             {
+                bool band;
                 S_Plan planesDAO = new S_Plan();
 
-                if (band == true)       //el band es para saber si es un formulario de modificar o de alta, si es true es de modificar
+                if (this.btnAgregar.Text == "MODIFICAR")      
                 {
                     planM.DescPlan = txtDescPlan.Text;
                     planM.IdEspecialidad = (int)cmbEspecialidades.SelectedValue;

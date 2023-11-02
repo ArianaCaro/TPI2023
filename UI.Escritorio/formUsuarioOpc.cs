@@ -1,23 +1,14 @@
 ﻿using Servicios;
 using Entidades;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
-using UI.Escritorio;
+
 
 namespace UI.Escritorio
 {
     public partial class formUsuarioOpc : Form
     {
         Usuario usuarioM;
-        bool band = false;
         int id;
         public formUsuarioOpc(Usuario usuario)      //constructor modificar desde usuario
         {
@@ -27,7 +18,6 @@ namespace UI.Escritorio
             this.txtClave.Text = usuario.Clave;
             this.btnAceptar.Text = "MODIFICAR";
             this.Text = "Formulario Modificar";
-            band = true;
             usuarioM = usuario;
         }
                       
@@ -48,6 +38,7 @@ namespace UI.Escritorio
             }
             else
             {
+                bool band;
                 S_Usuario usuarioDAO = new S_Usuario();
 
                 if (this.btnAceptar.Text == "MODIFICAR")     
@@ -59,17 +50,16 @@ namespace UI.Escritorio
                 else
                 {
                     Usuario usuario = new Usuario
-                        {
-                            NombreUsuario = txtNombre.Text,
-                            Clave = txtClave.Text,
-                            IdPersona = id,
-                        };
-                        band = usuarioDAO.InsertarUsuario(usuario);
+                    {
+                        NombreUsuario = txtNombre.Text,
+                        Clave = txtClave.Text,
+                        IdPersona = id,
+                    };
+                    band = usuarioDAO.InsertarUsuario(usuario);
                 }
 
                 if (band == true)
                 {
-                   // MessageBox.Show("Agregado correctamente!");
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }

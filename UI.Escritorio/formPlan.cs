@@ -38,9 +38,8 @@ namespace UI.Escritorio
         }
 
         private void btnAlta_Click(object sender, EventArgs e)
-        {
-            Plan nuevoPlan = null;                                            
-            formPlanOpc frmPlanOp = new formPlanOpc(nuevoPlan);
+        {                                         
+            formPlanOpc frmPlanOp = new formPlanOpc();
             frmPlanOp.ShowDialog();
             ActualizarDataGridView();
         }

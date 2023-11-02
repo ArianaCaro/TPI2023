@@ -25,8 +25,7 @@ namespace UI.Escritorio
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            Especialidad nuevaEspecialidad = null;
-            formEspecialidadOpc frmEspecialidadOp = new formEspecialidadOpc(nuevaEspecialidad);
+            formEspecialidadOpc frmEspecialidadOp = new formEspecialidadOpc();
             frmEspecialidadOp.ShowDialog();
             ActualizarDataGridView();
         }

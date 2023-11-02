@@ -54,8 +54,7 @@ namespace UI.Escritorio
 
         private void btnAlta_Click(object sender, EventArgs e)
         {
-            Curso nuevoCurso = null;
-            formCursoOpc frmCursosOp = new formCursoOpc(nuevoCurso);
+            formCursoOpc frmCursosOp = new formCursoOpc();
             if (DialogResult.OK == frmCursosOp.ShowDialog())
                 ActualizarDataGridView();
         }

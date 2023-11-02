@@ -3,45 +3,41 @@ using Entidades;
 using System;
 using System.Data;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 
 namespace UI.Escritorio
 {
     public partial class formCursoOpc : Form
     {
+        Curso cursoN;
         public formCursoOpc()
         {
             InitializeComponent();
+            cargar_materias();
+            cargar_comisiones();
+            this.Text = "Formulario ALTA Curso";
+            this.btnAceptar.Text = "AGREGAR";
         }
 
-        bool band = false;
-        Curso cursoN;
+
         public formCursoOpc(Curso curso)
         {
             InitializeComponent();
             cargar_materias();
             cargar_comisiones();
 
-            if (curso == null)
-            {
-                this.Text = "Formulario ALTA Curso";
-                this.btnAceptar.Text = "AGREGAR";
-            }
-            else
-            {
-                this.btnAceptar.Text = "MODIFICAR";
-                this.Text = "Formulario MODIFICAR";
-                this.txtAnioCalendario.Text = curso.AnioCalendario.ToString();
-                this.txtCupo.Text = curso.Cupo.ToString();
-                S_Materia matDAO = new S_Materia();
-                this.cmbMateria.Text = matDAO.ObtenerDescripcionMateria(curso.IdMateria);
-                S_Comision comDAO = new S_Comision();
-                this.cmbComision.Text = comDAO.ObtenerDescripcionComision(curso.IdComision);
-                band = true;
-                cursoN = curso;
-            }
+            this.btnAceptar.Text = "MODIFICAR";
+            this.Text = "Formulario MODIFICAR";
+            this.txtAnioCalendario.Text = curso.AnioCalendario.ToString();
+            this.txtCupo.Text = curso.Cupo.ToString();
+            S_Materia matDAO = new S_Materia();
+            this.cmbMateria.Text = matDAO.ObtenerDescripcionMateria(curso.IdMateria);
+            S_Comision comDAO = new S_Comision();
+            this.cmbComision.Text = comDAO.ObtenerDescripcionComision(curso.IdComision);
+            cursoN = curso;
         }
+            
+        
 
         public void cargar_materias()
         {
@@ -71,8 +67,9 @@ namespace UI.Escritorio
             }
             else
             {
+                bool band;
                 S_Curso cursosDAO = new S_Curso();
-                if (band == true)       //band: si es true es para modificar sino para dar de alta 
+                if (this.btnAceptar.Text == "MODIFICAR")       
                 {
                     cursoN.AnioCalendario = int.Parse(txtAnioCalendario.Text);
                     cursoN.Cupo = int.Parse(txtCupo.Text);

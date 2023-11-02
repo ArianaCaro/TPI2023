@@ -8,27 +8,26 @@ namespace UI.Escritorio
 {
     public partial class formEspecialidadOpc : Form
     {
-        bool band = false;
         Especialidad especialidadM;
 
-          public formEspecialidadOpc(Especialidad especialidad)
+        public formEspecialidadOpc()
+        {
+            InitializeComponent();
+            this.Text = "Formulario ALTA Especialidad";
+            this.btnAceptar.Text = "AGREGAR";
+        }
+
+        public formEspecialidadOpc(Especialidad especialidad)
         {
             InitializeComponent();
 
-            if (especialidad == null )
-            {
-                this.Text = "Formulario ALTA Especialidad";
-                this.btnAceptar.Text = "AGREGAR";
-            }
-            else
-            {
-                this.txtDescripcion.Text = especialidad.DescEspecialidad;
-                this.btnAceptar.Text = "MODIFICAR";
-                this.Text = "Formulario MODIFICAR Especialidad";
-                band = true;
-                especialidadM = especialidad;
-            }
+            this.txtDescripcion.Text = especialidad.DescEspecialidad;
+            this.btnAceptar.Text = "MODIFICAR";
+            this.Text = "Formulario MODIFICAR Especialidad";
+            especialidadM = especialidad;
         }
+            
+        
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -38,9 +37,10 @@ namespace UI.Escritorio
             }
             else
             {
+                bool band;
                 S_Especialidad especialidadesDAO = new S_Especialidad();
 
-                if (band == true)       //el band es para saber si es un formulario de modificar o de alta, si es true es de modificar
+                if (this.btnAceptar.Text == "MODIFICAR")      
                 {
                     especialidadM.DescEspecialidad = txtDescripcion.Text;
                     band = especialidadesDAO.ModificarEspecialidad(especialidadM);

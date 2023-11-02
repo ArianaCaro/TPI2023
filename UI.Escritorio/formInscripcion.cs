@@ -23,6 +23,7 @@ namespace UI.Escritorio
                 txtCursoBusqueda.Visible = false;
                 btnBuscar.Visible = false;
                 btnReset.Visible = false;
+                btnReporte.Visible = false;
             }
             else if (tipo == 2)
             {

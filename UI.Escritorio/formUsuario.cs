@@ -47,21 +47,16 @@ namespace UI.Escritorio
 
         private void btnAlta_Click(object sender, EventArgs e)
         {
-            /* Usuario nuevoUsuario = null;
-             formUsuarioOpc frmUsuarioOp = new formUsuarioOpc(nuevoUsuario);
-             if (DialogResult.OK == frmUsuarioOp.ShowDialog())/*
-             formPersonaOpc frmPersona = new formPersonaOpc();
-             if (DialogResult.OK == frmPersona.ShowDialog()) */
             formPersonaOpc frmPersona = new formPersonaOpc();
             frmPersona.ShowDialog();
-              ActualizarDataGridView();
+            ActualizarDataGridView();
         }
 
         private void btnModifica_Click(object sender, EventArgs e)
         {
             formUsuarioOpc frmUsuarioOp = new formUsuarioOpc(usuarioSeleccionado);
             if (DialogResult.OK == frmUsuarioOp.ShowDialog())
-                ActualizarDataGridView();
+            ActualizarDataGridView();
         }
 
         private void btnBaja_Click(object sender, EventArgs e)

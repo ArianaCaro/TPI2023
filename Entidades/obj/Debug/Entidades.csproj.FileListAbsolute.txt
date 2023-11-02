@@ -28,3 +28,9 @@ C:\Users\bruno\Downloads\TPI2023\Entidades\obj\Debug\Entidades.csproj.AssemblyRe
 C:\Users\bruno\Downloads\TPI2023\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
 C:\Users\bruno\Downloads\TPI2023\Entidades\obj\Debug\Entidades.dll
 C:\Users\bruno\Downloads\TPI2023\Entidades\obj\Debug\Entidades.pdb
+C:\Users\bruno\Downloads\TP\Entidades\bin\Debug\Entidades.dll
+C:\Users\bruno\Downloads\TP\Entidades\bin\Debug\Entidades.pdb
+C:\Users\bruno\Downloads\TP\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
+C:\Users\bruno\Downloads\TP\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\bruno\Downloads\TP\Entidades\obj\Debug\Entidades.dll
+C:\Users\bruno\Downloads\TP\Entidades\obj\Debug\Entidades.pdb

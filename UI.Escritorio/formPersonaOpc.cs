@@ -64,8 +64,6 @@ namespace UI.Escritorio
             cmbPlanes.DataSource = dtPlanes;
         }
 
-        //public int IdPersona { get; private set; }
-
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -119,7 +117,7 @@ namespace UI.Escritorio
 
                     band = personaDAO.InsertarPersona(persona);
                     formUsuarioOpc frmUsuarioAlta = new formUsuarioOpc(band);        //le creo un usuario a la persona que cargo
-                    if (DialogResult.OK == frmUsuarioAlta.ShowDialog()) { } //frmUSuarioAlta.ShowDialog();
+                    if (DialogResult.OK == frmUsuarioAlta.ShowDialog()) { } 
                 }
 
                 if (band != 0)
